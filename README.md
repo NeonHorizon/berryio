@@ -1,10 +1,13 @@
 BerryIO
 =======
 
-Description: A web Browser based control system for the RaspberryPi
-License: GPL Version 3
-Platform: Tested on Raspbian Wheezy (2012-09-18 and newer) may work on others
-Requirements: Requires a Raspberry Pi running Raspbian and a decent web browser (Internet Explorer versions older than 8 are not supported)
+*Description:* BerryIO is a web Browser based control system for the RaspberryPi
+
+*License:* GPL Version 3
+
+*Platform:* Tested on Raspbian Wheezy (2012-09-18 and newer) may work on others
+
+*Requirements:* Requires a Raspberry Pi running Raspbian and a decent web browser (Internet Explorer versions older than 8 are not supported)
 
 The long term aim of BerryIO is to enable developers to control the Raspberry Pi and its GPIO ports remotely from any device with a browser without ever needing to connect a screen or keyboard.
 
