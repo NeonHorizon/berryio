@@ -1,0 +1,2 @@
+
+<div class="horizontal_bar"><div class="horizontal_bar_outline"><?=$link != '' && $id != '' ? '<a href="'.$link.'/0" onclick="this.href=\''.$link.'/\' + Math.round(getClickX(event, \''.$id.'\') * 40.95) + \'?s=\' + getScrollY()">' : ''?><span class="horizontal_bar_fill" <?=$id != '' ? 'id="'.$id.'_bar"' : ''?> style="<?=$color?>width: <?=$percentage?>%"></span><?=$link != '' && $id != '' ? '</a>' : ''?></div><? if($show_percentage):?>&nbsp;<span <?=$id != '' ? 'id="'.$id.'_value"' : ''?>><?=h($percentage)?>%</span><? endif?></div>

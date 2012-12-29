@@ -1,0 +1,59 @@
+// ------------------------ LICENSE INFORMATION --------------------------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+// ------------------------------ CREDITS --------------------------------
+
+SPI module based on code from the Gertboard test suite:
+Copyright (C) Gert Jan van Loo & Myra VanInwegen 2012
+
+
+// ------------------------ SECURITY INFORMATION -------------------------
+
+BerryIO is not designed to be accessed over the internet or an insecure
+environment. Although it is password protected it is not encrypted so a
+malicious attacker could snoop on your password. If you wish to access
+BerryIO over the internet you should at the very least encrypt the web
+interface with SSL/https security which you can do by changing the
+configuration in the file /etc/apache2/sites-available/berryio. Please
+consult the Apache manual for more details.
+
+
+// --------------------------- WIRING THE LCD ----------------------------
+
+Please refer to the config file /etc/berryio/lcd.php for instructions on
+wiring a HDD44780 or KS0066U compatible LCD display. This included options
+for changing which GPIO ports you wish to connect the display to.
+
+
+// ------------------------ UPGRADE INSTRUCTIONS ------------------------
+
+// IMPORTANT: You need a working internet connection to upgrade BerryIO
+
+// Make sure your distribution is up to date
+sudo apt-get update
+sudo apt-get upgrade
+
+// Run the upgrade script
+// (NOTE: This replaces /etc/berryio/menu.php so if you have made any
+// changes you will need to re-apply them)
+sudo ./upgrade.sh
+
+// If you have a new revision 2 board (including 512MB version) you can
+// adjust /etc/berryio/gpio.php manually or copy in the new config file
+sudo cp config/etc/berryio/gpio.php /etc/berryio/gpio.php
+
+// Check the version
+berryio about

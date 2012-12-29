@@ -1,0 +1,131 @@
+// ------------------------ LICENSE INFORMATION --------------------------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+// ------------------------------ CREDITS --------------------------------
+
+SPI module based on code from the Gertboard test suite:
+Copyright (C) Gert Jan van Loo & Myra VanInwegen 2012
+
+
+// ------------------------ SECURITY INFORMATION -------------------------
+
+BerryIO is not designed to be accessed over the internet or an insecure
+environment. Although it is password protected it is not encrypted so a
+malicious attacker could snoop on your password. If you wish to access
+BerryIO over the internet you should at the very least encrypt the web
+interface with SSL/https security which you can do by changing the
+configuration in the file /etc/apache2/sites-available/berryio. Please
+consult the Apache manual for more details.
+
+
+// -------------------- PRE-INSTALLATION INFORMATION ---------------------
+
+Although we recommend you install BerryIO on a fresh Raspbian install
+you can also add it to an existing setup. If your existing setup is not
+yet at the 2012-09-18-wheezy-raspbian level and you wish to have your Pi
+automatically connect and email when networks become available then you
+will either need to install a network manager or follow these instructions
+http://www.raspberrypi.org/phpBB3/viewtopic.php?f=66&t=17788&p=176847
+to install wpagui which is now shipped as standard with Raspbian. In
+addition we recommend you backup your SD card first just in case there are
+any conflicts.
+
+You may also need to be aware that the following packages are installed...
+
+MSMTP:
+msmtp is a simple mail transfer agent used by BerryIO to send emails. You
+can use your own MTA such as sendmail if you wish you just need to remove
+msmtp from the list of installed prerequisite packages by editing the
+install.sh file. Once you have done this and installed the BerryIO you
+must then delete the PHP configuration file /etc/php5/conf.d/msmtp.ini
+so PHP no longer uses msmtp by default.
+
+Apache2:
+If you already have Apache installed and are running another website this
+is not a problem as BerryIO can happily co-exist with other Apache sites.
+Simply follow the installation instructions below then edit the BerryIO
+Apache configuration /etc/apache2/sites-available/berryio so the BerryIO
+interface doesn't conflict with your other site by changing the port
+from port 80 to port 81 for example. You will also need to tell Apache
+you are using port 81 for the website by editing the ports config file
+/etc/apache2/ports.conf and adding "NameVirtualHost *:81" underneath
+where it says "NameVirtualHost *:80" and adding "Listen 81" underneath
+where it says "Listen 80". Once you have done that and restarted
+Apache you may wish to renable the default site using
+"sudo a2ensite default" if your current site is using the default apache
+config file. You will then be able to access the old site as usual and
+access BerryIO by adding :81 to the end of the web link if its not there
+already.
+
+Other Web Interfaces:
+If you are using any other web interfaces which use the default web port
+80 such as the AdaFruit WebIDE, you can either change the port on the
+other web interface or if you prefer you can move BerryIO to another
+port such as port 81. To do this edit the BerryIO Apache configuration
+/etc/apache2/sites-available/berryio and change the port from port 80 to
+81 for example. You will also need to tell Apache to use port 81
+instead of port 80 by editing the ports config file
+/etc/apache2/ports.conf and changing "NameVirtualHost *:80" to
+"NameVirtualHost *:81" and changing "Listen 80" to "Listen 81". Once you
+have done that and restarted the conflict should be resolved and you
+should be able to access BerryIO by adding :81 to the end of the web link
+if its not there already.
+
+
+// ---------------------------- WIRING AN LCD ----------------------------
+
+Please refer to the config file /etc/berryio/lcd.php for instructions on
+wiring a HDD44780 or KS0066U compatible LCD display. This included options
+for changing which GPIO ports you wish to connect the display to.
+
+
+// ------------------------ CONFIGURING NETWORKS -------------------------
+
+Until the BerryIO WiFi configuration interface is complete you should
+configure your networks using the Raspbian "WiFi Config" utility in the
+normal way.
+
+
+// -------------------- INSTALLATION INSTRUCTIONS ------------------------
+
+// IMPORTANT: You need a working internet connection to install BerryIO
+
+// Make sure your distribution is up to date
+sudo apt-get update
+sudo apt-get upgrade
+
+// Run the installation script
+sudo ./install.sh
+
+// Configure the email addresses you wish BerryIO to use
+sudo nano /etc/berryio/email.php
+
+// Configure msmtp so it can access your mailserver
+// Please check http://msmtp.sourceforge.net/documentation.html
+// for further details
+sudo nano /etc/msmtprc
+
+// If you have an original revision 1 board comment out the revision 2
+// GPIO settings and uncomment the revision 1 settings.
+// If you have fitted the P5 header on the revision 2 board you can
+// enable that here also
+sudo nano /etc/berryio/gpio.php
+
+// Test BerryIO is working
+berryio help
+
+// Test email is working
+sudo berryio email_ip

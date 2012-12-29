@@ -1,0 +1,44 @@
+
+<VirtualHost *:80>
+  # BerryIO Web Interface
+  ServerName berryio
+  ServerAdmin pi@localhost
+
+  DocumentRoot /usr/share/berryio/www
+  
+  DefineExternalAuth pwauth pipe /usr/sbin/pwauth
+
+  <Directory /usr/share/berryio/www/>
+    Options Indexes None
+    AllowOverride None
+    Order allow,deny
+    allow from all
+
+    php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/"
+    php_admin_value include_path "/usr/share/berryio/includes"
+    
+    AuthType Basic
+    AuthName "Raspberry Pi Login"
+    AuthBasicProvider external
+    AuthExternal pwauth
+
+    # Redirect all web pages to the main BerryIO MVC framework
+    RewriteEngine on
+    Options FollowSymLinks
+    RewriteCond $1 !^(index\.php|images/|css/|favicon\.ico)
+    RewriteRule ^(.*)$ /index.php/$1 [L]        
+  </Directory>
+
+  <Files ~ "\.php$">
+    # Main BerryIO engine requires a valid login
+    require valid-user
+  </Files>
+
+  ErrorLog /var/log/berryio/error.log
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+
+  CustomLog /var/log/berryio/access.log combined
+</VirtualHost>

@@ -1,0 +1,8 @@
+# Grant access required by the BerryIO web interface
+www-data ALL=(ALL) NOPASSWD:/usr/share/berryio/binaries/berryio_spi_get_adc
+www-data ALL=(ALL) NOPASSWD:/usr/share/berryio/binaries/berryio_spi_set_dac
+www-data ALL=(ALL) NOPASSWD:/usr/share/berryio/scripts/gpio_set_export_permissions.sh
+www-data ALL=(ALL) NOPASSWD:/usr/share/berryio/scripts/gpio_set_device_permissions.sh
+www-data ALL=(ALL) NOPASSWD:/sbin/ethtool
+www-data ALL=(ALL) NOPASSWD:/sbin/shutdown
+www-data ALL=(ALL) NOPASSWD:/usr/bin/vcgencmd
