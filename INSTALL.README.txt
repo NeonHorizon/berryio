@@ -68,7 +68,7 @@ where it says "NameVirtualHost *:80" and adding "Listen 81" underneath
 where it says "Listen 80". Once you have done that and restarted
 Apache you may wish to renable the default site using "sudo a2ensite
 default" if your current site is using the default apache config file.
-You will then be able to access the BerryIO by adding :81 to the end
+You will then be able to access BerryIO by adding :81 to the end
 of the web link if its not there already.
 
 Other Web Interfaces which don't use Apache:
