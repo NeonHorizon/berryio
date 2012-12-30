@@ -32,4 +32,3 @@ echo -e "\nRestarting Apache...."
 service apache2 restart || { echo -e "Upgrade failed!" 1>&2; exit 1; }
 
 echo -e "\nUpgrade successful!\n"
-echo -e "You may need to configure your GPIO settings as described in UPGRADE.README.txt\n"
