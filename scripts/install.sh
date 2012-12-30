@@ -1,5 +1,5 @@
 #!/bin/bash
-# BerryIO installation script
+# BerryIO setup script
 
 # Make sure this script is being run by root
 if [[ $EUID -ne 0 ]]; then
@@ -11,13 +11,16 @@ fi
 echo -e "\nBerryIO Installer\n-----------------"
 
 echo -e "\nInstalling the prerequisites...."
-apt-get -y install ethtool msmtp apache2 php5 pwauth || { echo -e "Install failed!" 1>&2; exit 1; }
+apt-get -y install ethtool msmtp apache2 php5 pwauth git || { echo -e "Install failed!" 1>&2; exit 1; }
 
-echo -e "\nCopying in the application files...."
-cp -R application/* / || { echo -e "Install failed!" 1>&2; exit 1; }
+echo -e "\nRemoving any old copies of BerryIO...."
+rm -fr /usr/share/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
+
+echo -e "\nRetrieving latest copy of BerryIO from GitHub...."
+sudo git clone https://github.com/NeonHorizon/berryio.git /usr/share/berryio/
 
 echo -e "\nCopying in the default config...."
-cp -R config/* / || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/* /etc/ || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nGranting the webserver access to the email configuration...."
 chown www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }

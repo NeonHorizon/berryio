@@ -8,13 +8,10 @@
 </p>
 <br />
 <p>
-  You can upgrade using the following commands:<br />
+  You can upgrade using the following command:<br />
 </p>
 <p>
   <code>
-    wget <a href="<?=$version_download?>"><?=$version_download?></a><br />
-    tar -xvzf berryio_<?=h($version_number)?>.tar.gz<br />
-    cd berryio_<?=h($version_number)?><br />
-    more UPGRADE.README.txt
+    sudo /usr/share/berryio/scripts/upgrade.sh
   </code>
 </p>

@@ -34,14 +34,16 @@ consult the Apache manual for more details.
 // -------------------- PRE-INSTALLATION INFORMATION ---------------------
 
 Although we recommend you install BerryIO on a fresh Raspbian install
-you can also add it to an existing setup. If your existing setup is not
-yet at the 2012-09-18-wheezy-raspbian level and you wish to have your Pi
-automatically connect and email when networks become available then you
-will either need to install a network manager or follow these instructions
+you can also add it to an existing setup. If your existing setup is
+prior to the 2012-09-18-wheezy-raspbian release and you wish to have your
+Pi automatically connect and email when networks become available then
+you will either need to install a network manager or follow these
+instructions to install wpagui which is now shipped as standard with
+Raspbian.
 http://www.raspberrypi.org/phpBB3/viewtopic.php?f=66&t=17788&p=176847
-to install wpagui which is now shipped as standard with Raspbian. In
-addition we recommend you backup your SD card first just in case there are
-any conflicts.
+
+As with any changes we recommend you backup your SD card before
+installing BerryIO just in case there are any conflicts.
 
 You may also need to be aware that the following packages are installed...
 
@@ -64,21 +66,20 @@ you are using port 81 for the website by editing the ports config file
 /etc/apache2/ports.conf and adding "NameVirtualHost *:81" underneath
 where it says "NameVirtualHost *:80" and adding "Listen 81" underneath
 where it says "Listen 80". Once you have done that and restarted
-Apache you may wish to renable the default site using
-"sudo a2ensite default" if your current site is using the default apache
-config file. You will then be able to access the old site as usual and
-access BerryIO by adding :81 to the end of the web link if its not there
-already.
+Apache you may wish to renable the default site using "sudo a2ensite
+default" if your current site is using the default apache config file.
+You will then be able to access the old site as usual and by adding :8
+ to the end of the web link if its not there already.
 
-Other Web Interfaces:
+Other Web Interfaces which don't use Apache:
 If you are using any other web interfaces which use the default web port
 80 such as the AdaFruit WebIDE, you can either change the port on the
 other web interface or if you prefer you can move BerryIO to another
-port such as port 81. To do this edit the BerryIO Apache configuration
-/etc/apache2/sites-available/berryio and change the port from port 80 to
-81 for example. You will also need to tell Apache to use port 81
-instead of port 80 by editing the ports config file
-/etc/apache2/ports.conf and changing "NameVirtualHost *:80" to
+port such as port 81. This is a similar proecdure to above, IE edit the
+BerryIO Apache configuration /etc/apache2/sites-available/berryio and
+change the port from port 80 to 81 for example. You will also need to
+tell Apache to use port 81 instead of port 80 by editing the ports config
+file /etc/apache2/ports.conf and changing "NameVirtualHost *:80" to
 "NameVirtualHost *:81" and changing "Listen 80" to "Listen 81". Once you
 have done that and restarted the conflict should be resolved and you
 should be able to access BerryIO by adding :81 to the end of the web link
@@ -95,19 +96,24 @@ for changing which GPIO ports you wish to connect the display to.
 // ------------------------ CONFIGURING NETWORKS -------------------------
 
 Until the BerryIO WiFi configuration interface is complete you should
-configure your networks using the Raspbian "WiFi Config" utility in the
-normal way.
+configure your networks using the Raspbian "WiFi Config" GUI utility in
+the normal way.
 
 
 // -------------------- INSTALLATION INSTRUCTIONS ------------------------
 
-// IMPORTANT: You need a working internet connection to install BerryIO
+BerryIO is now on the project hosting and collaboration service GitHub.
+You do not need to download anything prior to following these instructions.
+Simply make sure you have an Internet connection on your Raspberry Pi and
+enter the commands below.
 
 // Make sure your distribution is up to date
 sudo apt-get update
 sudo apt-get upgrade
 
-// Run the installation script
+// Download and run the setup script
+wget https://raw.github.com/NeonHorizon/berryio/scripts/install.sh
+chmod +x install.sh
 sudo ./install.sh
 
 // Configure the email addresses you wish BerryIO to use
@@ -118,6 +124,7 @@ sudo nano /etc/berryio/email.php
 // for further details
 sudo nano /etc/msmtprc
 
+// Configure your GPIO settings
 // If you have an original revision 1 board comment out the revision 2
 // GPIO settings and uncomment the revision 1 settings.
 // If you have fitted the P5 header on the revision 2 board you can

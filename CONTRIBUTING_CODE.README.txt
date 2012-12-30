@@ -1,0 +1,39 @@
+// -------------------- CONTRIBUTING CODE TO BERRYIO ------------------------
+
+To contribute code to the BerryIO project you need to have a github account
+and have BerryIO installed and working. Using git is quite complicated so I
+have included some instructions below to help you get you started. Basically
+you need to make your changes in /usr/share/berryio and put them in a git
+branch and then upload them to github.
+
+// Go into the BerryIO program directory
+cd /usr/share/berryio/
+
+// Make sure your RaspberryPi git settings are configured if you haven't
+// done so already, be sure to change Fred Bloggs and the email address to
+// your details!
+sudo git config --global user.name 'Fred Bloggs'
+sudo git config --global user.email 'test@test.com'
+
+// Make sure BerryIO is up to date with github
+sudo git pull origin master
+
+// Then make any changes you wish to make to the code and test
+
+// Now create your code branch, be sure to change my_code to something
+// appropriate
+sudo git checkout -b my_code
+
+// Add your changed files into the staging area
+sudo git add .
+
+// Commit your changed files, be sure to set a sensible description of
+// your changes
+sudo git commit -m 'My code changes which are great'
+
+// Push your changes to github, be sure to change my_code to the branch
+// name you used above
+git push origin my_code
+
+// If you did everything correctly I will then review your code branch
+// and maybe incorporate it into the next release!
