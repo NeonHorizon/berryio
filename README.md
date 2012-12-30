@@ -9,7 +9,7 @@ BerryIO
 ###Getting Started
 [Installation Instructions](https://github.com/NeonHorizon/berryio/blob/master/INSTALL.README.txt)
 
-###Program Details
+###Project Details
 
 The long term aim of BerryIO is to enable developers to control the Raspberry Pi and its GPIO ports remotely from any device with a browser, without ever needing to connect a screen or keyboard to the Pi itself.
 
