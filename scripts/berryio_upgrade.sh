@@ -16,18 +16,6 @@ cd /usr/share/berryio/ || { echo -e "Upgrade failed!" 1>&2; exit 1; }
 echo -e "\nSyncing the application files with github...."
 git pull origin master || { echo -e "Upgrade failed!" 1>&2; exit 1; }
 
-echo -e "\nUpdating config files...."
-cp /usr/share/berryio/default_config/berryio/menu.php /etc/berryio/menu.php || { echo -e "Upgrade failed!" 1>&2; exit 1; }
-cp /usr/share/berryio/default_config/sudoers.d/berryio /etc/sudoers.d/berryio || { echo -e "Upgrade failed!" 1>&2; exit 1; }
-
-echo -e "\nCopying in new config files...."
-if [ ! -f /etc/berryio/spi.php ]; then
-  cp /usr/share/berryio/default_config/berryio/spi.php /etc/berryio/spi.php || { echo -e "Upgrade failed!" 1>&2; exit 1; }
-fi
-if [ ! -f /etc/berryio/lcd.php ]; then
-  cp /usr/share/berryio/default_config/berryio/lcd.php /etc/berryio/lcd.php || { echo -e "Upgrade failed!" 1>&2; exit 1; }
-fi
-
 echo -e "\nRestarting Apache...."
 service apache2 restart || { echo -e "Upgrade failed!" 1>&2; exit 1; }
 
