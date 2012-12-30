@@ -33,7 +33,7 @@ sudo git commit -m 'My code changes which are great'
 
 // Push your changes to github, be sure to change my_code to the branch
 // name you used above
-git push origin my_code
+sudo git push origin my_code
 
 // If you did everything correctly I will then review your code branch
 // and maybe incorporate it into the next release!
