@@ -20,7 +20,14 @@ echo -e "\nRetrieving latest copy of BerryIO from GitHub...."
 sudo git clone https://github.com/NeonHorizon/berryio.git /usr/share/berryio/
 
 echo -e "\nCopying in the default config...."
-cp -R /usr/share/berryio/default_config/* /etc/ || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/apache2 /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/berryio /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/network /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/php5 /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/sudoers.d /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+if [ ! -f /etc/msmtprc ]; then
+  cp /usr/share/berryio/default_config/msmtprc /etc/msmtprc || { echo -e "Upgrade failed!" 1>&2; exit 1; }
+fi
 
 echo -e "\nGranting the webserver access to the email configuration...."
 chown www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
