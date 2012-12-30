@@ -7,7 +7,7 @@ BerryIO
 - **Requirements:** A Raspberry Pi running Raspbian and a decent web browser (Internet Explorer versions older than 8 are not supported)
 
 ###Getting Started
-[Installation Instructions](https://github.com/NeonHorizon/berryio/INSTALL.README.txt)
+[Installation Instructions](https://github.com/NeonHorizon/berryio/blob/master/INSTALL.README.txt)
 
 ###Program Details
 
