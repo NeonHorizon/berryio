@@ -23,7 +23,7 @@ $GLOBALS['ABOUT_VERSION_HISTORY'] = array(
   array('1.4.3', '2012-10-20', array('Improvements to GPIO file security handling', 'Added LCD clear delay to prevent corruption', 'Added option to run GPIO functions on all pins')),
   array('1.4.4', '2012-11-04', array('Changed initial install GPIO config file to use R2/512MB board pins (with option to change)', 'Added support in initial install GPIO config file for P5 header on R2 boards', 'Fixed a bug introduced in 1.4.3 with gpio_set_mode (first time always set to in mode)', 'Improved redirect efficiency')),
   array('1.4.5', '2012-11-24', array('Added port information to email and usage page links when ports other than 80 are used', 'Added more detailed information into installation instructions for webserver port changing')),
-  array('1.5.0', '2012-12-30', array('Changed the file layout so everything is in /usr/share/berryio and can be synced with github', 'Changed install/upgrade scripts and instructions so application is retrieved from giuthub')),
+  array('1.5.0', '2012-12-30', array('Changed the file layout so everything is in /usr/share/berryio and can be synced with github', 'Changed install/upgrade scripts and instructions so application is retrieved from github')),
 );
 
 // Version Numbering
