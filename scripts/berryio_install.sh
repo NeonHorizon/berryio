@@ -17,7 +17,7 @@ echo -e "\nRemoving any old copies of BerryIO...."
 rm -fr /usr/share/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nRetrieving latest copy of BerryIO from GitHub...."
-sudo git clone https://github.com/NeonHorizon/berryio.git /usr/share/berryio/
+git clone https://github.com/NeonHorizon/berryio.git /usr/share/berryio/
 
 echo -e "\nCopying in the default config...."
 cp -R /usr/share/berryio/default_config/berryio /etc || { echo -e "Install failed!" 1>&2; exit 1; }
@@ -25,12 +25,14 @@ cp -R /usr/share/berryio/default_config/apache2 /etc || { echo -e "Install faile
 cp -R /usr/share/berryio/default_config/php5 /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/network /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/sudoers.d /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+chmod 440 /etc/sudoers.d/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 if [ ! -f /etc/msmtprc ]; then
   cp /usr/share/berryio/default_config/msmtprc /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 fi
 
 echo -e "\nGranting the webserver access to the email configuration...."
-chown www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
+chmod 640 /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; } 
+chgrp www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nEnabling the required Apache modules...."
 a2enmod rewrite authnz_external || { echo -e "Install failed!" 1>&2; exit 1; }
