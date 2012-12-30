@@ -12,6 +12,6 @@
 </p>
 <p>
   <code>
-    sudo /usr/share/berryio/scripts/upgrade.sh
+    sudo /usr/share/berryio/scripts/berryio_upgrade.sh
   </code>
 </p>

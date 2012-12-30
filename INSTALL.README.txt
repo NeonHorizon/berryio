@@ -111,10 +111,10 @@ enter the commands below.
 sudo apt-get update
 sudo apt-get upgrade
 
-// Download and run the setup script
-wget https://raw.github.com/NeonHorizon/berryio/scripts/install.sh
-chmod +x install.sh
-sudo ./install.sh
+// Download and run the latest setup script
+wget https://raw.github.com/NeonHorizon/berryio/scripts/berryio_install.sh
+chmod +x berryio_install.sh
+sudo ./berryio_install.sh
 
 // Configure the email addresses you wish BerryIO to use
 sudo nano /etc/berryio/email.php

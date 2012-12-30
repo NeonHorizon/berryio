@@ -40,4 +40,4 @@ rm -f /usr/bin/berryio # Just in case any older versions are present
 ln -s /usr/share/berryio/scripts/berryio.php /usr/bin/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nInstall successful!"
-echo -e "Now configure your email and GPIO settings as described in INSTALL.README.txt\n"
+echo -e "Now configure your email and GPIO settings as described in /usr/share/berryio/INSTALL.README.txt\n"

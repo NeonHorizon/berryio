@@ -9,11 +9,5 @@ The latest version is V<?=$version_number?>
 The upgrade was released on <?=$version_date?>
 
 
-You can upgrade using the following commands:
-
-wget <?=$version_download?>
-
-tar -xvzf berryio_<?=$version_number?>.tar.gz
-cd berryio_<?=$version_number?>
-
-more UPGRADE.README.txt
+You can upgrade using the following command:
+sudo /usr/share/berryio/scripts/berryio_upgrade.sh
