@@ -1,5 +1,8 @@
 // -------------------- CONTRIBUTING CODE TO BERRYIO ------------------------
 
+BerryIO is hosted on the GitHub project hosting and collaboration service
+here: https://github.com/NeonHorizon/berryio
+
 To contribute code to the BerryIO project you need to have a github account
 and have BerryIO installed and working. Using git is quite complicated so I
 have included some instructions below to help you get you started. Basically
@@ -18,11 +21,11 @@ sudo git config --global user.email 'test@test.com'
 // Make sure BerryIO is up to date with github
 sudo git pull origin master
 
-// Then make any changes you wish to make to the code and test
-
-// Now create your code branch, be sure to change my_code to something
+// Then create your code branch, be sure to change my_code to something
 // appropriate
 sudo git checkout -b my_code
+
+// Now make any changes you wish to make to the code and test
 
 // Add your changed files into the staging area
 sudo git add .
@@ -35,5 +38,11 @@ sudo git commit -m 'My code changes which are great'
 // name you used above
 sudo git push origin my_code
 
-// If you did everything correctly I will then review your code branch
-// and maybe incorporate it into the next release!
+If you did everything correctly I will then review your code branch
+and maybe incorporate it into the next release!
+
+To find out more about how to use GitHub and the Git utility please visit
+the GitHub and Git websites:
+https://github.com/
+http://git-scm.com/
+
