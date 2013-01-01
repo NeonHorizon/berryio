@@ -23,6 +23,9 @@ function version_latest()
   if(count($version_info) != 2)
     return FALSE;
 
+  $version_info[VERSION_NO] = trim($version_info[VERSION_NO]);
+  $version_info[VERSION_DATE] = trim($version_info[VERSION_DATE]);
+
   return $version_info;
 }
 
