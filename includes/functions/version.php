@@ -81,6 +81,6 @@ function version_upgrade()
     return FALSE;
   }
 
-  echo 'Upgrade successful!'.PHP_EOL;
+  echo PHP_EOL.'Upgrade successful!'.PHP_EOL;
   return TRUE;
 }
