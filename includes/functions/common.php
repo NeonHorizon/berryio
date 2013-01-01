@@ -23,7 +23,9 @@ function usage($error = '')
 {
   // Get command list
   require_once(CONFIGS.'usage.php');
-  require_once(CONFIGS.'about.php');
+
+  // Get the version information
+  require_once(CONFIGS.'version.php');
 
   // Find out who we are
   global $exec;

@@ -6,12 +6,12 @@
     <h2>VERSION HISTORY</h2>
 
     <table>
-      <? foreach($GLOBALS['ABOUT_VERSION_HISTORY'] as $version):?>
+      <? foreach($GLOBALS['VERSION_HISTORY'] as $version):?>
         <tr>
-          <th class="top">V<?=$version[ABOUT_VERSION_NO]?></th>
-          <td class="top no_break"><?=$version[ABOUT_VERSION_DATE]?></td>
+          <th class="top">V<?=$version[VERSION_NO]?></th>
+          <td class="top no_break"><?=$version[VERSION_DATE]?></td>
           <td class="top">
-            <? foreach($version[ABOUT_VERSION_DETAILS] as $details):?>
+            <? foreach($version[VERSION_DETAILS] as $details):?>
               <?=h($details)?><br />
             <? endforeach?>
           </td>

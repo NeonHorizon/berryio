@@ -17,6 +17,7 @@ $GLOBALS['USAGE_COMMANDS'] = array(
   'system_status',
   'network_status',
   'email_ip',
+  'upgrade',
   'reboot',
   'shutdown',
   'lcd_initialise',

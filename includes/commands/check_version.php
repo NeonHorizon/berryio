@@ -3,25 +3,24 @@
   BerryIO Check Version Command
 ------------------------------------------------------------------------------*/
 
-// Load about information
-require_once(CONFIGS.'about.php');
+// Load the version control functions
+require_once(FUNCTIONS.'version.php');
 
 // Fetch the current version
-if(($version_info = @file_get_contents(ABOUT_VERSION_URL)) === FALSE)
+if(($latest_version = version_latest()) === FALSE)
 {
-  $content .= message('Unable to check the version number at this time, are you connected to the Internet?');
+  $content .= message('Unable to fetch the latest version number at this time, are you connected to the Internet?');
   return;
 }
 
-$version_info = explode(',', $version_info);
-if(count($version_info) != 3)
-{
-  $content .= message('Unable read the version information file?');
-  return;
-}
-
-list($version_number, $version_date, $version_download) = $version_info;
-if($version_number == $GLOBALS['ABOUT_VERSION_NO'] && $version_date == $GLOBALS['ABOUT_VERSION_DATE'])
-  $content .= message(REAL_NAME.' is up to date'.PHP_EOL.'V'.$GLOBALS['ABOUT_VERSION_NO'].' is the current version', 'about');
+if($latest_version[VERSION_NO] == $GLOBALS['VERSION_NO'] && $latest_version[VERSION_DATE] == $GLOBALS['VERSION_DATE'])
+  $content .= message(REAL_NAME.' is up to date'.PHP_EOL.'V'.$GLOBALS['VERSION_NO'].' is the current version', 'about');
 else
-  $content .= view('pages/upgrade_available', array('version_number' => $version_number, 'version_date' => $version_date, 'version_download' => $version_download));
+{
+  // Find out who we are
+  // If this is running in the web interface we are going to need to guess the exec name so presume its the default
+  global $exec;
+  $berryio = EXEC_MODE == 'cli' ? basename($exec) : 'berryio';
+
+  $content .= view('pages/upgrade_available', array('berryio' => $berryio, 'version_number' => $latest_version[VERSION_NO], 'version_date' => $latest_version[VERSION_DATE]));
+}

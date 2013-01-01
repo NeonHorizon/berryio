@@ -1,10 +1,10 @@
-<?=REAL_NAME?> V<?=$GLOBALS['ABOUT_VERSION_NO']?> (<?=$GLOBALS['ABOUT_VERSION_DATE']?>)
+<?=REAL_NAME?> V<?=$GLOBALS['VERSION_NO']?> (<?=$GLOBALS['VERSION_DATE']?>)
 
 VERSION HISTORY:
-<? foreach($GLOBALS['ABOUT_VERSION_HISTORY'] as $version):?>
+<? foreach($GLOBALS['VERSION_HISTORY'] as $version):?>
 
-  V<?=$version[ABOUT_VERSION_NO]?> (<?=$version[ABOUT_VERSION_DATE]?>)
-<? foreach($version[ABOUT_VERSION_DETAILS] as $details):?>
+  V<?=$version[VERSION_NO]?> (<?=$version[VERSION_DATE]?>)
+<? foreach($version[VERSION_DETAILS] as $details):?>
   <?=$details?>
 
 <? endforeach?>

@@ -13,9 +13,9 @@
 <div class="panel">
 
   <h2>
-    <?=h(REAL_NAME)?> V<?=h($GLOBALS['ABOUT_VERSION_NO'])?>
+    <?=h(REAL_NAME)?> V<?=h($GLOBALS['VERSION_NO'])?>
     <br />
-    <small>(<?=h($GLOBALS['ABOUT_VERSION_DATE'])?>)</small>
+    <small>(<?=h($GLOBALS['VERSION_DATE'])?>)</small>
   </h2>
 
   <h3 class="left">

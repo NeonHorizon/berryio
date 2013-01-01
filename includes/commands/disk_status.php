@@ -3,7 +3,7 @@
   BerryIO Disk Status Command
 ------------------------------------------------------------------------------*/
 
-// Load the network functions
+// Load the disk functions
 require_once(FUNCTIONS.'disk.php');
 
 // Get the disk partition details

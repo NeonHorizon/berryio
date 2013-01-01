@@ -3,7 +3,7 @@
   BerryIO Memory Status Command
 ------------------------------------------------------------------------------*/
 
-// Load the network functions
+// Load the memory functions
 require_once(FUNCTIONS.'memory.php');
 
 // Get the memory location details

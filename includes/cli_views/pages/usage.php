@@ -1,4 +1,4 @@
-<?=REAL_NAME?> V<?=$GLOBALS['ABOUT_VERSION_NO']?> (<?=$GLOBALS['ABOUT_VERSION_DATE']?>)
+<?=REAL_NAME?> V<?=$GLOBALS['VERSION_NO']?> (<?=$GLOBALS['VERSION_DATE']?>)
 
 <? if(isset($error) && $error != ''):?>ERROR:
 

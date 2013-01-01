@@ -3,10 +3,10 @@
   BerryIO Initialise LCD Command
 ------------------------------------------------------------------------------*/
 
-// Load the SPI functions
+// Load the LCD functions
 require_once(FUNCTIONS.'lcd.php');
 
-// Set the SPI Value
+// Initialise the LCD
 if(!lcd_initialise())
   $content .= message('ERROR: Cannot initialise the LCD');
 else

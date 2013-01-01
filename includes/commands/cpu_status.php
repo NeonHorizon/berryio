@@ -3,7 +3,7 @@
   BerryIO CPU Status Command
 ------------------------------------------------------------------------------*/
 
-// Load the network functions
+// Load the cpu functions
 require_once(FUNCTIONS.'cpu.php');
 
 // Get the disk partition details
