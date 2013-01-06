@@ -30,6 +30,14 @@ if [ ! -f /etc/msmtprc ]; then
   cp /usr/share/berryio/default_config/msmtprc /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 fi
 
+echo -e "\nCreating the log file directories...."
+if [ ! -d /var/log/berryio ]; then
+  mkdir /var/log/berryio
+fi
+if [ ! -d /var/log/msmtp ]; then
+  mkdir /var/log/msmtp
+fi
+
 echo -e "\nGranting the webserver access to the email configuration...."
 chmod 640 /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; } 
 chgrp www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
