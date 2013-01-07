@@ -26,27 +26,40 @@
   </div>
 </div>
 
-<div class="panel">
+<div>
+  <div class="panel">
 
-  <h2>SPI DAC SETTINGS</h2>
+    <h2>SPI DAC SETTINGS</h2>
 
-  <? foreach($GLOBALS['SPI_CHIP_SELECTS'] as $chip_select => $chip_select_name):?>
+    <? foreach($GLOBALS['SPI_CHIP_SELECTS'] as $chip_select => $chip_select_name):?>
 
-    <div class="container spi_analogue">
-      <h2><?=h($chip_select_name)?></h2>
-      <table>
+      <div class="container spi_analogue">
+        <h2><?=h($chip_select_name)?></h2>
+        <table>
 
-      <? foreach($GLOBALS['SPI_CHANNELS'] as $channel => $channel_name):?>
-        <tr>
-          <th><?=h($channel_name)?></th>
-          <td class="code"><?=graph_horizontal_bar(isset($spi_dac_values[$chip_select][$channel]) ? $spi_dac_values[$chip_select][$channel] : 0, 0, 4095, '', isset($spi_dac_values[$chip_select][$channel]), 'spi_dac_'.$chip_select.'_'.$channel, '/spi_set_dac_value/'.$chip_select.'/'.$channel)?></td>
-        </tr>
-      <? endforeach?>
+        <? foreach($GLOBALS['SPI_CHANNELS'] as $channel => $channel_name):?>
+          <tr>
+            <th><?=h($channel_name)?></th>
+            <td class="code"><?=graph_horizontal_bar(isset($spi_dac_values[$chip_select][$channel]) ? $spi_dac_values[$chip_select][$channel] : 0, 0, 4095, '', isset($spi_dac_values[$chip_select][$channel]), 'spi_dac_'.$chip_select.'_'.$channel, '/spi_set_dac_value/'.$chip_select.'/'.$channel)?></td>
+          </tr>
+        <? endforeach?>
 
-      </table>
+        </table>
 
-    </div>
+      </div>
 
-  <? endforeach?>
+    <? endforeach?>
+
+  </div>
+</div>
+
+<div class="panel not_too_wide">
+
+  <h2>HINTS AND TIPS</h2>
+
+  <p class="left">
+    If you are going to use SPI, to avoid conflicts its best to make sure the GPIO pins used by the SPI bus are set to "not in use" on the <a href="/gpio_status">GPIO</a> tab.
+    Those are GPIO-7, GPIO-8, GPIO-9, GPIO-10 and GPIO-11.
+  </p>
 
 </div>

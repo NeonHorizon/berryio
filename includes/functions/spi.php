@@ -7,12 +7,11 @@
 /*------------------------------------------------------------------------------
   Load the SPI config and define some of our own
 ------------------------------------------------------------------------------*/
-global $SPI_CHIP_SELECTS, $SPI_CHANNELS, $SPI_DAC_MIN, $SPI_DAC_MAX;
-require_once(SETTINGS.'spi.php');
-$SPI_CHIP_SELECTS = array(0 => 'CE0', 1 => 'CE1');
-$SPI_CHANNELS = array(0 => 'Ch0', 1 => 'Ch1');
-$SPI_DAC_MIN = 0;
-$SPI_DAC_MAX = 4095;
+settings('spi');
+$GLOBALS['SPI_CHIP_SELECTS'] = array(0 => 'CE0', 1 => 'CE1');
+$GLOBALS['SPI_CHANNELS'] = array(0 => 'Ch0', 1 => 'Ch1');
+$GLOBALS['SPI_DAC_MIN'] = 0;
+$GLOBALS['SPI_DAC_MAX'] = 4095;
 
 
 /*----------------------------------------------------------------------------

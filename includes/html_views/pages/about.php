@@ -4,6 +4,7 @@
 <div>
   <div class="panel">
     <h2>VERSION HISTORY</h2>
+    <a class="button" href="/check_version">Check for updates</a>
 
     <table>
       <? foreach($GLOBALS['VERSION_HISTORY'] as $version):?>
@@ -18,9 +19,6 @@
         </tr>
       <? endforeach?>
     </table>
-
-    <a class="button" href="/check_version">Check for updates</a>
-
   </div>
 </div>
 

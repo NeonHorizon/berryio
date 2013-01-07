@@ -10,13 +10,13 @@
 </div>
 
 <div>
-  <div class="panel">
+  <div class="panel not_too_wide">
 
-    <h2>CONFIGURATION</h2>
+    <h2>HINTS AND TIPS</h2>
 
     <p class="left">
-      The default <?=h(NAME)?> Network Manager is wpagui as supplied with Raspbian<br />
-      You should configure your wifi networks using the "WiFi Config" utility in the normal way.
+      The default Network Manager supplied with Raspbian is wpagui.
+      You can use this to configure your wifi networks by clicking on the "WiFi Config" utility on the desktop.
     </p>
 
   </div>

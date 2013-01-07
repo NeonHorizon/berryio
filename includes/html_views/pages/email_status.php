@@ -9,18 +9,17 @@
   </div>
 </div>
 
-<div class="panel">
+<div class="panel not_too_wide">
 
-  <h2>CONFIGURATION</h2>
+  <h2>HINTS AND TIPS</h2>
 
   <p class="left">
-    The default <?=h(NAME)?> MTA (Mail Transfer Agent) is <a href="http://msmtp.sourceforge.net/">msmtp</a><br />
-    Email account settings for msmtp are set in the file /etc/msmtprc<br />
+    The default MTA (Mail Transfer Agent) used by <?=h(NAME)?> is <a href="http://msmtp.sourceforge.net/">msmtp</a>.<br />
+    The email account settings for msmtp are in the file /etc/msmtprc<br />
     <?=h(NAME)?> email addresses must be configured in the file <?=h(SETTINGS)?>email.php<br />
   </p>
   <p class="left">
-    Emails will be sent to <a href="mailto:<?=h(EMAIL_TO)?>"><?=h(EMAIL_TO)?></a> by default<br />
-    Emails will be sent from <a href="mailto:<?=h(EMAIL_FROM)?>"><?=h(EMAIL_FROM)?></a> by default<br />
+    Currently emails are sent to <a href="mailto:<?=h(EMAIL_TO)?>"><?=h(EMAIL_TO)?></a> and will arrive from <a href="mailto:<?=h(EMAIL_FROM)?>"><?=h(EMAIL_FROM)?></a>.
   </p>
 
 </div>

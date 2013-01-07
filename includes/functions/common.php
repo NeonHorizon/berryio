@@ -147,3 +147,19 @@ function si_unit($value, &$power = '', $mode = 1000, $places = 2)
   return number_format($value/pow($mode, floor($power)), $places, '.', ',').$symbols[$power];
 }
 
+/*----------------------------------------------------------------------------
+  Loads a settings file and produces and error if its no good
+----------------------------------------------------------------------------*/
+function settings($file, $version = '')
+{
+  if(!is_readable(SETTINGS.$file.'.php'))
+     exit(view('errors/missing_config', array('file' => $file)));
+
+  require_once(SETTINGS.$file.'.php');
+
+  if($version == '')
+    return;
+
+  if(!defined('GPIO_SETTINGS_VERSION') || GPIO_SETTINGS_VERSION != $version)
+    exit(view('errors/incompatible_config', array('file' => $file)));
+}

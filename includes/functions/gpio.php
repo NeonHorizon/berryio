@@ -4,9 +4,9 @@
 ------------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------
-  Load the GPIO config and define some of our own
+  Load the GPIO settings and define some of our own
 ------------------------------------------------------------------------------*/
-require_once(SETTINGS.'gpio.php');
+settings('gpio', 2);
 $GLOBALS['GPIO_MODES'] = array('in', 'out', 'not_exported');
 $GLOBALS['GPIO_VALUES'] = array(0, 1);
 
@@ -24,6 +24,17 @@ function gpio_get_value($pin)
   // Check its exported
   if($mode == 'not_exported') return 'not_exported';
 
+  // There are situations where the GPIO system thinks its in input mode
+  // and it isn't because a lower level application has accessed the pin.
+  // To make sure thats not the case we need to reset the mode to make sure
+  // it really is in input mode. However there is unfortunately a delay
+  // between when this is done and when 'value' updates, so this function
+  // will return the wrong value first run. But since there appears to be
+  // no way to detect if something else was using the pin and we really dont
+  // want to slow this function down 'just in case' its simply going to have
+  // to return the wrong value the first time
+  if($mode == 'in') @file_put_contents('/sys/class/gpio/gpio'.($pin + 0).'/direction', trim($mode));
+
   // Get and return the value
   if(($value = file_get_contents('/sys/class/gpio/gpio'.($pin + 0).'/value')) === FALSE) return FALSE;
   return trim($value);
@@ -37,7 +48,7 @@ function gpio_get_value($pin)
 ----------------------------------------------------------------------------*/
 function gpio_get_values()
 {
-  foreach($GLOBALS['GPIO_PINS'] as $pin)
+  foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
     $values[$pin] = gpio_get_value($pin);
 
   return $values;
@@ -53,7 +64,7 @@ function gpio_set_value($pin, $value)
   // Trap for all function
   if($pin === 'all')
   {
-    foreach($GLOBALS['GPIO_PINS'] as $pin)
+    foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
       gpio_set_value($pin, $value);
 
     return TRUE;
@@ -66,13 +77,27 @@ function gpio_set_value($pin, $value)
   if(gpio_get_mode($pin) != 'out') return FALSE;
 
   // Set the value
-  if(@file_put_contents('/sys/class/gpio/gpio'.($pin + 0).'/value', $value) !== FALSE) return TRUE;
+  if(@file_put_contents('/sys/class/gpio/gpio'.($pin + 0).'/value', $value) === FALSE)
+  {
+    // It failed and we are root? Give up...
+    if(posix_getuid() == 0) return FALSE;
 
-  // It failed and we are root? Give up...
-  if(posix_getuid() == 0) return FALSE;
+    // Set the GPIO device file permissions and get ready to try again
+    exec('sudo '.SCRIPTS.'gpio_set_device_permissions.sh');
+  }
 
-  // Set the GPIO device file permissions
-  exec('sudo '.SCRIPTS.'gpio_set_device_permissions.sh');
+  // There are situations where the GPIO system thinks its in output mode
+  // and it isn't because a lower level application has accessed the pin.
+  // To make sure thats not the case we are going to check the value was
+  // actually written
+  $actual = @file_get_contents('/sys/class/gpio/gpio'.($pin + 0).'/value');
+
+  // If fetching the value didn't fail and it matches what we set then we're done
+  if($actual !== FALSE && trim($actual) == $value)
+    return TRUE;
+
+  // Otherwise reset the direction
+  @file_put_contents('/sys/class/gpio/gpio'.($pin + 0).'/direction', 'out');
 
   // Try again
   return file_put_contents('/sys/class/gpio/gpio'.($pin + 0).'/value', $value) !== FALSE;
@@ -102,13 +127,14 @@ function gpio_set_values($values)
 function gpio_get_mode($pin)
 {
   // Check pin number is good
-  if(!is_numeric($pin) || !in_array($pin, $GLOBALS['GPIO_PINS'])) return FALSE;
+  if(!is_numeric($pin) || !array_key_exists($pin, $GLOBALS['GPIO_PINS'])) return FALSE;
 
   // Check to see if its not exported
   if(!file_exists('/sys/class/gpio/gpio'.($pin + 0))) return 'not_exported';
 
-  // Get and return the mode
+  // Get the mode
   if(($mode = file_get_contents('/sys/class/gpio/gpio'.($pin + 0).'/direction')) === FALSE) return FALSE;
+
   return trim($mode);
 }
 
@@ -120,7 +146,7 @@ function gpio_get_mode($pin)
 ----------------------------------------------------------------------------*/
 function gpio_get_modes()
 {
-  foreach($GLOBALS['GPIO_PINS'] as $pin)
+  foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
     $modes[$pin] = gpio_get_mode($pin);
 
   return $modes;
@@ -136,7 +162,7 @@ function gpio_set_mode($pin, $new_mode)
   // Trap for all function
   if($pin === 'all')
   {
-    foreach($GLOBALS['GPIO_PINS'] as $pin)
+    foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
       gpio_set_mode($pin, $new_mode);
 
     return TRUE;

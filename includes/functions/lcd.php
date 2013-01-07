@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
   Load the LCD settings and config and functions we need
 ------------------------------------------------------------------------------*/
-require_once(SETTINGS.'lcd.php');
+settings('lcd');
 require_once(CONFIGS.'lcd.php');
 require_once(FUNCTIONS.'gpio.php');
 

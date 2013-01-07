@@ -4,7 +4,7 @@
 ------------------------------------------------------------------------------*/
 
 // Load the LCD settings and config
-require_once(SETTINGS.'lcd.php');
+settings('lcd');
 require_once(CONFIGS.'lcd.php');
 
 // Make a note of any passed values

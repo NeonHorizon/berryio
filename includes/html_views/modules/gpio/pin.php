@@ -1,7 +1,10 @@
 
 <div class="group">
 
-  <h2>Pin <?=h($pin)?></h2>
+  <h2>
+    GPIO-<?=h($pin)?></h2>
+    <h3>&nbsp;<?=h($GLOBALS['GPIO_PINS'][$pin])?>&nbsp;</h3>
+
 
   <? if($value == 'not_exported'):?>
       <img id="pin_<?=$pin?>_value" class="gpio_value" src="/images/gpio/value/<?=$value?>.png" alt="" title="" />
