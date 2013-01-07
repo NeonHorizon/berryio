@@ -30,7 +30,7 @@ $GLOBALS['GPIO_PINS'] = array(
 */
 
 // Settings for revision 2 board (including 512MB version)
-// Comment out if you dont have this is the board by adding /* at the start
+// Comment out if you dont have this board by adding /* at the start
 // and */ at the end
 // You can rename your pins here if you use this board
 $GLOBALS['GPIO_PINS'] = array(
