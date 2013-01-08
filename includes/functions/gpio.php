@@ -61,6 +61,9 @@ function gpio_get_values()
 ----------------------------------------------------------------------------*/
 function gpio_set_value($pin, $value)
 {
+  // Check the value is good
+  if(!is_numeric($value) || !in_array($value, $GLOBALS['GPIO_VALUES'])) return FALSE;
+
   // Trap for all function
   if($pin === 'all')
   {
@@ -69,9 +72,6 @@ function gpio_set_value($pin, $value)
 
     return TRUE;
   }
-
-  // Check the value is good
-  if(!is_numeric($value) || !in_array($value, $GLOBALS['GPIO_VALUES'])) return FALSE;
 
   // Check pin number is good and check the current mode is "out"
   if(gpio_get_mode($pin) != 'out') return FALSE;
@@ -162,6 +162,9 @@ function gpio_set_mode($pin, $new_mode)
   // Trap for all function
   if($pin === 'all')
   {
+    // Check the mode is good
+    if(!in_array($new_mode, $GLOBALS['GPIO_MODES'])) return FALSE;
+
     foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
       gpio_set_mode($pin, $new_mode);
 
