@@ -157,9 +157,6 @@ function settings($file, $version = '')
 
   require_once(SETTINGS.$file.'.php');
 
-  if($version == '')
-    return;
-
-  if(!defined('GPIO_SETTINGS_VERSION') || GPIO_SETTINGS_VERSION != $version)
+  if(constant(strtoupper($file).'_SETTINGS_VERSION') != $version)
     exit(view('errors/incompatible_config', array('file' => $file)));
 }
