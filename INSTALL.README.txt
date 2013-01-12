@@ -121,3 +121,7 @@ berryio help
 
 // Test email is working
 sudo berryio email_ip
+
+// If all went well you should now be able to log into your Pi using
+// the web interface and the standard username and password you use
+// at the terminal
