@@ -54,6 +54,14 @@ function network_list()
       list($interfaces[$interface]['IP Address']['text']) = explode('/', $columns[1]);
       $interfaces[$interface]['Connected']['bool'] = TRUE;
     }
+
+    // Fetch IPv6 Address (also used to determine if interface is connected)
+    if(strpos($line, 'inet6') !== FALSE  && isset($columns[1]))
+    {
+      list($interfaces[$interface]['IPv6 Address']['text']) = explode('/', $columns[1]);
+      $interfaces[$interface]['Connected']['bool'] = TRUE;
+    }
+
   }
 
   // Fetch connectivity information on wireless devices from iwconfig command
@@ -196,7 +204,10 @@ function network_list()
     }
 
     if(!$interfaces[$interface]['Connected']['bool'])
+    {
       unset($interfaces[$interface]['IP Address']);
+      unset($interfaces[$interface]['IPv6 Address']);
+    }
   }
 
   return $interfaces;
