@@ -1,7 +1,9 @@
 
 HINTS AND TIPS:
 
-  If you are using SPI, I2C or the serial port (for example with a console cable), its best to make sure the relevant GPIO pins are set to not_exported.
+  If you are using SPI, I2C or the serial port (for example with a
+  console cable), its best to make sure the relevant GPIO pins are
+  set to not_exported.
 
 GPIO PINS:
 

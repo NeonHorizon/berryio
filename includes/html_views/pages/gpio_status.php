@@ -20,14 +20,11 @@
   <div class="panel">
 
     <h2>GLOBAL FUNCTIONS</h2>
-
-    <div class="container">
-      <p>
-        <a class="button" href="/gpio_set_value/all/0" onclick="this.href='/gpio_set_value/all/0?s=' + getScrollY()">Turn all outputs off</a>
-        <a class="button" href="/gpio_set_mode/all/not_exported" onclick="this.href='/gpio_set_mode/all/not_exported?s=' + getScrollY()">Set all pins as unused</a>
-        <a class="button" href="/gpio_set_value/all/1" onclick="this.href='/gpio_set_value/all/1?s=' + getScrollY()">Turn all outputs on</a>
-      </p>
-    </div>
+    <p>
+      <a class="button" href="/gpio_set_value/all/0" onclick="this.href='/gpio_set_value/all/0?s=' + getScrollY()">Turn all outputs off</a>
+      <a class="button" href="/gpio_set_mode/all/not_exported" onclick="this.href='/gpio_set_mode/all/not_exported?s=' + getScrollY()">Set all pins as unused</a>
+      <a class="button" href="/gpio_set_value/all/1" onclick="this.href='/gpio_set_value/all/1?s=' + getScrollY()">Turn all outputs on</a>
+    </p>
 
   </div>
 </div>

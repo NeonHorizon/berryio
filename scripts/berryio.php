@@ -29,7 +29,7 @@ elseif(posix_getuid() != 0 && !in_array($args[0], $GLOBALS['NO_SUDO']))
   $page['content'] = message('ERROR: Some '.basename($exec).' commands must be run as root'.PHP_EOL.'Try: sudo '.basename($exec).' '.implode(' ', $args));
 else
   // Run command
-  $page['content'] = call_user_func_array('command', $args);
+  $page = call_user_func_array('command', $args);
 
 
 /*------------------------------------------------------------------------------

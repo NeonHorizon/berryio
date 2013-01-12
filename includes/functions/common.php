@@ -96,20 +96,21 @@ function command()
 
   // Check no funny business is going on
   if(substr(realpath($command_file).'/', 0, strlen($command_file)) != $command_file)
-    return usage('The requested command "'.$command.'" is invalid');
+    return array('title' => 'Unknown Command', 'content' => usage('The requested command "'.$command.'" is invalid'));
 
   // Check the commands exists
   if(!is_file($command_file))
-    return usage('The requested command "'.$command.'" does not exist');
+    return array('title' => 'Invalid Command', 'content' => usage('The requested command "'.$command.'" does not exist'));
 
   // Check we can read it
   if(!is_readable($command_file))
-    return message('The requested command "'.$command.'" cannot be read');
+    return array('title' => 'Invalid Command', 'content' => message('The requested command "'.$command.'" cannot be read'));
 
   // Run it and return the content it generates
   $content = '';
+  $title = FALSE;
   require_once($command_file);
-  return $content;
+  return array('content' => $content, 'title' => $title);
 }
 
 

@@ -1,15 +1,12 @@
 <?
 /*------------------------------------------------------------------------------
-  BerryIO About Command
+  BerryIO Changelog Command
 ------------------------------------------------------------------------------*/
 
-$title = 'About '.NAME;
-
-// Load about information
-require_once(CONFIGS.'about.php');
+$title = 'Version History';
 
 // Load the version information
 require_once(CONFIGS.'version.php');
 
 // Display about information
-$content .= view('pages/about');
+$content .= view('pages/changelog');

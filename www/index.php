@@ -30,7 +30,7 @@ if($args[0] == '')
   go_to('welcome');
 
 // Run command
-$page['content'] = call_user_func_array('command', $args);
+$page = call_user_func_array('command', $args);
 
 
 /*------------------------------------------------------------------------------

@@ -26,7 +26,6 @@
       <? foreach($GLOBALS['MENU'] as $link => $name):?>
         <? if($link == $selected):?>
           <a class="selected" href="/<?=$link?>"><?=$name?></a>
-          <? $this_name = $name?>
         <? else:?>
           <a href="/<?=$link?>"><?=$name?></a>
         <? endif?>
@@ -35,9 +34,8 @@
 
 
     <div id="main">
-
-      <? if(!isset($this_name) || $this_name !== 'Welcome'):?>
-        <h1 id="title"><?=h(NAME)?><?=h(isset($this_name) ? ' '.$this_name : '')?></h1>
+      <? if($title !== FALSE):?>
+        <h1 id="title"><?=h($title)?></h1>
       <? endif?>
 
       <?=$content?>

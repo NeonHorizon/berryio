@@ -10,12 +10,10 @@
 
 <?endif?>
 
-<div class="panel">
+<div class="panel not_too_wide">
 
   <h2>
-    <?=h(REAL_NAME)?> V<?=h($GLOBALS['VERSION_NO'])?>
-    <br />
-    <small>(<?=h($GLOBALS['VERSION_DATE'])?>)</small>
+    HELP
   </h2>
 
   <h3 class="left">

@@ -3,6 +3,8 @@
   BerryIO GPIO Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'GPIO Control';
+
 // Load the GPIO functions
 require_once(FUNCTIONS.'gpio.php');
 

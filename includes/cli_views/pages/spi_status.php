@@ -1,7 +1,8 @@
 
 HINTS AND TIPS:
 
-  To avoid conflicts its best to make sure the GPIO pins used by the SPI bus are set to not_exported.
+  To avoid conflicts its best to make sure the GPIO pins used
+  by the SPI bus are set to not_exported.
 
 SPI ADC VALUES:
 

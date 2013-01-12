@@ -3,6 +3,8 @@
   BerryIO Memory Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Memory Status';
+
 // Load the memory functions
 require_once(FUNCTIONS.'memory.php');
 

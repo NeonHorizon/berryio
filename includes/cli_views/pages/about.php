@@ -1,15 +1,5 @@
 <?=REAL_NAME?> V<?=$GLOBALS['VERSION_NO']?> (<?=$GLOBALS['VERSION_DATE']?>)
 
-VERSION HISTORY:
-<? foreach($GLOBALS['VERSION_HISTORY'] as $version):?>
-
-  V<?=$version[VERSION_NO]?> (<?=$version[VERSION_DATE]?>)
-<? foreach($version[VERSION_DETAILS] as $details):?>
-  <?=$details?>
-
-<? endforeach?>
-<? endforeach?>
-
 LICENSE:
 
   This program is free software: you can redistribute it and/or modify

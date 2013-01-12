@@ -1,26 +1,20 @@
 
-<?=usage()?>
-
 <div>
   <div class="panel">
-    <h2>VERSION HISTORY</h2>
-    <a class="button" href="/check_version">Check for updates</a>
 
-    <table>
-      <? foreach($GLOBALS['VERSION_HISTORY'] as $version):?>
-        <tr>
-          <th class="top">V<?=$version[VERSION_NO]?></th>
-          <td class="top no_break"><?=$version[VERSION_DATE]?></td>
-          <td class="top">
-            <? foreach($version[VERSION_DETAILS] as $details):?>
-              <?=h($details)?><br />
-            <? endforeach?>
-          </td>
-        </tr>
-      <? endforeach?>
-    </table>
+    <h2>
+      <?=h(REAL_NAME)?> V<?=h($GLOBALS['VERSION_NO'])?>
+      <br />
+      <small>(<?=h($GLOBALS['VERSION_DATE'])?>)</small>
+    </h2>
+
+    <a class="button" href="/check_version">Check For Updates</a>
+    <a class="button" href="/changelog">Version History</a>
+
   </div>
 </div>
+
+<?=usage()?>
 
 <div>
   <div class="panel not_too_wide">

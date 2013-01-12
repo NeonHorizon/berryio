@@ -3,6 +3,8 @@
   BerryIO Network Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Network Status';
+
 // Load the network functions
 require_once(FUNCTIONS.'network.php');
 

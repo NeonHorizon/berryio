@@ -3,6 +3,8 @@
   BerryIO Email Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Email Control';
+
 // Load the email settings
 settings('email');
 

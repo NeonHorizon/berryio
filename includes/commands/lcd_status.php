@@ -3,6 +3,8 @@
   BerryIO LCD Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'LCD Control';
+
 // Load the LCD settings and config
 settings('lcd');
 require_once(CONFIGS.'lcd.php');

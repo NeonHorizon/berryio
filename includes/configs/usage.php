@@ -7,6 +7,7 @@ $GLOBALS['USAGE_COMMANDS'] = array(
   'help',
   'about',
   'check_version',
+  'changelog',
   'memory_status',
   'disk_status',
   'email_status',

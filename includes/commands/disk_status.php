@@ -3,6 +3,8 @@
   BerryIO Disk Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Disk Status';
+
 // Load the disk functions
 require_once(FUNCTIONS.'disk.php');
 

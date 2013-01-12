@@ -3,6 +3,8 @@
   BerryIO CPU Status Command
 ------------------------------------------------------------------------------*/
 
+$title = 'CPU Status';
+
 // Load the cpu functions
 require_once(FUNCTIONS.'cpu.php');
 
