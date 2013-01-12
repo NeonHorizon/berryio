@@ -44,12 +44,12 @@ function network_list()
       $interfaces[$interface]['Link']['bool']       = FALSE;
     }
 
-    // Fetch Mac Address
-    if(strpos($line, 'link') !== FALSE && isset($columns[1]))
+    // Fetch Mac Address (watch out for inet6 lines as these also include the word link)
+    if(strpos($line, 'link') !== FALSE && strpos($line, 'inet6') === FALSE && isset($columns[1]))
       $interfaces[$interface]['Mac Address']['text'] = $columns[1];
 
     // Fetch IP Address (also used to determine if interface is connected)
-    if(strpos($line, 'inet') !== FALSE  && isset($columns[1]))
+    if(strpos($line, 'inet ') !== FALSE  && isset($columns[1]))
     {
       list($interfaces[$interface]['IP Address']['text']) = explode('/', $columns[1]);
       $interfaces[$interface]['Connected']['bool'] = TRUE;
