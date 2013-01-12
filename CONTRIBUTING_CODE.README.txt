@@ -1,3 +1,7 @@
+**********************************************************************************
+* PLEASE NOTE: THIS DOCUMENT IS A WORK IN PROGRESS AND IS NOT CURRENTLY CORRECT! *
+**********************************************************************************
+
 // -------------------- CONTRIBUTING CODE TO BERRYIO ------------------------
 
 BerryIO is hosted on the GitHub project hosting and collaboration service
