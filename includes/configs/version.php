@@ -22,6 +22,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.5.0', '2012-12-30', array('Changed the file layout so everything is in /usr/share/berryio and can be synced with github', 'Changed install/upgrade scripts and instructions so application is retrieved from github')),
   array('1.5.1', '2013-01-01', array('Changed location BerryIO checks its version against to github', 'Implimented upgrade command')),
   array('1.6.0', '2013-01-07', array('Added fix to cope with incorrect GPIO mode information from the system', 'Added the ability to name GPIO pins', 'Hints and Tips', 'Moved check for updates button', 'CSS fix for IE', 'Added settings check')),
+  array('1.6.1', '2013-01-12', array('Changes to prevent IPV6 addresses being mistaken for MAC or IPV4 addresses', 'Improvements to installation instructions', 'Fixed bug in settings loader when checking the version', 'Improved GPIO error handling when addressing all pins')),
 );
 
 // Version Numbering
