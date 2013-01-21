@@ -24,7 +24,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.6.0', '2013-01-07', array('Added fix to cope with incorrect GPIO mode information from the system', 'Added the ability to name GPIO pins', 'Hints and Tips', 'Moved check for updates button', 'CSS fix for IE', 'Added settings check')),
   array('1.6.1', '2013-01-12', array('Changes to prevent IPV6 addresses being mistaken for MAC or IPV4 addresses', 'Improvements to installation instructions', 'Fixed bug in settings loader when checking the version', 'Improved GPIO error handling when addressing all pins')),
   array('1.6.2', '2013-01-12', array('Added IPv6 Support', 'Improved formatting on CLI hints and tips', 'Moved changelog to a different function')),
-  array('1.6.3', '2013-01-21', array('Added board information')),
+  array('1.6.3', '2013-01-21', array('Added main board information')),
 );
 
 // Version Numbering
