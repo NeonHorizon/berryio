@@ -9,8 +9,8 @@
     <table>
       <? foreach($information as $name => $details):?>
         <tr>
-          <th><?=$name?></th>
-          <td class="code"><?=$details?></td>
+          <th><?=h($name)?></th>
+          <td class="code"><?=h($details)?></td>
         </tr>
       <? endforeach?>
     </table>
