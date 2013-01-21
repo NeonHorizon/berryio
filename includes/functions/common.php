@@ -36,7 +36,7 @@ function usage($error = '')
 
 
 /*----------------------------------------------------------------------------
- Load a view supplied with $data and return its content
+  Load a view supplied with $data and return its content
 ----------------------------------------------------------------------------*/
 function view($view, $data = '', $root = VIEWS)
 {

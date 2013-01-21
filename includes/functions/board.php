@@ -1,6 +1,6 @@
 <?
 /*------------------------------------------------------------------------------
-  BerryIO Systen Functions
+  BerryIO Board Functions
 ------------------------------------------------------------------------------*/
 
 
@@ -12,13 +12,15 @@
     array( [$title => $information] [, $title => $information] [, ...] );
 
 ----------------------------------------------------------------------------*/
-function system_get_revision()
+function board_get_revision()
 {
   exec('cat /proc/cpuinfo', $output);
-  foreach ($output as $line) {
+  foreach($output as $line)
+  {
     $columns = explode(':',$line);
-    if($columns[0]!="")
-      $boardInfo[$columns[0]] = $columns[1];
+    if($columns[0] != '')
+      $boardInfo[trim($columns[0])] = trim($columns[1]);
   }
+
   return $boardInfo;
 }

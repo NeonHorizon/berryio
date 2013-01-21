@@ -10,6 +10,7 @@ $GLOBALS['USAGE_COMMANDS'] = array(
   'changelog',
   'memory_status',
   'disk_status',
+  'board_status',
   'email_status',
   'gpio_status',
   'lcd_status',

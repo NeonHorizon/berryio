@@ -17,7 +17,7 @@ function cpu_get_temp()
 
 
 /*----------------------------------------------------------------------------
- Returns the CPU clock speed in Hz
+  Returns the CPU clock speed in Hz
 ----------------------------------------------------------------------------*/
 function cpu_get_speed()
 {

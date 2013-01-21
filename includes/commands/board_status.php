@@ -1,14 +1,14 @@
 <?
 /*------------------------------------------------------------------------------
-  BerryIO CPU Status Command
+  BerryIO Board Status Command
 ------------------------------------------------------------------------------*/
 
-// Load the cpu functions
+// Load the board functions
 require_once(FUNCTIONS.'board.php');
 
 // Get the disk partition details
-$page['information'] = system_get_revision();
+$page['information'] = board_get_revision();
 
 // Display status page
-$content .= view('pages/board_info', $page);
+$content .= view('pages/board_status', $page);
 
