@@ -1,6 +1,6 @@
-************************************************************************************
-* PLEASE NOTE: THIS DOCUMENT IS A WORK IN PROGRESS AND IS NOT NECESSARILY CORRECT! *
-************************************************************************************
+****************************************************
+* PLEASE NOTE: THIS DOCUMENT IS A WORK IN PROGRESS *
+****************************************************
 
 // -------------------- CONTRIBUTING CODE TO BERRYIO ------------------------
 
@@ -29,14 +29,14 @@ sudo git config --global user.name 'Fred Bloggs'
 sudo git config --global user.email 'test@test.com'
 
 // Associate your forked version of the repository, calling it 'upstream' 
-// (you may change this to anything you wish to call it) and replace
-// [USERNAME] with your GitHub username
-sudo git remote add upstream git@github.com:[USERNAME]/berryio.git
+// (you may change this to anything you wish to call it). Be sure to 
+// replace username with your GitHub username
+sudo git remote add upstream https://github.com/username/berryio.git
 
 // Add your changed files into the staging area
 sudo git add .
 
-// Commit your changed files, be sure to set a sensible description of
+// Commit your changed files. Be sure to set a sensible description of
 // your changes
 sudo git commit -m 'My code changes which are great'
 
@@ -56,4 +56,3 @@ To find out more about how to use GitHub and the Git utility please visit
 the GitHub and Git websites:
 https://github.com/
 http://git-scm.com/
-
