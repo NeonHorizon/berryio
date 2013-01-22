@@ -1,6 +1,6 @@
-**********************************************************************************
-* PLEASE NOTE: THIS DOCUMENT IS A WORK IN PROGRESS AND IS NOT CURRENTLY CORRECT! *
-**********************************************************************************
+************************************************************************************
+* PLEASE NOTE: THIS DOCUMENT IS A WORK IN PROGRESS AND IS NOT NECESSARILY CORRECT! *
+************************************************************************************
 
 // -------------------- CONTRIBUTING CODE TO BERRYIO ------------------------
 
@@ -11,9 +11,15 @@ To contribute code to the BerryIO project you need to have a github account
 and have BerryIO installed and working. Using git is quite complicated so I
 have included some instructions below to help you get you started. Basically
 you need to make your changes in /usr/share/berryio and put them in a git
-branch and then upload them to github.
+branch and then upload them to GitHub.
 
-// Go into the BerryIO program directory
+The main BerryIO repository is read only so that users can be confident that
+the code they find here can be trusted. To request your changes be added,
+you will need to fork the repository to your own GitHub account and make
+changes there, before creating a Pull Request, detailing your changes that
+you would like to be included.
+
+// Go into the BerryIO program directory, where you should make your changes
 cd /usr/share/berryio/
 
 // Make sure your RaspberryPi git settings are configured if you haven't
@@ -22,14 +28,10 @@ cd /usr/share/berryio/
 sudo git config --global user.name 'Fred Bloggs'
 sudo git config --global user.email 'test@test.com'
 
-// Make sure BerryIO is up to date with github
-sudo git pull origin master
-
-// Then create your code branch, be sure to change my_code to something
-// appropriate
-sudo git checkout -b my_code
-
-// Now make any changes you wish to make to the code and test
+// Associate your forked version of the repository, calling it 'upstream' 
+// (you may change this to anything you wish to call it) and replace
+// [USERNAME] with your GitHub username
+sudo git remote add upstream git@github.com:[USERNAME]/berryio.git
 
 // Add your changed files into the staging area
 sudo git add .
@@ -38,9 +40,14 @@ sudo git add .
 // your changes
 sudo git commit -m 'My code changes which are great'
 
-// Push your changes to github, be sure to change my_code to the branch
-// name you used above
-sudo git push origin my_code
+// Push your changes to github, be sure to change upstream to the name you
+// gave your remote repository earlier
+sudo git push upstream master
+
+When this is done, you should log in to your GitHub account and you should
+see the changes you made in your version of the repository. To request they
+are merged into the main repository, you should now create a pull request in
+which you explain your changes.
 
 If you did everything correctly I will then review your code branch
 and maybe incorporate it into the next release!
