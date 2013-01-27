@@ -3,13 +3,11 @@
   BerryIO System Status Command
 ------------------------------------------------------------------------------*/
 
-$title = 'System Status';
-
 // Run the status commands which represent the Pi's resources
-$cpu_status    = command('cpu_status');
-$memory_status = command('memory_status');
-$disk_status   = command('disk_status');
-$board_status  = command('board_status');
+$content .= command('cpu_status');
+$content .= command('memory_status');
+$content .= command('disk_status');
+$content .= command('board_status');
 
-
-$content = $cpu_status['content'].$memory_status['content'].$disk_status['content'].$board_status['content'];
+// Set the title last to override any previous set titles
+$title = 'System Status';

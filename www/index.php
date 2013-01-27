@@ -30,12 +30,11 @@ if($args[0] == '')
   go_to('welcome');
 
 // Run command
-$page = call_user_func_array('command', $args);
+$page['content'] = call_user_func_array('command', $args);
 
 
 /*------------------------------------------------------------------------------
   Output the page
 ------------------------------------------------------------------------------*/
-$page['menu'] = $MENU;
 $page['selected'] = $argv[1];
 echo view('layout/common', $page);

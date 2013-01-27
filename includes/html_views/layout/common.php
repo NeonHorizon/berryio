@@ -34,8 +34,8 @@
 
 
     <div id="main">
-      <? if($title !== FALSE):?>
-        <h1 id="title"><?=h($title)?></h1>
+      <? if($GLOBALS['TITLE'] !== FALSE):?>
+        <h1 id="title"><?=h($GLOBALS['TITLE'])?></h1>
       <? endif?>
 
       <?=$content?>

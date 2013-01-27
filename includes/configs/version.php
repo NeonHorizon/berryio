@@ -26,6 +26,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.6.2', '2013-01-12', array('Added IPv6 Support', 'Improved formatting on CLI hints and tips', 'Moved changelog to a different function')),
   array('1.6.3', '2013-01-21', array('Added main board information')),
   array('1.6.4', '2013-01-21', array('Now calculates Raspberry Pi revision')),
+  array('1.6.5', '2013-01-27', array('Fixed CLI commands which have been outputting errors (bug introduced in 1.6.2 - oops!)', 'Improved web page titling and errors')),
 );
 
 // Version Numbering

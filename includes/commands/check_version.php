@@ -22,5 +22,6 @@ else
   global $exec;
   $berryio = EXEC_MODE == 'cli' ? basename($exec) : 'berryio';
 
+  $title = 'An upgrade is available!';
   $content .= view('pages/upgrade_available', array('berryio' => $berryio, 'version_number' => $latest_version[VERSION_NO], 'version_date' => $latest_version[VERSION_DATE]));
 }

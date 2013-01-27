@@ -10,7 +10,7 @@ require_once(FUNCTIONS.'lcd.php');
 if(count($args) < 1 || count($args) > 2)
   $content .= usage('Please include the position of the cursor');
 elseif(!call_user_func_array('lcd_position', $args))
-  $content .= message('ERROR: Cannot position the LCD cursor', 'lcd_status');
+  $content .= message('ERROR: Cannot position the LCD cursor, is the LCD initialised, are the positions valid?', 'lcd_status');
 elseif(EXEC_MODE == 'html')
   $content .= go_to('lcd_status');
 else

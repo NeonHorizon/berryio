@@ -12,5 +12,5 @@ require_once(FUNCTIONS.'gpio.php');
 foreach(gpio_get_values() as $pin => $value)
   echo $pin.':'.$value.',';
 
-// Don't render the HTML page
+// Don't render the HTML page as this doesn't display one it just outputs values
 exit();

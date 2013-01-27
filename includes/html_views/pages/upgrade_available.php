@@ -1,4 +1,4 @@
-<h1>An upgrade is available!</h1>
+
 <p>
   Your current version is V<?=h($GLOBALS['VERSION_NO'])?><br />
   The latest version is V<?=h($version_number)?>

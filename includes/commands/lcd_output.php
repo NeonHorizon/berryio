@@ -18,7 +18,7 @@ if(isset($_POST['output']))
 if(count($args) < 1)
   $content .= usage('Please include the string you wish to send');
 elseif(!lcd_output(implode(' ', $args)))
-  $content .= message('ERROR: Cannot send the string "'.implode(' ', $args).'" to the LCD', 'lcd_status');
+  $content .= message('ERROR: Cannot send the string "'.implode(' ', $args).'" to the LCD, is it initialised?', 'lcd_status');
 elseif(EXEC_MODE == 'html')
   $content .= go_to('lcd_status');
 else

@@ -14,5 +14,5 @@ foreach($values as $chip_select => $channels)
   foreach($channels as $channel => $value)
     echo $chip_select.':'.$channel.':'.$value.',';
 
-// Don't render the HTML page
+// Don't render the HTML page as this doesn't display one it just outputs values
 exit();
