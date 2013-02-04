@@ -71,7 +71,7 @@ function gpio_set_value($pin, $value)
   {
     $status = TRUE;
     foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
-      $status = $status && gpio_set_value($pin, $value);
+      $status = gpio_set_value($pin, $value) && $status;
 
     return $status;
   }
@@ -173,7 +173,7 @@ function gpio_set_mode($pin, $new_mode)
     $status = TRUE;
 
     foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
-      $status = $status && gpio_set_mode($pin, $new_mode);
+      $status = gpio_set_mode($pin, $new_mode) && $status;
 
     return $status;
   }
