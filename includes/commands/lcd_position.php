@@ -14,7 +14,7 @@ if(count($args) < 1 || count($args) > 2)
 }
 
 // Execute the command
-if(!call_user_func_array('lcd_position', $args))
+if(call_user_func_array('lcd_position', $args) === FALSE)
 {
   $content .= message('ERROR: Cannot position the LCD cursor, is the LCD initialised, are the positions valid?', 'lcd_status');
   return FALSE;
