@@ -94,7 +94,7 @@ function command()
   // Calculate the command filename
   $command_file = COMMANDS.$command.'.php';
 
-  // Set the default page title and exit status
+  // Set the default page title
   $GLOBALS['TITLE'] = 'Invalid Command';
 
   // Check no funny business is going on
