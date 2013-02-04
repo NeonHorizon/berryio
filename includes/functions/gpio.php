@@ -14,7 +14,7 @@ $GLOBALS['GPIO_VALUES'] = array(0, 1);
 /*----------------------------------------------------------------------------
   Get the current value from a GPIO pin
   Can be used no matter what mode the pin is in
-  Returns FALSE on failure and "not_exported", "in" or "out" on success
+  Returns FALSE on failure and "not_exported", "1" or "0" on success
 ----------------------------------------------------------------------------*/
 function gpio_get_value($pin)
 {
@@ -44,12 +44,14 @@ function gpio_get_value($pin)
 /*----------------------------------------------------------------------------
   Get the current value from all GPIO pins
   Returns an array with the pin number as the key and the value as the value
+  or FALSE on failure
   See above for values
 ----------------------------------------------------------------------------*/
 function gpio_get_values()
 {
   foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
-    $values[$pin] = gpio_get_value($pin);
+    if(($values[$pin] = gpio_get_value($pin)) === FALSE)
+      return FALSE;
 
   return $values;
 }
@@ -67,10 +69,11 @@ function gpio_set_value($pin, $value)
   // Trap for all function
   if($pin === 'all')
   {
+    $status = TRUE;
     foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
-      gpio_set_value($pin, $value);
+      $status = $status && gpio_set_value($pin, $value);
 
-    return TRUE;
+    return $status;
   }
 
   // Check pin number is good and check the current mode is "out"
@@ -142,12 +145,14 @@ function gpio_get_mode($pin)
 /*----------------------------------------------------------------------------
   Get the current mode for all GPIO pins
   Returns an array with the pin number as the key and the value as the value
+  or FALSE on failure
   See above for values
 ----------------------------------------------------------------------------*/
 function gpio_get_modes()
 {
   foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
-    $modes[$pin] = gpio_get_mode($pin);
+    if(($modes[$pin] = gpio_get_mode($pin)) === FALSE)
+      return FALSE;
 
   return $modes;
 }
@@ -165,10 +170,12 @@ function gpio_set_mode($pin, $new_mode)
     // Check the mode is good
     if(!in_array($new_mode, $GLOBALS['GPIO_MODES'])) return FALSE;
 
-    foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
-      gpio_set_mode($pin, $new_mode);
+    $status = TRUE;
 
-    return TRUE;
+    foreach($GLOBALS['GPIO_PINS'] as $pin => $name)
+      $status = $status && gpio_set_mode($pin, $new_mode);
+
+    return $status;
   }
 
   // Check pin number is good and get the current mode

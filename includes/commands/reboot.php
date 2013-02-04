@@ -14,4 +14,7 @@ elseif(EXEC_MODE == 'html' && !isset($_POST['yes']))
 elseif(power_reboot())
   $content .= message('See you again shortly!', 'welcome');
 else
+{
   $content .= message('ERROR: Cannot reboot the system', 'welcome');
+  return FALSE;
+}

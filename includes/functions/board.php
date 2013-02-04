@@ -30,10 +30,14 @@ $GLOBALS['BOARD_PI_REVISIONS'] = array(
 
     $section_details = array( [$title => $information] [, $title => $information] [, ...] );
 
+    ....or FALSE on failure
+
 ----------------------------------------------------------------------------*/
 function board_info()
 {
-  exec('cat /proc/cpuinfo', $output);
+  exec('cat /proc/cpuinfo', $output, $return_var);
+  if($return_var) return FALSE;
+
   foreach($output as $line)
   {
     $columns = explode(':', $line);

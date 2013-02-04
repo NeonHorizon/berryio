@@ -9,7 +9,11 @@ $title = 'SPI Control';
 require_once(FUNCTIONS.'spi.php');
 
 // Get the SPI details
-$page['spi_adc_values'] = spi_get_adc_values();
+if(($page['spi_adc_values'] = spi_get_adc_values()) === FALSE)
+{
+  $content .= message('ERROR: Unable retrieve SPI values');
+  return FALSE;
+}
 
 // Make a note of any passed values
 if(count($args) == 3)

@@ -20,6 +20,8 @@
                                 absolute => TRUE|FALSE (indicates if scale is just a guide or not)]
                              );
 
+    ....or FALSE on failure
+
 ----------------------------------------------------------------------------*/
 function memory_list()
 {
@@ -28,7 +30,8 @@ function memory_list()
   // Fetch location information from free command
   // Should probably rewrite this to cat /proc/meminfo
   $output = array();
-  exec('/usr/bin/free --bytes --old', $output);
+  exec('/usr/bin/free --bytes --old', $output, $return_var);
+  if($return_var) return FALSE;
   foreach($output as $line)
   {
     $columns = get_columns($line);

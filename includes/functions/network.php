@@ -19,6 +19,8 @@
                               positive => TRUE|FALSE]
                            );
 
+    ....or FALSE on failure
+
 ----------------------------------------------------------------------------*/
 function network_list()
 {
@@ -26,7 +28,8 @@ function network_list()
 
   // Fetch connectivity information from ip command
   $output = array();
-  exec('/sbin/ip addr list', $output);
+  exec('/sbin/ip addr list', $output, $return_var);
+  if($return_var) return FALSE;
   foreach($output as $line)
   {
     $columns = get_columns($line);
@@ -68,7 +71,8 @@ function network_list()
   // Should really use iw here but it doesn't work with some cards
   // The reason for the redirect is to ignore non wireless cards
   $output = array();
-  exec('/sbin/iwconfig 2>/dev/null', $output);
+  exec('/sbin/iwconfig 2>/dev/null', $output, $return_var);
+  if($return_var) return FALSE;
   foreach($output as $line)
   {
     // Explode out the columns
@@ -160,7 +164,8 @@ function network_list()
     if($details['Media']['text'] != 'Wireless')
     {
       $output = array();
-      exec('sudo /sbin/ethtool '.$interface, $output);
+      exec('sudo /sbin/ethtool '.$interface, $output, $return_var);
+      if($return_var) return FALSE;
 
       foreach($output as $line)
       {

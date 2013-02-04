@@ -21,18 +21,29 @@ require_once(FUNCTIONS.'common.php');
 ------------------------------------------------------------------------------*/
 $args = $argv;
 $exec = array_shift($args);
+
+// Show the help command by default
 if(count($args) < 1)
-  // Show usage by default
-  $page['content'] = usage();
-elseif(posix_getuid() != 0 && !in_array($args[0], $GLOBALS['NO_SUDO']))
-  // Must be run as root!
-  $page['content'] = message('ERROR: Some '.basename($exec).' commands must be run as root'.PHP_EOL.'Try: sudo '.basename($exec).' '.implode(' ', $args));
+  $args[0] = 'help';
+
+// Check for commands which need to be run as root
+if(posix_getuid() != 0 && in_array($args[0], $GLOBALS['NEED_SUDO']))
+{
+  $page['content'] = message('ERROR: '.basename($exec).' '.$args[0].' must be run as root'.PHP_EOL.'Try: sudo '.basename($exec).' '.implode(' ', $args));
+  $GLOBALS['SUCCESS'] = FALSE;
+}
 else
+{
+  // Presume its OK unless stated otherwise
+  $GLOBALS['SUCCESS'] = TRUE;
+
   // Run command
   $page['content'] = call_user_func_array('command', $args);
-
+}
 
 /*------------------------------------------------------------------------------
   Output the page
 ------------------------------------------------------------------------------*/
 echo view('layout/common', $page);
+
+exit(!$GLOBALS['SUCCESS'] + 0);

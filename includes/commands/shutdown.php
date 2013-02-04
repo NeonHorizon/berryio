@@ -14,5 +14,8 @@ elseif(EXEC_MODE == 'html' && !isset($_POST['yes']))
 elseif(power_shutdown())
   $content .= message('goodbye...', 'welcome');
 else
+{
   $content .= message('ERROR: Cannot shutdown the system', 'welcome');
+  return FALSE;
+}
 

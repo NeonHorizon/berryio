@@ -7,7 +7,11 @@
 require_once(FUNCTIONS.'network.php');
 
 // Get the network device details
-$interfaces = network_list();
+if(($interfaces = network_list()) === FALSE)
+{
+  $content .= message('ERROR: Unable retrieve networking information');
+  return FALSE;
+}
 
 // Remove the loopback device and any disconnected devices or devices without IP's
 unset($interfaces['lo']);
@@ -45,4 +49,7 @@ if(count($interfaces) < 1)
 elseif(email_view(NAME.' IP Address', 'ip', array('interfaces' => $interfaces, 'port' => $port)))
   $content .= message(EMAIL_TO.' has been notified of the '.NAME.' IP address', 'email_status');
 else
+{
   $content .= message('ERROR: Email could not be sent, please check your logs', 'email_status');
+  return FALSE;
+}

@@ -8,9 +8,13 @@
 // Load the GPIO functions
 require_once(FUNCTIONS.'gpio.php');
 
-// Get the GPIO values and output them
+// Get the GPIO values
+if(($values = gpio_get_values()) === FALSE)
+  exit(1);
+
+// Output them
 foreach(gpio_get_values() as $pin => $value)
   echo $pin.':'.$value.',';
 
 // Don't render the HTML page as this doesn't display one it just outputs values
-exit();
+exit(0);

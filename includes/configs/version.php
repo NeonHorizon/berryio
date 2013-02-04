@@ -27,6 +27,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.6.3', '2013-01-21', array('Added main board information')),
   array('1.6.4', '2013-01-21', array('Now calculates Raspberry Pi revision')),
   array('1.6.5', '2013-01-27', array('Fixed CLI commands which have been outputting errors (bug introduced in 1.6.2 - oops!)', 'Improved web page titling and errors')),
+  array('1.6.6', '2013-02-04', array('Improved handling of unknown CLI commands (it doesn\'t say to try sudo anymore unless it needs sudo)', 'CLI commands now return correct exit status', 'Additional error trapping')),
 );
 
 // Version Numbering

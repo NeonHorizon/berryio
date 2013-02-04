@@ -9,7 +9,12 @@ $title = 'Network Status';
 require_once(FUNCTIONS.'network.php');
 
 // Get the network device details
-$page['network_interfaces'] = network_list();
+if(($page['network_interfaces'] = network_list()) === FALSE)
+{
+  $content .= message('ERROR: Unable retrieve networking information');
+  return FALSE;
+}
+
 unset($page['network_interfaces']['lo']);  // Ignore the loopback device
 
 // Display status page

@@ -94,24 +94,36 @@ function command()
   // Calculate the command filename
   $command_file = COMMANDS.$command.'.php';
 
-  // Set the default page title
+  // Set the default page title and exit status
   $GLOBALS['TITLE'] = 'Invalid Command';
 
   // Check no funny business is going on
   if(substr(realpath($command_file).'/', 0, strlen($command_file)) != $command_file)
+  {
+    $GLOBALS['SUCCESS'] = FALSE;
     return usage('The requested command "'.$command.'" is invalid');
+  }
 
   // Check the commands exists
   if(!is_file($command_file))
+  {
+    $GLOBALS['SUCCESS'] = FALSE;
     return usage('The requested command "'.$command.'" does not exist');
+  }
 
   // Check we can read it
   if(!is_readable($command_file))
+  {
+    $GLOBALS['SUCCESS'] = FALSE;
     return message('The requested command "'.$command.'" cannot be read');
+  }
 
-  // Run it and return the content it generates
+  // Run it
   $content = '';
-  require_once($command_file);
+  if((require_once($command_file)) === FALSE)
+    $GLOBALS['SUCCESS'] = FALSE;
+
+  // Return the title and content
   $GLOBALS['TITLE'] = isset($title) ? $title : FALSE;
   return $content;
 }
@@ -157,10 +169,16 @@ function si_unit($value, &$power = '', $mode = 1000, $places = 2)
 function settings($file, $version = '')
 {
   if(!is_readable(SETTINGS.$file.'.php'))
-     exit(view('errors/missing_config', array('file' => $file)));
+  {
+    echo view('errors/missing_config', array('file' => $file));
+    exit(1);
+  }
 
   require_once(SETTINGS.$file.'.php');
 
   if(@constant(strtoupper($file).'_SETTINGS_VERSION') != $version)
-    exit(view('errors/incompatible_config', array('file' => $file)));
+  {
+    echo view('errors/incompatible_config', array('file' => $file));
+    exit(1);
+  }
 }

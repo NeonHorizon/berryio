@@ -31,7 +31,8 @@ function spi_get_adc_values($chip_select = '', $channel = '')
   if($chip_select !== '' && (!is_numeric($chip_select) || !array_key_exists($chip_select, $SPI_CHIP_SELECTS))) return FALSE;
 
   // Execute the command and retrieve the values
-  exec('sudo '.BINARIES.'berryio_spi_get_adc '.$chip_select.' '.$channel, $output);
+  exec('sudo '.BINARIES.'berryio_spi_get_adc '.$chip_select.' '.$channel, $output, $return_var);
+  if($return_var) return FALSE;
   if(count($output) != 1) return FALSE; // One line only please
   $data = explode(',', $output[0]);
 
@@ -72,7 +73,8 @@ function spi_set_dac_value($chip_select, $channel, $value)
   if(!is_numeric($value) || $value < $SPI_DAC_MIN || $value > $SPI_DAC_MAX) return FALSE;
 
   // Execute the command and set the values
-  exec('sudo '.BINARIES.'berryio_spi_set_dac '.$chip_select.' '.$channel.' '.$value.' 2>&1', $output);
+  exec('sudo '.BINARIES.'berryio_spi_set_dac '.$chip_select.' '.$channel.' '.$value.' 2>&1', $output, $return_var);
+  if($return_var) return FALSE;
   if(count($output)) return FALSE; // If somethings returned it no doubt failed
 
   return TRUE;

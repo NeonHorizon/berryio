@@ -9,8 +9,8 @@ require_once(FUNCTIONS.'version.php');
 // Fetch the current version
 if(($latest_version = version_latest()) === FALSE)
 {
-  $content .= message('Unable to fetch the latest version number at this time, are you connected to the Internet?');
-  return;
+  $content .= message('ERROR: Unable to fetch the latest version number at this time, are you connected to the Internet?');
+  return FALSE;
 }
 
 if($latest_version[VERSION_NO] == $GLOBALS['VERSION_NO'] && $latest_version[VERSION_DATE] == $GLOBALS['VERSION_DATE'])

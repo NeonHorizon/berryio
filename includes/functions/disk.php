@@ -19,6 +19,8 @@
                                  positive => TRUE|FALSE]
                               );
 
+    ....or FALSE on failure
+
 ----------------------------------------------------------------------------*/
 function disk_list()
 {
@@ -28,7 +30,8 @@ function disk_list()
   // I would have used disk_free_space() and disk_total_space() here but
   // there appears to be no way to get a list of partitions in PHP?
   $output = array();
-  exec('/bin/df --block-size=1', $output);
+  exec('/bin/df --block-size=1', $output, $return_var);
+  if($return_var) return FALSE;
   foreach($output as $line)
   {
     $columns = get_columns($line);

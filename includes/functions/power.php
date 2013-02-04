@@ -10,9 +10,9 @@
 ----------------------------------------------------------------------------*/
 function power_shutdown()
 {
-  exec('sudo /sbin/shutdown -h now');
+  exec('sudo /sbin/shutdown -h now', $output, $return_var);
+  if($return_var) return FALSE;
 
-  // TO DO - check if this executed successfully
   return TRUE;
 }
 
@@ -23,8 +23,8 @@ function power_shutdown()
 ----------------------------------------------------------------------------*/
 function power_reboot()
 {
-  exec('sudo /sbin/shutdown -r now');
+  exec('sudo /sbin/shutdown -r now', $output, $return_var);
+  if($return_var) return FALSE;
 
-  // TO DO - check if this executed successfully
   return TRUE;
 }

@@ -9,7 +9,11 @@ $title = 'Memory Status';
 require_once(FUNCTIONS.'memory.php');
 
 // Get the memory location details
-$page['memory_locations'] = memory_list();
+if(($page['memory_locations'] = memory_list()) === FALSE)
+{
+  $content .= message('ERROR: Unable retrieve information on your memory');
+  return FALSE;
+}
 
 // Display status page
 require_once(FUNCTIONS.'graph.php');

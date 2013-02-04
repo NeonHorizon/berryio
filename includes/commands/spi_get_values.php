@@ -9,10 +9,13 @@
 require_once(FUNCTIONS.'spi.php');
 
 // Get the SPI ADC values and output them
-$values = spi_get_adc_values();
+if(($values = spi_get_adc_values()) === FALSE)
+  exit(1);
+
+// Output them
 foreach($values as $chip_select => $channels)
   foreach($channels as $channel => $value)
     echo $chip_select.':'.$channel.':'.$value.',';
 
 // Don't render the HTML page as this doesn't display one it just outputs values
-exit();
+exit(0);

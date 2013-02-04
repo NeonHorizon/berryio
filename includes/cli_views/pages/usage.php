@@ -13,7 +13,7 @@ USAGE:
 EXAMPLES:
 
 <? foreach($GLOBALS['USAGE_COMMANDS'] as $command):?>
-<? if( (is_array($command) && !in_array($command[0], $GLOBALS['NO_SUDO'])) || (!is_array($command) && !in_array($command, $GLOBALS['NO_SUDO'])) ):?>
+<? if( (is_array($command) && in_array($command[0], $GLOBALS['NEED_SUDO'])) || (!is_array($command) && in_array($command, $GLOBALS['NEED_SUDO'])) ):?>
   sudo <?=$berryio?> <?=is_array($command) ?  implode(' ', $command) : $command?>
 <? else:?>
        <?=$berryio?> <?=is_array($command) ?  implode(' ', $command) : $command?>

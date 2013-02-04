@@ -9,7 +9,11 @@ $title = 'Disk Status';
 require_once(FUNCTIONS.'disk.php');
 
 // Get the disk partition details
-$page['disk_partitions'] = disk_list();
+if(($page['disk_partitions'] = disk_list()) === FALSE)
+{
+  $content .= message('ERROR: Unable retrieve information on your disks');
+  return FALSE;
+}
 
 // Display status page
 require_once(FUNCTIONS.'graph.php');
