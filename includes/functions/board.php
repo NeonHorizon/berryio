@@ -17,6 +17,7 @@ $GLOBALS['BOARD_PI_REVISIONS'] = array(
   '0004' => 'Model B Revision 2.0 256MB',
   '0005' => 'Model B Revision 2.0 256MB',
   '0006' => 'Model B Revision 2.0 256MB',
+  '0008' => 'Model A 256MB',
   '000f' => 'Model B Revision 2.0 512MB',
 );
 
