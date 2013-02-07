@@ -3,7 +3,8 @@
 
   <h2>MAIN BOARD</h2>
 
-  <? foreach($information as $section => $section_details):?>
+  <? $count = 0; foreach($information as $section => $section_details):?>
+    <? if($count++ > 1):?><br /><? endif?>
     <div class="container board_information">
       <h2><?=h($section)?> Information</h2>
 

@@ -12,13 +12,17 @@ $GLOBALS['BOARD_SECTIONS'] = array(
   'Serial'   => 'Hardware',
 );
 $GLOBALS['BOARD_PI_REVISIONS'] = array(
-  '0002' => 'Model B Revision 1.0',
-  '0003' => 'Model B Revision 1.0 + Fuses mod and D14 removed',
-  '0004' => 'Model B Revision 2.0 256MB',
-  '0005' => 'Model B Revision 2.0 256MB',
-  '0006' => 'Model B Revision 2.0 256MB',
-  '0008' => 'Model A 256MB',
-  '000f' => 'Model B Revision 2.0 512MB',
+  '0002' => array('Model' => 'B', 'Revision' => '1.0', 'Memory' => '256MB', 'Manufacturer' => '',       'Notes' => '', ),
+  '0003' => array('Model' => 'B', 'Revision' => '1.0', 'Memory' => '256MB', 'Manufacturer' => '',       'Notes' => 'Fuses mod and D14 removed', ),
+  '0004' => array('Model' => 'B', 'Revision' => '2.0', 'Memory' => '256MB', 'Manufacturer' => 'Sony',   'Notes' => '', ),
+  '0005' => array('Model' => 'B', 'Revision' => '2.0', 'Memory' => '256MB', 'Manufacturer' => 'Qisda',  'Notes' => '', ),
+  '0006' => array('Model' => 'B', 'Revision' => '2.0', 'Memory' => '256MB', 'Manufacturer' => 'Egoman', 'Notes' => '', ),
+  '0007' => array('Model' => 'A', 'Revision' => '2.0', 'Memory' => '256MB', 'Manufacturer' => 'Egoman', 'Notes' => '', ),
+  '0008' => array('Model' => 'A', 'Revision' => '2.0', 'Memory' => '256MB', 'Manufacturer' => 'Sony',   'Notes' => '', ),
+  '0009' => array('Model' => 'A', 'Revision' => '2.0', 'Memory' => '256MB', 'Manufacturer' => 'Qisda',  'Notes' => '', ),
+  '000d' => array('Model' => 'B', 'Revision' => '2.0', 'Memory' => '512MB', 'Manufacturer' => 'Egoman', 'Notes' => '', ),
+  '000e' => array('Model' => 'B', 'Revision' => '2.0', 'Memory' => '512MB', 'Manufacturer' => 'Sony',   'Notes' => '', ),
+  '000f' => array('Model' => 'B', 'Revision' => '2.0', 'Memory' => '512MB', 'Manufacturer' => 'Qisda',  'Notes' => '', ),
 );
 
 
@@ -55,9 +59,9 @@ function board_info()
   // Calculate Raspberry Pi Revisions
   if(isset($board_info['Hardware']['Revision']) && array_key_exists($board_info['Hardware']['Revision'], $GLOBALS['BOARD_PI_REVISIONS']))
   {
-    $pi_info['Hardware']['Raspberry Pi'] = $GLOBALS['BOARD_PI_REVISIONS'][$board_info['Hardware']['Revision']];
+    $pi_info['Raspberry Pi'] = $GLOBALS['BOARD_PI_REVISIONS'][$board_info['Hardware']['Revision']];
 
-    // This is to make it at the start
+    // This is to make sure its at the start
     $board_info = array_merge_recursive($pi_info, $board_info);
   }
 
