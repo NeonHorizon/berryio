@@ -325,7 +325,11 @@ img.network_interface {
 ------------------------------------------------------------------------------*/ 
 
 div.spi_analogue {
-  width:            200px;      
+  width:            280px;      
+}
+
+div.spi_analogue table {
+  margin:           6px auto 10px auto;
 }
 
 

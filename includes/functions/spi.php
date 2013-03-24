@@ -7,9 +7,9 @@
 /*------------------------------------------------------------------------------
   Load the SPI config and define some of our own
 ------------------------------------------------------------------------------*/
-settings('spi');
+settings('spi', 2);
 $GLOBALS['SPI_CHIP_SELECTS'] = array(0 => 'CE0', 1 => 'CE1');
-$GLOBALS['SPI_CHANNELS'] = array(0 => 'Ch0', 1 => 'Ch1');
+$GLOBALS['SPI_CHANNEL_SELECTS'] = array(0, 1);
 $GLOBALS['SPI_DAC_MIN'] = 0;
 $GLOBALS['SPI_DAC_MAX'] = 4095;
 
@@ -25,8 +25,8 @@ $GLOBALS['SPI_DAC_MAX'] = 4095;
 function spi_get_adc_values($chip_select = '', $channel = '')
 {
   // Check the values are good
-  global $SPI_CHIP_SELECTS, $SPI_CHANNELS;
-  if($channel !== '' && (!is_numeric($channel) || !array_key_exists($channel, $SPI_CHANNELS))) return FALSE;
+  global $SPI_CHIP_SELECTS, $SPI_CHANNEL_SELECTS;
+  if($channel !== '' && (!is_numeric($channel) || !array_key_exists($channel, $SPI_CHANNEL_SELECTS))) return FALSE;
   if($channel !== '' && $chip_select === '') return FALSE;
   if($chip_select !== '' && (!is_numeric($chip_select) || !array_key_exists($chip_select, $SPI_CHIP_SELECTS))) return FALSE;
 
@@ -41,13 +41,13 @@ function spi_get_adc_values($chip_select = '', $channel = '')
     case '4':
       // All chips and all channels
       if($chip_select !== '' || $channel !== '') return FALSE;
-      return array($SPI_CHIP_SELECTS[0] => array($SPI_CHANNELS[0] => $data[0], $SPI_CHANNELS[1] => $data[1]),
-                   $SPI_CHIP_SELECTS[1] => array($SPI_CHANNELS[0] => $data[2], $SPI_CHANNELS[1] => $data[3]));
+      return array(0 => array(0 => $data[0], 1 => $data[1]),
+                   1 => array(0 => $data[2], 1 => $data[3]));
 
     case '2':
       // All all channels on one chip
       if($chip_select === '' || $channel !== '') return FALSE;
-      return array($SPI_CHANNELS[0] => $data[0], $SPI_CHANNELS[1] => $data[1]);
+      return array(0 => $data[0], 1 => $data[1]);
 
     case '1':
       // One channel on one chip
@@ -67,9 +67,9 @@ function spi_get_adc_values($chip_select = '', $channel = '')
 function spi_set_dac_value($chip_select, $channel, $value)
 {
   // Check the values are good
-  global $SPI_CHIP_SELECTS, $SPI_CHANNELS, $SPI_DAC_MIN, $SPI_DAC_MAX;
+  global $SPI_CHIP_SELECTS, $SPI_CHANNEL_SELECTS, $SPI_DAC_MIN, $SPI_DAC_MAX;
   if(!is_numeric($chip_select) || !array_key_exists($chip_select, $SPI_CHIP_SELECTS)) return FALSE;
-  if(!is_numeric($channel) || !array_key_exists($channel, $SPI_CHANNELS)) return FALSE;
+  if(!is_numeric($channel) || !array_key_exists($channel, $SPI_CHANNEL_SELECTS)) return FALSE;
   if(!is_numeric($value) || $value < $SPI_DAC_MIN || $value > $SPI_DAC_MAX) return FALSE;
 
   // Execute the command and set the values
