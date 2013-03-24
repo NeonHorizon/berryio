@@ -3,6 +3,8 @@
   BerryIO Email IP Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Email Control';
+
 // Load the network functions
 require_once(FUNCTIONS.'network.php');
 

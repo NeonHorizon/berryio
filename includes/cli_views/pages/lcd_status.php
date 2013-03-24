@@ -6,9 +6,5 @@ HINTS AND TIPS:
   LCD display. This includes options for changing which
   GPIO pins you wish to connect the display to.
 
-LCD COMMANDS:
-
-<? foreach($GLOBALS['LCD_COMMANDS'] as $command => $ref):?>
-  <?=$command?>
-
-<? endforeach?>
+  Always initialise the display before use with:
+  sudo <?=$berryio?> lcd_initialise

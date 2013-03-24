@@ -3,6 +3,8 @@
   BerryIO LCD Output String Command
 ------------------------------------------------------------------------------*/
 
+$title = 'LCD Control';
+
 // Load the LCD functions
 require_once(FUNCTIONS.'lcd.php');
 

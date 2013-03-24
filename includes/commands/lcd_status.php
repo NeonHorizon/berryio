@@ -5,12 +5,8 @@
 
 $title = 'LCD Control';
 
-// Load the LCD settings and config
-settings('lcd');
-require_once(CONFIGS.'lcd.php');
-
-// Make a note of any passed values
-$page['args'] = $args;
+global $exec;
+$page['berryio'] = EXEC_MODE == 'cli' ? basename($exec) : $exec;
 
 // Display status page
 $GLOBALS['JAVASCRIPT'][] = 'getScrollY';

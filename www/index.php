@@ -20,7 +20,7 @@ require_once(FUNCTIONS.'html.php');
 /*------------------------------------------------------------------------------
   Get the command and run it
 ------------------------------------------------------------------------------*/
-$argv = explode('/', $_SERVER["SERVER_NAME"].$_SERVER['PATH_INFO']);
+$argv = explode('/', rtrim($_SERVER["SERVER_NAME"].$_SERVER['PATH_INFO'], '/'));
 $args = $argv;
 $exec = array_shift($args);
 $exec .= $_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT'] : '';

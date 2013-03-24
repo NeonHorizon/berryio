@@ -3,6 +3,8 @@
   BerryIO LCD Position Command
 ------------------------------------------------------------------------------*/
 
+$title = 'LCD Control';
+
 // Load the LCD functions
 require_once(FUNCTIONS.'lcd.php');
 

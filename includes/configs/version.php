@@ -29,6 +29,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.6.5', '2013-01-27', array('Fixed CLI commands which have been outputting errors (bug introduced in 1.6.2 - oops!)', 'Improved web page titling and errors')),
   array('1.6.6', '2013-02-04', array('Improved handling of unknown CLI commands (it doesn\'t say to try sudo anymore unless it needs sudo)', 'CLI commands now return correct exit status', 'Additional error trapping')),
   array('1.6.7', '2013-02-07', array('Improved Pi variant identification (board_status) and added information on the manufacturer')),
+  array('1.6.8', '2013-03-24', array('Multiple improvements to help system, errors and presentation', 'Removed GPIO error when setting all pins and all pins not in out mode')),
 );
 
 // Version Numbering

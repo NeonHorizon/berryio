@@ -3,6 +3,8 @@
   BerryIO SPI Set DAC Value Command
 ------------------------------------------------------------------------------*/
 
+$title = 'SPI Control';
+
 // Load the SPI functions
 require_once(FUNCTIONS.'spi.php');
 

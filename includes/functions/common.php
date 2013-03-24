@@ -19,19 +19,21 @@ function message($message = '', $redirect = '')
 /*----------------------------------------------------------------------------
   Returns instructions on how to use BerryIO with error message if supplied
 ----------------------------------------------------------------------------*/
-function usage($error = '')
+function usage($error = '', $subset = '')
 {
-  // Get command list
+  // Get command list and version information
   require_once(CONFIGS.'usage.php');
-
-  // Get the version information
   require_once(CONFIGS.'version.php');
+
+  // Get any extra information required
+  if($subset == 'lcd_command')
+    require_once(FUNCTIONS.'lcd.php');
 
   // Find out who we are
   global $exec;
   $berryio = EXEC_MODE == 'cli' ? basename($exec) : $exec;
 
-  return view('pages/usage', array('berryio' => $berryio, 'error' => $error));
+  return view('pages/'.($subset == '' ? '' : $subset.'_').'usage', array('berryio' => $berryio, 'error' => $error));
 }
 
 

@@ -3,6 +3,8 @@
   BerryIO Initialise LCD Command
 ------------------------------------------------------------------------------*/
 
+$title = 'LCD Control';
+
 // Load the LCD functions
 require_once(FUNCTIONS.'lcd.php');
 
@@ -13,4 +15,7 @@ if(lcd_initialise() === FALSE)
   return FALSE;
 }
 
-$content .= go_to('lcd_status');
+if(EXEC_MODE == 'cli')
+  $content .= message('LCD Initialised');
+else
+  $content .= go_to('lcd_status');

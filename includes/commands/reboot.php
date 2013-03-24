@@ -3,6 +3,8 @@
   BerryIO Reboot Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Power Control';
+
 // Load the power functions
 require_once(FUNCTIONS.'power.php');
 

@@ -3,6 +3,8 @@
   BerryIO Check Version Command
 ------------------------------------------------------------------------------*/
 
+$title = 'Version Check';
+
 // Load the version control functions
 require_once(FUNCTIONS.'version.php');
 
