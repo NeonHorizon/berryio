@@ -16,7 +16,7 @@ BerryIO
 
 The long term aim of BerryIO is to enable developers to control the Raspberry Pi and its GPIO ports remotely from any device with a browser, without ever needing to connect a screen or keyboard to the Pi itself. The new API mode extends this further enabling mobile apps, etc to be produced and control BerryIO.
 
-The way BerryIO works is once the Raspberry Pi has booted up (or if the connectivity changes) it automatically connects to the main wired or one of the predefined wireless networks and BerryIO emails the owner with a web link. They can then click the link and open the control panel in a browser (with their username and password).
+The way BerryIO works is once the Raspberry Pi has booted up (or if the connectivity changes) it automatically connects to the main wired or one of the predefined wireless networks and emails the owner with a web link. They can then click the link and open the control panel in a browser (with their username and password).
 
 There is also a command line interface, so you can issue commands directly to it over SSH or in scripting should you wish to.
 
