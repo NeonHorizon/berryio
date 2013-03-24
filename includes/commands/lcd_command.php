@@ -32,7 +32,7 @@ if(call_user_func_array('lcd_command', $args) === FALSE)
   return FALSE;
 }
 
-if(EXEC_MODE == 'html')
+if($GLOBALS['EXEC_MODE'] == 'html')
   $content .= go_to('lcd_status');
-else
+elseif($GLOBALS['EXEC_MODE'] != 'api')
   $content .= message('Command'.(count($args) > 1 ? 's' : '').' '.implode(', ', $args).' sent to the LCD', 'lcd_status');

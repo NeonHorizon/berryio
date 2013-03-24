@@ -30,10 +30,8 @@ else
 {
   // If this has been triggered by the CLI
   exec('/usr/sbin/apache2ctl -S 2>/dev/null', $output);
-  global $exec;
-  $filename = basename($exec);
   foreach($output as $line)
-    if(strpos($line, 'port') !== FALSE && strpos($line, $filename) !== FALSE)
+    if(strpos($line, 'port') !== FALSE && strpos($line, 'berryio') !== FALSE) // We're gonna have to guess the name of the virtual host if we are on the CLI
     {
       $cols = get_columns($line);
       if(count($cols) >= 2)

@@ -6,6 +6,7 @@
 $GLOBALS['USAGE_COMMANDS']['General'] = array(
   'help',
   'about',
+  'version',
 );
 
 
@@ -50,6 +51,12 @@ $GLOBALS['USAGE_COMMANDS']['Power Control'] = array(
   'upgrade',
   'reboot',
   'shutdown',
+);
+
+
+$GLOBALS['USAGE_COMMANDS']['API'] = array(
+  'api_help',
+  array('api_command', '<command>', '[<option>]', '[<option>]', '....'),
 );
 
 

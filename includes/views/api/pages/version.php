@@ -1,0 +1,2 @@
+OK: V<?=$GLOBALS['VERSION_NO']?>,<?=$GLOBALS['VERSION_DATE']?>
+

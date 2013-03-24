@@ -208,7 +208,7 @@ input[type=button],
   padding:          5px 10px 5px 10px;
   vertical-align:   top;  
   margin:           3px;
-  background:       #777777 url('//images/layout/backgrounds/pattern.png') repeat center center;    
+  background:       #777777 url('/images/layout/backgrounds/pattern.png') repeat center center;    
 }
 
 input[type=submit]:hover, 

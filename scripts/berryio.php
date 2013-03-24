@@ -3,7 +3,7 @@
 /*------------------------------------------------------------------------------
  BerryIO Command Line Bootstrap
 ------------------------------------------------------------------------------*/
-define('EXEC_MODE', 'cli');
+$EXEC_MODE = 'cli';
 require_once('/etc/berryio/paths.php');
 require_once(BASE.'/includes/configs/paths.php');
 
@@ -20,7 +20,7 @@ require_once(FUNCTIONS.'common.php');
   Check theres a requested controller and load it checking for root if required
 ------------------------------------------------------------------------------*/
 $args = $argv;
-$exec = array_shift($args);
+$EXEC = basename(array_shift($args));
 
 // Show the help command by default
 if(count($args) < 1)
@@ -29,7 +29,7 @@ if(count($args) < 1)
 // Check for commands which need to be run as root
 if(posix_getuid() != 0 && in_array($args[0], $GLOBALS['NEED_SUDO']))
 {
-  $page['content'] = message('ERROR: '.basename($exec).' '.$args[0].' must be run as root'.PHP_EOL.'Try: sudo '.basename($exec).' '.implode(' ', $args));
+  $page['content'] = message('ERROR: '.$EXEC.' '.$args[0].' must be run as root'.PHP_EOL.'Try: sudo '.$EXEC.' '.implode(' ', $args));
   $GLOBALS['SUCCESS'] = FALSE;
 }
 else

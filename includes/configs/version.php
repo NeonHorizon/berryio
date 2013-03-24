@@ -31,6 +31,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.6.7', '2013-02-07', array('Improved Pi variant identification (board_status) and added information on the manufacturer')),
   array('1.6.8', '2013-03-24', array('Multiple improvements to help system, errors and presentation', 'Removed GPIO error when setting all pins and all pins not in out mode')),
   array('1.6.9', '2013-04-24', array('Added ability to rename SPI channels')),
+  array('1.7.0', '2013-04-24', array('Added new API mode on both the CLI and HTTP interfaces for mobile app integration, etc')),
 );
 
 // Version Numbering

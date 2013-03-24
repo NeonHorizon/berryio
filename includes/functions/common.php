@@ -9,7 +9,7 @@
 ----------------------------------------------------------------------------*/
 function message($message = '', $redirect = '')
 {
-  if(EXEC_MODE == 'html' && $redirect != '')
+  if($GLOBALS['EXEC_MODE'] == 'html' && $redirect != '')
     header('Refresh: 5; url=/'.$redirect);
 
   return view('message', array('message' => $message));
@@ -19,35 +19,39 @@ function message($message = '', $redirect = '')
 /*----------------------------------------------------------------------------
   Returns instructions on how to use BerryIO with error message if supplied
 ----------------------------------------------------------------------------*/
-function usage($error = '', $subset = '')
+function usage($error = '', $subset = 'usage')
 {
   // Get command list and version information
   require_once(CONFIGS.'usage.php');
   require_once(CONFIGS.'version.php');
 
   // Get any extra information required
-  if($subset == 'lcd_command')
-    require_once(FUNCTIONS.'lcd.php');
+  switch($subset)
+  {
+    case 'lcd_command':
+      require_once(FUNCTIONS.'lcd.php');
+      break;
+    case 'api':
+      require_once(CONFIGS.'api.php');
+      break;
+  }
 
   // Find out who we are
-  global $exec;
-  $berryio = EXEC_MODE == 'cli' ? basename($exec) : $exec;
-
-  return view('pages/'.($subset == '' ? '' : $subset.'_').'usage', array('berryio' => $berryio, 'error' => $error));
+  return view('usage/'.$subset, array('error' => $error));
 }
 
 
 /*----------------------------------------------------------------------------
   Load a view supplied with $data and return its content
 ----------------------------------------------------------------------------*/
-function view($view, $data = '', $root = VIEWS)
+function view($view, $data = '', $view_type = '')
 {
   if(is_array($data))
     extract($data, EXTR_REFS | EXTR_SKIP);
 
   // We need to buffer the output so we can send it back
   ob_start();
-  require($root.$view.'.php');
+  require(VIEWS.($view_type == '' ? $GLOBALS['EXEC_MODE'] : $view_type).'/'.$view.'.php');
   $content = ob_get_contents();
   ob_end_clean();
 
@@ -65,8 +69,8 @@ function go_to()
   $args = func_get_args();
   if(count($args) < 1) return FALSE;
 
-  // If CLI mode just straight execute the command
-  if(EXEC_MODE == 'cli')
+  // If not in html mode just straight execute the command
+  if($GLOBALS['EXEC_MODE'] != 'html')
     return call_user_func_array('command', $args);
 
   // Construct the link from the arguments

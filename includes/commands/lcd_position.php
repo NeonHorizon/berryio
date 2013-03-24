@@ -22,7 +22,7 @@ if(call_user_func_array('lcd_position', $args) === FALSE)
   return FALSE;
 }
 
-if(EXEC_MODE == 'html')
+if($GLOBALS['EXEC_MODE'] == 'html')
   $content .= go_to('lcd_status');
-else
+elseif($GLOBALS['EXEC_MODE'] != 'api')
   $content .= message('LCD cursor positioned to x='.$args[0].' y='.(isset($args[1]) ? $args[1] : 0), 'lcd_status');

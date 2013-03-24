@@ -9,14 +9,14 @@ $title = 'Power Control';
 require_once(FUNCTIONS.'power.php');
 
 // Reboot
-if(EXEC_MODE == 'html' && isset($_POST['no']))
+if($GLOBALS['EXEC_MODE'] == 'html' && isset($_POST['no']))
   go_to('welcome');
-elseif(EXEC_MODE == 'html' && !isset($_POST['yes']))
+elseif($GLOBALS['EXEC_MODE'] == 'html' && !isset($_POST['yes']))
   $content .= view('are_you_sure', array('description' => 'reboot'));
-elseif(power_reboot() !== FALSE)
-  $content .= message('See you again shortly!', 'welcome');
-else
+elseif(power_reboot() === FALSE)
 {
   $content .= message('ERROR: Cannot reboot the system', 'welcome');
   return FALSE;
 }
+elseif($GLOBALS['EXEC_MODE'] != 'api')
+  $content .= message('See you again shortly!', 'welcome');

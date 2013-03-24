@@ -3,13 +3,12 @@
   BerryIO About Command
 ------------------------------------------------------------------------------*/
 
-$title = 'About '.NAME;
+// Version information
+$content .= command('version');
 
-// Load about information
+// About information
 require_once(CONFIGS.'about.php');
-
-// Load the version information
-require_once(CONFIGS.'version.php');
-
-// Display about information
 $content .= view('pages/about');
+
+// Set the title last to override any previous set titles
+$title = 'About '.NAME;

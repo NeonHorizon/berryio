@@ -9,7 +9,7 @@ $title = 'Version Upgrade';
 require_once(FUNCTIONS.'version.php');
 
 // Make sure we are in CLI mode
-if(EXEC_MODE != 'cli')
+if($GLOBALS['EXEC_MODE'] != 'cli')
   $content = command('check_version');
 else
   version_upgrade();

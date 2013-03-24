@@ -14,10 +14,10 @@ function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percenta
 {
   // Sanity checks
   if(!is_numeric($value) || !is_numeric($min) || !is_numeric($max))
-    return EXEC_MODE == 'html' ? h($value) : $value;
+    return $GLOBALS['EXEC_MODE'] == 'html' ? h($value) : $value;
 
   if($value > $max || $value < $min || $min >= $max)
-    return EXEC_MODE == 'html' ? h($value) : $value;
+    return $GLOBALS['EXEC_MODE'] == 'html' ? h($value) : $value;
 
   // Calculate the colour
   $offset = round((($value - $min) / ($max - $min)) * 255);

@@ -15,7 +15,7 @@ if(lcd_initialise() === FALSE)
   return FALSE;
 }
 
-if(EXEC_MODE == 'cli')
+if($GLOBALS['EXEC_MODE'] == 'cli')
   $content .= message('LCD Initialised');
-else
+elseif($GLOBALS['EXEC_MODE'] != 'api')
   $content .= go_to('lcd_status');

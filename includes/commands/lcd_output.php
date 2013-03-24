@@ -34,7 +34,7 @@ if(lcd_output(implode(' ', $args)) === FALSE)
   return FALSE;
 }
 
-if(EXEC_MODE == 'html')
+if($GLOBALS['EXEC_MODE'] == 'html')
   $content .= go_to('lcd_status');
-else
+elseif($GLOBALS['EXEC_MODE'] != 'api')
   $content .= message('String "'.implode(' ', $args).'" sent to the LCD', 'lcd_status');

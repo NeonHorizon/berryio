@@ -40,7 +40,7 @@ function version_latest()
 function version_upgrade()
 {
   // Must be run in CLI mode
-  if(EXEC_MODE != 'cli')
+  if($GLOBALS['EXEC_MODE'] != 'cli')
     return FALSE;
 
   // Fetch the current version

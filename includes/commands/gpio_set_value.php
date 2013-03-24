@@ -22,4 +22,5 @@ if(gpio_set_value($args[0], $args[1]) === FALSE)
   return FALSE;
 }
 
-$content .= go_to('gpio_status');
+if($GLOBALS['EXEC_MODE'] != 'api')
+  $content .= go_to('gpio_status');

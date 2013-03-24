@@ -19,10 +19,8 @@ if($latest_version[VERSION_NO] == $GLOBALS['VERSION_NO'] && $latest_version[VERS
   $content .= message(REAL_NAME.' is up to date'.PHP_EOL.'V'.$GLOBALS['VERSION_NO'].' is the current version', 'about');
 else
 {
-  // Find out who we are
-  // If this is running in the web interface we are going to need to guess the exec name so presume its the default
-  global $exec;
-  $berryio = EXEC_MODE == 'cli' ? basename($exec) : 'berryio';
+  // Find out the command line executable if this is not running on the command line we are going to need to guess
+  $berryio = $GLOBALS['EXEC_MODE'] != 'cli' ? 'berryio' : $GLOBALS['EXEC'];
 
   $title = 'An upgrade is available!';
   $content .= view('pages/upgrade_available', array('berryio' => $berryio, 'version_number' => $latest_version[VERSION_NO], 'version_date' => $latest_version[VERSION_DATE]));
