@@ -113,7 +113,7 @@ function network_list()
         list($interfaces[$interface]['Quality']['value'], $interfaces[$interface]['Quality']['max']) = explode('/', $interfaces[$interface]['Quality']['text']);
       }
       // Do we just have a number? Maybe we are missing the postfix
-      elseif(is_numeric(substr($columns[1], 8)))
+      elseif(is_numeric(substr($columns[1], 8)) && isset($columns[2]))
         $interfaces[$interface]['Quality']['text'] = substr($columns[1], 8).$columns[2];
       else
         $interfaces[$interface]['Quality']['text'] = substr($columns[1], 8);
@@ -132,7 +132,7 @@ function network_list()
         list($interfaces[$interface]['Signal']['value'], $interfaces[$interface]['Signal']['max']) = explode('/', $interfaces[$interface]['Signal']['text']);
       }
       // Do we just have a number? Maybe we are missing the postfix
-      elseif(is_numeric(substr($columns[3], 6)))
+      elseif(is_numeric(substr($columns[3], 6)) && isset($columns[4]))
         $interfaces[$interface]['Signal']['text'] = substr($columns[3], 6).$columns[4];
       else
         $interfaces[$interface]['Signal']['text'] = substr($columns[3], 6);
@@ -151,10 +151,10 @@ function network_list()
         list($interfaces[$interface]['Noise']['value'], $interfaces[$interface]['Noise']['max']) = explode('/', $interfaces[$interface]['Noise']['text']);
       }
       // Do we just have a number? Maybe we are missing the postfix
-      elseif(is_numeric(substr($columns[5], 6)))
+      elseif(is_numeric(substr($columns[5], 6)) && isset($columns[6]))
         $interfaces[$interface]['Noise']['text'] = substr($columns[5], 6).$columns[6];
       else
-        $interfaces[$interface]['Signal']['text'] = substr($columns[3], 6);
+        $interfaces[$interface]['Noise']['text'] = substr($columns[5], 6);
     }
   }
 
