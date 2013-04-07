@@ -1,1 +1,0 @@
-<? for($i = 1; $i <= 10; $i++):?><?= $percentage/10 < $i ? '.' : '=' ?><? endfor?><? if($show_percentage):?> <?=$percentage?>%<? endif?>
