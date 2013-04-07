@@ -30,8 +30,9 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.6.6', '2013-02-04', array('Improved handling of unknown CLI commands (it doesn\'t say to try sudo anymore unless it needs sudo)', 'CLI commands now return correct exit status', 'Additional error trapping')),
   array('1.6.7', '2013-02-07', array('Improved Pi variant identification (board_status) and added information on the manufacturer')),
   array('1.6.8', '2013-03-24', array('Multiple improvements to help system, errors and presentation', 'Removed GPIO error when setting all pins and all pins not in out mode')),
-  array('1.6.9', '2013-04-24', array('Added ability to rename SPI channels')),
-  array('1.7.0', '2013-04-24', array('Added new API mode on both the CLI and HTTP interfaces for mobile app integration, etc')),
+  array('1.6.9', '2013-03-24', array('Added ability to rename SPI channels')),
+  array('1.7.0', '2013-03-24', array('Added new API mode on both the CLI and HTTP interfaces for mobile app integration, etc')),
+  array('1.8.0', '2013-04-07', array('Added realtime updates of GPIO direction information', 'Animated toggles when external program controls the GPIO outputs', 'Used new API with javascript to alow users to update GPIO pins without a page refresh', 'Corrected incorrect version dates')),
 );
 
 // Version Numbering

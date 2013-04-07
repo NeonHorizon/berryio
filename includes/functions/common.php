@@ -36,7 +36,6 @@ function usage($error = '', $subset = 'usage')
       break;
   }
 
-  // Find out who we are
   return view('usage/'.$subset, array('error' => $error));
 }
 
