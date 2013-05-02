@@ -101,9 +101,6 @@ wget -N https://raw.github.com/NeonHorizon/berryio/master/scripts/berryio_instal
 chmod +x berryio_install.sh
 sudo ./berryio_install.sh
 
-// Configure the email addresses you wish BerryIO to use
-sudo nano /etc/berryio/email.php
-
 // Configure msmtp so it can access your mailserver
 // Please check http://msmtp.sourceforge.net/documentation.html
 // for further details

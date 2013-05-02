@@ -56,22 +56,29 @@ echo -e "\nSetting up the BerryIO command line...."
 rm -f /usr/bin/berryio # Just in case any older versions are present
 ln -s /usr/share/berryio/scripts/berryio.php /usr/bin/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 
-echo -e "\nConfigure email settings"
-
-echo -e "\nEmail address messages should be sent to:\n> \c"
-read mailTo
-echo -e "\nEmail address messages should be sent as:\n> \c"
-read mailFrom
-
-if [[ -z "${mailTo}" ]]; then
-     mailTo="pi@localhost"
-fi
-if [[ -z "${mailFrom}" ]]; then
-     mailFrom="pi@localhost"
-fi
-
-
-sudo echo -e "<?\n/*------------------------------------------------------------------------------\n  BerryIO Email Settings\n------------------------------------------------------------------------------*/\n\ndefine('EMAIL_FROM', '$mailFrom');\ndefine('EMAIL_TO', '$mailTo');\n" > /etc/berryio/email.php
+echo -e "\nConfiguring email settings...\n"
+defaultMailTo="pi@localhost"
+defaultMailFrom="pi@localhost"
+until [[ "$emailConfigured" =~ ^[yY]$ ]]; do
+  read -p "Email address messages should be sent to [$defaultMailTo]: " mailTo
+  read -p "Email address messages should be sent from [$defaultMailFrom]: " mailFrom
+  if [[ -z "$mailTo" ]]; then
+    mailTo="$defaultMailTo"; else
+    defaultMailTo="$mailTo"
+  fi
+  if [[ -z "$mailFrom" ]]; then
+    mailFrom="$defaultMailFrom"; else
+    defaultMailFrom="$mailFrom"
+  fi
+  echo -e "\nMail To:   $mailTo\nMail From: $mailFrom\n"
+  emailConfigured="X"
+  until [[ "$emailConfigured" =~ ^[yYnN]$ || -z "$emailConfigured" ]]; do
+    read -p "Is this correct? [y/N]: " -n1 emailConfigured
+    echo
+  done
+done
+echo -e "<?\n/*------------------------------------------------------------------------------\n  BerryIO Email Settings\n------------------------------------------------------------------------------*/\n\ndefine('EMAIL_FROM', '$mailFrom');\ndefine('EMAIL_TO', '$mailTo');\n" > /etc/berryio/email.php
 
 echo -e "\nInstall successful!"
-echo -e "Now configure your GPIO settings as described in /usr/share/berryio/INSTALL.README.txt\n"
+echo -e "Finish the configuration as described in /usr/share/berryio/INSTALL.README.txt"
+echo -e "...and you're ready to go!\n"
