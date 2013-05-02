@@ -56,5 +56,22 @@ echo -e "\nSetting up the BerryIO command line...."
 rm -f /usr/bin/berryio # Just in case any older versions are present
 ln -s /usr/share/berryio/scripts/berryio.php /usr/bin/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 
+echo -e "\nConfigure email settings"
+
+echo -e "\nEmail address messages should be sent to:\n> \c"
+read mailTo
+echo -e "\nEmail address messages should be sent as:\n> \c"
+read mailFrom
+
+if [[ -z "${mailTo}" ]]; then
+     mailTo="pi@localhost"
+fi
+if [[ -z "${mailFrom}" ]]; then
+     mailFrom="pi@localhost"
+fi
+
+
+sudo echo -e "<?\n/*------------------------------------------------------------------------------\n  BerryIO Email Settings\n------------------------------------------------------------------------------*/\n\ndefine('EMAIL_FROM', '$mailFrom');\ndefine('EMAIL_TO', '$mailTo');\n" > /etc/berryio/email.php
+
 echo -e "\nInstall successful!"
-echo -e "Now configure your email and GPIO settings as described in /usr/share/berryio/INSTALL.README.txt\n"
+echo -e "Now configure your GPIO settings as described in /usr/share/berryio/INSTALL.README.txt\n"
