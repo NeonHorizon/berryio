@@ -34,6 +34,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.7.0', '2013-03-24', array('Added new API mode on both the CLI and HTTP interfaces for mobile app integration, etc')),
   array('1.8.0', '2013-04-07', array('Added realtime updates of GPIO direction information', 'Animated toggles when external program controls the GPIO outputs', 'Used new API with javascript to allow users to update GPIO pins without a page refresh', 'Fixed issue when using GPIO with Internet Explorer', 'Corrected incorrect version dates')),
   array('1.8.1', '2013-04-07', array('Removed excess files and folders which should have been deleted in version 1.7.0')),
+  array('1.8.2', '2013-05-18', array('Changes to SPI Control web interface to use API for changes', 'New dragable javascript sliders in SPI module')),
 );
 
 // Version Numbering

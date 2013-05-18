@@ -22,5 +22,7 @@ if(spi_set_dac_value($args[0], $args[1], $args[2]) === FALSE)
   return FALSE;
 }
 
-if($GLOBALS['EXEC_MODE'] != 'api')
+if($GLOBALS['EXEC_MODE'] == 'cli')
   $content .= go_to('spi_status', $args[0], $args[1], $args[2]);
+elseif($GLOBALS['EXEC_MODE'] == 'html')
+  $content .= go_to('spi_status');

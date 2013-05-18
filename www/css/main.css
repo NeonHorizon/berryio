@@ -61,6 +61,10 @@ body {
   width:            600px;
 }
 
+.clickable {
+  cursor:           pointer;  
+}
+
 
 /*------------------------------------------------------------------------------
   Menu
@@ -231,6 +235,7 @@ div.horizontal_bar {
 }
 
 div.horizontal_bar_outline {
+  position:         relative;
   display:          inline-block;
   vertical-align:   middle;
   width:            100px;
@@ -239,14 +244,15 @@ div.horizontal_bar_outline {
   background:       #333333 url('/images/layout/backgrounds/pattern.png') repeat center center;    
 }
 
-div.horizontal_bar_outline a {
-  display:          block;
-}
-
 span.horizontal_bar_fill {
   display:          block;
   height:           10px; 
   background:       #0000ff url('/images/layout/backgrounds/pattern.png') repeat center center; 
+}
+
+div.horizontal_bar_value {
+  display:          inline-block;  
+  width:            30px;
 }
 
 
