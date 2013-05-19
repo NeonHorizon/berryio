@@ -22,7 +22,6 @@ if(($page['gpio_values'] = gpio_get_values()) === FALSE)
 }
 
 // Display status page
-$GLOBALS['JAVASCRIPT'][] = 'getScrollY';
 $GLOBALS['JAVASCRIPT'][] = 'updateGPIO';
 require_once(FUNCTIONS.'graph.php');
 $content .= view('pages/gpio_status', $page);

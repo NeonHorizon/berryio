@@ -40,7 +40,7 @@
         <? foreach($channels as $channel => $channel_name):?>
           <tr>
             <th><?=h($channel_name)?></th>
-            <td class="code"><?=graph_horizontal_bar(isset($spi_dac_values[$chip_select][$channel]) ? $spi_dac_values[$chip_select][$channel] : 0, 0, 4095, '', isset($spi_dac_values[$chip_select][$channel]), 'spi_dac_'.$chip_select.'_'.$channel, '/spi_set_dac_value/'.$chip_select.'/'.$channel)?></td>
+            <td class="code"><?=graph_horizontal_bar('', 0, 4095, '', TRUE, 'spi_dac_'.$chip_select.'_'.$channel, 'setSPIValue')?></td>
           </tr>
         <? endforeach?>
 

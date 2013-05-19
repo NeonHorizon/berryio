@@ -225,28 +225,51 @@ input[type=button]:hover,
   Graph
 ------------------------------------------------------------------------------*/  
 
+div.clickable_horizontal_bar,
 div.horizontal_bar {
+  font-size:        0px;
+  line-height:      0px;
   whitespace:       nowrap; 
   text-align:       left; 
 }
 
 div.horizontal_bar_outline {
+  background:       #333333 url('/images/layout/backgrounds/pattern.png') repeat center center;   
+  position:         relative;
   display:          inline-block;
   vertical-align:   middle;
   width:            100px;
   height:           10px;
-  border:           1px solid #aaaaaa;
-  background:       #333333 url('/images/layout/backgrounds/pattern.png') repeat center center;    
+  border:           1px solid #aaaaaa; 
+  margin:           0px 8px 0px 0px;   
 }
 
-div.horizontal_bar_outline a {
-  display:          block;
+div.clickable_horizontal_bar div.horizontal_bar_outline {
+  margin:           5px 17px 5px 10px;
 }
 
 span.horizontal_bar_fill {
   display:          block;
   height:           10px; 
   background:       #0000ff url('/images/layout/backgrounds/pattern.png') repeat center center; 
+}
+
+img.horizontal_bar_slider {
+  cursor:           pointer;    
+  position:         absolute;
+  top:              -8px;
+  padding:          2px 10px 2px 10px;
+}
+
+div.horizontal_bar_value {
+  float:            right; 
+  width:            30px;
+  font-size:        12px;
+  line-height:      12px;   
+}
+
+div.clickable_horizontal_bar div.horizontal_bar_value {
+  line-height:      22px;
 }
 
 
