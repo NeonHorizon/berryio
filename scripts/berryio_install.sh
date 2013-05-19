@@ -82,7 +82,7 @@ echo -e "<?\n/*-----------------------------------------------------------------
 
 echo -e "\n\nConfiguring GPIO settings\n-------------------------\n"
 piRevision="2";
-cat /proc/cpuinfo | grep 'Revision' | grep '0000\|0003' || piRevision='1';
+cat /proc/cpuinfo | grep 'Revision' | grep '00002\|0003' >> /dev/null && piRevision='1';
 echo -e "Your Pi has been detected as a Revision $piRevision.0\n"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
