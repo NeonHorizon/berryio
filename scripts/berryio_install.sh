@@ -80,30 +80,30 @@ until [[ "$emailConfigured" =~ ^[yY]$ ]]; do
 done
 echo -e "<?\n/*------------------------------------------------------------------------------\n  BerryIO Email Settings\n------------------------------------------------------------------------------*/\n\ndefine('EMAIL_FROM', '$mailFrom');\ndefine('EMAIL_TO', '$mailTo');\n" > /etc/berryio/email.php
 
-echo -e "\n\nConfiguring GPIO settings\n-------------------------\n"
+echo -e "\n\nConfiguring GPIO settings\n-------------------------"
 piRevision="2";
 cat /proc/cpuinfo | grep 'Revision' | grep '0002\|0003' >> /dev/null && piRevision='1';
-echo -e "Your Pi has been detected as a Revision $piRevision.0\n"
+echo -e "\nYour Pi has been detected as a Revision $piRevision.0"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
   gpioConfigured="X";
+  echo -e "The GPIO configuration for a Revision $piRevision.0 Pi will be set"   
   until [[ "$gpioConfigured" =~ ^[yYnN]$ || -z "$gpioConfigured" ]]; do
     read -p "Is this correct? [Y/n]: " -n1 gpioConfigured
     echo
   done
   if [[ "$gpioConfigured" =~ ^[nN]$ ]]; then
-    piRevision=''; 
+    piRevision='';
     until [[ "$piRevision" =~ ^[12]$ ]]; do
       read -p "Please enter your revision [1/2]: " -n1 piRevision
       echo
-    done   
-    echo      
-  fi  
-  echo -e "The GPIO configuration for a Revision $piRevision.0 will be set"   
+    done
+    echo
+  fi
 done
 
 if [[ "$piRevision" == "1" ]]; then
-  cp /usr/share/berryio/default_config/berryio/gpio.rev1.0.php /etc/berryio/gpio.php || { echo -e "Install failed!" 1>&2; exit 1; }
+  cp /usr/share/berryio/default_config/berryio/gpio.rev1.0.example.php /etc/berryio/gpio.php || { echo -e "Install failed!" 1>&2; exit 1; }
 fi
 
 echo -e "\nInstall successful!"
