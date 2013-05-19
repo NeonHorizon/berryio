@@ -106,13 +106,6 @@ sudo ./berryio_install.sh
 // for further details
 sudo nano /etc/msmtprc
 
-// Configure your GPIO settings
-// If you have an original revision 1 board comment out the revision 2
-// GPIO settings and uncomment the revision 1 settings.
-// If you have fitted the P5 header on the revision 2 board you can
-// enable that here also
-sudo nano /etc/berryio/gpio.php
-
 // Test BerryIO is working
 berryio help
 
