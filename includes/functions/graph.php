@@ -9,9 +9,9 @@
   Positive indicates whether it flows from red to green or green to red
   $id is postfixed with _bar and _value for the bargraph width and
   percentage respectively
-  $onclick makes the graph interactive and requires an $id
+  $set_function, javascript to call with $id and $percentage, makes the graph interactive
 ----------------------------------------------------------------------------*/
-function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percentage = TRUE, $id = '', $onclick = '')
+function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percentage = TRUE, $id = '', $set_function = '')
 {
   // Sanity checks
   if((!is_numeric($value) && $value != '') || !is_numeric($min) || !is_numeric($max))
@@ -29,13 +29,17 @@ function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percenta
   else
     $data['color'] = '';
 
+  // No functions if we dont have an id!
+  $set_function = $id ? $set_function : '';
+
   // Load the javascript for interactive graphs if need be
-  if($onclick) $GLOBALS['JAVASCRIPT']['graph/horizontalBar'] = 'graph/horizontalBar';
+  if($set_function)
+    $GLOBALS['JAVASCRIPT']['graph/horizontalBar'] = 'graph/horizontalBar';
 
   $data['percentage'] = $value != '' ? round((($value - $min) / ($max - $min)) * 100) : '';
   $data['show_percentage'] = $show_percentage;
   $data['id'] = $id;
-  $data['onclick'] = $onclick;
+  $data['set_function'] = $set_function;
   return view('layout/graph/horizontal_bar', $data);
 }
 

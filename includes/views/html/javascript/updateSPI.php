@@ -37,20 +37,15 @@
   }
 
 
-  function setSPIValue(event, id) {
+  function setSPIValue(id, percentage) {
 	    // Wait until we are not busy
 	    if(changeInProgress) {
-	      setTimeout(function(){setSPIValue(event, id)}, 50);
+	      setTimeout(function(){setSPIValue(id, percentage)}, 50);
 	      return;
 	    }
 
 	    changeInProgress = true;
-
-	    var channelInfo = id.split('_');
-	    var percentage = event.layerX ? event.layerX - 1 : event.offsetX - document.getElementById(id + '_bar').offsetLeft;
-
-	    if( percentage > 100 ) percentage = 100;
-	    if( percentage < 0 ) percentage = 0;
+      var channelInfo = id.split('_');
 
 	    changeHttp = new XMLHttpRequest();
 	    changeHttp.onreadystatechange = function() {
