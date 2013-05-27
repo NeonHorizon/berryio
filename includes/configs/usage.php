@@ -7,6 +7,7 @@ $GLOBALS['USAGE_COMMANDS']['General'] = array(
   'help',
   'about',
   'version',
+  'upgrade',  
 );
 
 
@@ -14,6 +15,12 @@ $GLOBALS['USAGE_COMMANDS']['GPIO Control'] = array(
   'gpio_status',
   array('gpio_set_mode', '<pin>|all', 'in|out|not_exported'),
   array('gpio_set_value', '<pin>|all', '<value>'),
+);
+
+
+$GLOBALS['USAGE_COMMANDS']['Camera Control'] = array(
+  'camera_setup',
+  'camera_status',
 );
 
 
@@ -30,6 +37,7 @@ $GLOBALS['USAGE_COMMANDS']['LCD Control'] = array(
   array('lcd_position', '<x>', '[<y>]'),
   array('lcd_command', 'help|<command>', '[<command>]', '[<command>]', '[...]'),
 );
+
 
 $GLOBALS['USAGE_COMMANDS']['Email Control'] = array(
   'email_status',
@@ -48,7 +56,6 @@ $GLOBALS['USAGE_COMMANDS']['System Status'] = array(
 
 
 $GLOBALS['USAGE_COMMANDS']['Power Control'] = array(
-  'upgrade',
   'reboot',
   'shutdown',
 );

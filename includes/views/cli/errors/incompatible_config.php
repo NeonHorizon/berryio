@@ -3,14 +3,14 @@
 * ERROR: Action Needed!
 *
 * Your configuration file <?=SETTINGS?><?=$file?>.php
-* is incompatible with this version of <?=REAL_NAME?>
+* needs updating to work with this version of <?=REAL_NAME?>
 
 *
-* Please copy the default file in its place:
+* Please replace it with the new default filee:
 * sudo cp <?=DEFAULT_CONFIG?>berryio/<?=$file?>.php <?=SETTINGS?>
 
 *
-* And update it:
+* And update any changes you wish to make:
 * sudo nano <?=SETTINGS?><?=$file?>.php
 *
 **********************************************************************

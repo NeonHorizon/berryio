@@ -12,9 +12,9 @@ require_once(BASE.'/includes/configs/paths.php');
 ------------------------------------------------------------------------------*/
 require_once(CONFIGS.'common.php');
 require_once(SETTINGS.'common.php');
-require_once(SETTINGS.'menu.php');
 require_once(FUNCTIONS.'common.php');
 require_once(FUNCTIONS.'html.php');
+settings('menu', 2);
 
 
 /*------------------------------------------------------------------------------

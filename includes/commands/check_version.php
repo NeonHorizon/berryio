@@ -19,7 +19,7 @@ if($latest_version[VERSION_NO] == $GLOBALS['VERSION_NO'] && $latest_version[VERS
   $content .= message(REAL_NAME.' is up to date'.PHP_EOL.'V'.$GLOBALS['VERSION_NO'].' is the current version', 'about');
 else
 {
-  // Find out the command line executable if this is not running on the command line we are going to need to guess
+  // Find out the command line executable (if this is not running on the command line we are going to need to guess)
   $berryio = $GLOBALS['EXEC_MODE'] != 'cli' ? 'berryio' : $GLOBALS['EXEC'];
 
   $title = 'An upgrade is available!';
