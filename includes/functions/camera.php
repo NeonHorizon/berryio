@@ -7,6 +7,7 @@
  Load the camera settings
 ------------------------------------------------------------------------------*/
 settings('camera', '1');
+require_once(CONFIGS.'camera.php');
 
 
 /*----------------------------------------------------------------------------
@@ -172,6 +173,9 @@ function camera_setup()
 }
 
 
+/*----------------------------------------------------------------------------
+  Check a folder exists and if not create it
+----------------------------------------------------------------------------*/
 function _camera_setup_check_folder($folder, $purpose)
 {
   if(is_dir($folder))
@@ -217,80 +221,62 @@ function _camera_setup_check_folder($folder, $purpose)
 /*----------------------------------------------------------------------------
   Get a list of images
   Returns FALSE on failure or
-  array( [$file => $thumbnail] [, $file => $thumbnail] [, ...] )
+  array( [$name => $file] [, $name => $file] [, ...] )
 ----------------------------------------------------------------------------*/
 function camera_images()
 {
-  return _camera_scan_directory($GLOBALS['CAMERA_STORE']['IMAGES']['FILES'], $GLOBALS['CAMERA_STORE']['IMAGES']['THUMBNAILS'], $GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']);
+  return _camera_scan_directory($GLOBALS['CAMERA_STORE']['IMAGES']['FILES'], $GLOBALS['CAMERA_STORE']['IMAGES']['THUMBNAILS'], $GLOBALS['CAMERA_EXTENSIONS']['IMAGES']);
 }
 
 
 /*----------------------------------------------------------------------------
   Get a list of videos
   Returns FALSE on failure or
-  array( [$file => $thumbnail] [, $file => $thumbnail] [, ...] )
+  array( [$name => $file] [, $name => $file] [, ...] )
 ----------------------------------------------------------------------------*/
 function camera_videos()
 {
-  return _camera_scan_directory($GLOBALS['CAMERA_STORE']['VIDEOS']['FILES'], $GLOBALS['CAMERA_STORE']['VIDEOS']['THUMBNAILS'], $GLOBALS['CAMERA_THUMBNAIL_SIZE']['VIDEOS']);
+  return _camera_scan_directory($GLOBALS['CAMERA_STORE']['VIDEOS']['FILES'], $GLOBALS['CAMERA_STORE']['VIDEOS']['THUMBNAILS'], $GLOBALS['CAMERA_EXTENSIONS']['VIDEOS']);
 }
 
 
 /*----------------------------------------------------------------------------
-  Get a list from a directory and updates the thumbnails if need be
+  Get a list of files from a directory and remove any duff thumbnails
   Returns FALSE on failure or
-  array( [$thumbnail => $file] [, $thumbnail => $file] [, ...] )
+  array( [$name => $file] [, $name => $file] [, ...] )
 ----------------------------------------------------------------------------*/
-function _camera_scan_directory($directory, $thumbnails, $thumbnail_size)
+function _camera_scan_directory($files_directory, $thumbnails_directory, $extensions)
 {
   // Check the directories are set up
-  if(!is_dir($directory) || !is_dir($thumbnails)) return FALSE;
+  if(!is_dir($files_directory) || !is_dir($thumbnails_directory)) return FALSE;
 
   // Scan the directory
   $files = array();
-  if(($listing = @scandir($directory)) === FALSE) return FALSE;
+  if(($listing = @scandir($files_directory)) === FALSE) return FALSE;
   foreach($listing as $file)
-    if(!is_dir($directory.'/'.$file)) // Ignore directories
+    if(is_file($files_directory.'/'.$file)) // Files only
     {
-      $file_details = pathinfo($directory.'/'.$file);
-      switch($file_details['extension'])
-      {
-        // Create Thumbnail
-        case 'jpg':
-        case 'png':
-        case 'gif':
-          if(_camera_create_image_thumb($directory.'/'.$file, $thumbnails.'/'.$file_details['filename'].'.png', $thumbnail_size))
-            $files[$file_details['filename'].'.png'] = $file;
-          break;
-
-        case 'h264':
-          // NOT YET IMPLIMENTED
-          // TO DO
-          break;
-
-        // Ignore everything else
-        default:
-          break;
-      }
+      $file_details = pathinfo($files_directory.'/'.$file);
+      if(isset($file_details['extension']) && in_array($file_details['extension'], $extensions))
+        $files[$file_details['filename']] = $file;
     }
 
-  // Scan the thumbnails and remove anything that shouldn't be there
-  if(($listing = @scandir($thumbnails)) !== FALSE)
+  // Scan the thumbnails directory and remove anything that isn't a thumbnail
+  if(($listing = @scandir($thumbnails_directory)) !== FALSE)
     foreach($listing as $file)
-      if(!is_dir($directory.'/'.$file)) // Ignore directories
-        if(!isset($files[$file]))
-        {
-          // OK lets remove the thumbnail
-          $file_details = pathinfo($directory.'/'.$file);
-          @unlink($thumbnails.'/'.$file_details['filename'].'.png');
-        }
+      if(is_file($thumbnails_directory.'/'.$file)) // Files only
+      {
+        $file_details = pathinfo($thumbnails_directory.'/'.$file);
+        if(!isset($file_details['extension']) || $file_details['extension'] != 'png' || !isset($files[$file_details['filename']]))
+          @unlink($thumbnails_directory.'/'.$file);
+      }
 
   return $files;
 }
 
 
 /*----------------------------------------------------------------------------
-  Creates an image thumbnail
+  Checks an image thumbnail exists and if it doesn't creates it
   Returns FALSE on failure or TRUE on success
 ----------------------------------------------------------------------------*/
 function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
@@ -299,7 +285,7 @@ function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
   if(!isset($thumb_size['X']) || !is_numeric($thumb_size['X']) || $thumb_size['X'] < 1 || !isset($thumb_size['Y']) || !is_numeric($thumb_size['Y']) || $thumb_size['Y'] < 1)
     return FALSE;
 
-  // Source file is missing
+  // Source file cant be found
   if(!is_file($file))
     return FALSE;
 
@@ -362,4 +348,104 @@ function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
   @imagedestroy($thumb_img);
 
   return $success;
+}
+
+
+/*----------------------------------------------------------------------------
+  Checks a video thumbnail exists and if it doesn't creates it
+  Returns FALSE on failure or TRUE on success
+----------------------------------------------------------------------------*/
+function _camera_create_video_thumb($file, $thumbnail, $thumb_size)
+{
+  // NOT CURRENTLY SUPPORTED
+  // TO DO
+  return FALSE;
+}
+
+
+/*----------------------------------------------------------------------------
+  Outputs an image or video file or thumbnail (creating the thumbnail if required)
+  Returns FALSE on failure or exits on success
+----------------------------------------------------------------------------*/
+function camera_show($type, $file)
+{
+  switch($type)
+  {
+    case 'image_thumbnail':
+      $thumbnail = TRUE;
+    case 'image':
+      $global_type = 'IMAGES';
+      break;
+
+    case 'video_thumbnail':
+      $thumbnail = TRUE;
+    case 'video':
+      $global_type = 'VIDEOS';
+      break;
+
+    default:
+      return FALSE;
+  }
+
+  // Split out the file from the extension
+  $file_details = pathinfo($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$file);
+
+  // If its a thumbnail, we don't have an extension (but it exists - tested in _camera_show_file) we are done
+  if(isset($thumbnail) && !isset($file_details['extension']))
+    _camera_show_file($GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$file.'.png');
+
+  // If its a thumbnail, the extension is .png (and it exists - tested in _camera_show_file) we are done
+  if(isset($thumbnail) && isset($file_details['extension']) && $file_details['extension'] == 'png')
+    _camera_show_file($GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$file);
+
+  // If its not a thumbnail but the extension is in the alowed types (and it exists - tested in _camera_show_file) we are done
+  if(!isset($thumbnail) && isset($file_details['extension']) && in_array($file_details['extension'], $GLOBALS['CAMERA_EXTENSIONS'][$global_type]))
+    _camera_show_file($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$file);
+
+  // Since we are here its likely we can't find the source so we will need to look for it in the sensible extensions
+  foreach($GLOBALS['CAMERA_EXTENSIONS'][$global_type] as $extension)
+  {
+    $file = $file_details['filename'].'.'.$extension;
+
+    // Otherwise if we are looking for the source, just try and output it using this filename
+    if(!isset($thumbnail))
+      _camera_show_file($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$file);
+    // If we are looking for a image thumbnail, try and make it from this filename
+    elseif($global_type == 'IMAGES')
+    {
+      if(_camera_create_image_thumb($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$file, $GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$file_details['filename'].'.png', $GLOBALS['CAMERA_THUMBNAIL_SIZE'][$global_type]))
+        _camera_show_file($GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$file_details['filename'].'.png');
+    }
+    // If we are looking for a video thumbnail, try and make it from this filename
+    if($global_type == 'VIDEOS')
+    {
+      if(_camera_create_video_thumb($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$file, $GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$file_details['filename'].'.png', $GLOBALS['CAMERA_THUMBNAIL_SIZE'][$global_type]))
+        _camera_show_file($GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$file_details['filename'].'.png');
+    }
+  }
+
+  // Looks like we ran out of options
+  return FALSE;
+}
+
+
+/*----------------------------------------------------------------------------
+  Outputs a file if it exists with the correct MIME type and exits
+----------------------------------------------------------------------------*/
+function _camera_show_file($file)
+{
+  // Check the file actually exists
+  if(!is_file($file))
+    return FALSE;
+
+  // Get the MIME type
+  if(!($finfo = finfo_open(FILEINFO_MIME_TYPE)) || !($mime = finfo_file($finfo, $file)))
+    return FALSE;
+  finfo_close($finfo);
+
+  // Dump the file
+  header('Content-type: '.$mime);
+  echo file_get_contents($file);
+
+  exit();
 }

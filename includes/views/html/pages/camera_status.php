@@ -8,8 +8,8 @@
       No images have been taken yet...
     <? else:?>
 
-      <? foreach($images as $thumbnail => $file):?>
-        <?=h($file)?>
+      <? foreach($images as $name => $file):?>
+        <img src="/camera_show/image_thumbnail/<?=h($name)?>" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
 
     <? endif?>
@@ -26,8 +26,8 @@
       No videos have been taken yet...
     <? else:?>
 
-      <? foreach($videos as $thumbnail => $file):?>
-        <?=h($file)?>
+      <? foreach($videos as $name => $file):?>
+        <img src="/camera_show/image_thumbnail/<?=h($name)?>" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
 
     <? endif?>
