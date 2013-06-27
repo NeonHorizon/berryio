@@ -9,7 +9,7 @@
     <? else:?>
 
       <? foreach($images as $name => $file):?>
-        <img src="/camera_show/image_thumbnail/<?=h($name)?>" alt="<?=$name?>" title="<?=$name?>" />
+        <img src="/camera_show/image_thumbnail/<?=h($name)?>.png" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
 
     <? endif?>
@@ -27,7 +27,7 @@
     <? else:?>
 
       <? foreach($videos as $name => $file):?>
-        <img src="/camera_show/image_thumbnail/<?=h($name)?>" alt="<?=$name?>" title="<?=$name?>" />
+        <img src="/camera_show/image_thumbnail/<?=h($name)?>.png" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
 
     <? endif?>
