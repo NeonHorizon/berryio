@@ -4,12 +4,16 @@
 ------------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------
-  BerryIO currently supports the Raspberry Pi Camera module only
+  BerryIO currently only supports the Raspberry Pi Camera module
 ------------------------------------------------------------------------------*/
 
-// The locations to store images and videos
-// If you change any of these please run sudo berryio camera_setup
-// The setup program grants access to pi and the webserver on these folders
+// These are the locations to store images and videos
+// If you change any of them please re-run sudo berryio camera_setup
+// The setup program will grant access to the pi login and the webserver
+// (www-data) on any new folders it creates. If you use something other than
+// the defaults you need to make sure that any existing folders in the paths
+// also allow these users access. Be sure to keep the two thumbnail folders
+// seperate
 $GLOBALS['CAMERA_STORE']['IMAGES']['FILES']       = '/home/pi/berryio/images';
 $GLOBALS['CAMERA_STORE']['IMAGES']['THUMBNAILS']  = '/home/pi/berryio/.thumbnails/images';
 $GLOBALS['CAMERA_STORE']['VIDEOS']['FILES']       = '/home/pi/berryio/videos';

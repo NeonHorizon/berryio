@@ -8,7 +8,7 @@
     <meta name="copyright" content="<?=h(NAME)?>" />
     <meta name="language" content="en-GB" />
     <meta name="doc-type" content="Web Page" />
-    <link rel="stylesheet" href="/css/main.css?6" type="text/css" />
+    <link rel="stylesheet" href="/css/main.css?7" type="text/css" />
 
     <? foreach($GLOBALS['JAVASCRIPT_RUN'] as $javascript):?>
       <?= view('javascript/'.$javascript)?>

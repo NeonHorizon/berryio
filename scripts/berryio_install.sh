@@ -11,7 +11,7 @@ fi
 echo -e "\nBerryIO Installer\n-----------------"
 
 echo -e "\nInstalling the prerequisites...."
-apt-get -y install ethtool msmtp apache2 php5 php5-gd pwauth git || { echo -e "Install failed!" 1>&2; exit 1; }
+apt-get -y install ethtool msmtp apache2 php5 pwauth git || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nRemoving any old copies of BerryIO...."
 rm -fr /usr/share/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
@@ -39,7 +39,7 @@ if [ ! -d /var/log/msmtp ]; then
 fi
 
 echo -e "\nGranting the webserver access to the email configuration...."
-chmod 640 /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; } 
+chmod 640 /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 chgrp www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nEnabling the required Apache modules...."
@@ -87,7 +87,7 @@ echo -e "\nYour Pi has been detected as a Revision $piRevision.0"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
   gpioConfigured="X";
-  echo -e "The GPIO configuration for a Revision $piRevision.0 Pi will be set"   
+  echo -e "The GPIO configuration for a Revision $piRevision.0 Pi will be set"
   until [[ "$gpioConfigured" =~ ^[yYnN]$ || -z "$gpioConfigured" ]]; do
     read -p "Is this correct? [Y/n]: " -n1 gpioConfigured
     echo

@@ -175,31 +175,40 @@ function camera_setup()
 function _camera_setup_check_folder($folder, $purpose)
 {
   if(is_dir($folder))
+  {
     echo 'Using the existing directory '.$folder.' to store your '.$purpose.'.'.PHP_EOL;
-  elseif(!@mkdir($folder, 0755, TRUE)) // We start off with 755 as thats what we want on the path to the folder
-  {
-    echo PHP_EOL;
-    echo 'An error occured when trying to create the folder:'.PHP_EOL;
-    echo $folder.PHP_EOL;
-    echo PHP_EOL;
-    echo 'Please check '.SETTINGS.'camera.php for any mistakes and try again.'.PHP_EOL;
-    return FALSE;
+    return TRUE;
   }
-  else
-    echo 'Created the directory '.$folder.' to store your '.$purpose.'.'.PHP_EOL;
 
-  // Set the folder permissions
-  if(!chmod($folder, 0770) || !chown($folder, 'pi') || !chgrp($folder, 'www-data'))
+  // Check it starts at slash
+  if(!isset($folder[0]) || $folder[0] != '/')
   {
     echo PHP_EOL;
-    echo 'An error occured when trying to set the file permissions on folder:'.PHP_EOL;
-    echo $folder.PHP_EOL;
-    echo PHP_EOL;
+    echo 'Your '.$purpose.' folder appears to be invalid?'.PHP_EOL;
     echo 'Please check '.SETTINGS.'camera.php for any mistakes and try again.'.PHP_EOL;
     return FALSE;
   }
-  else
-    echo 'successfuly set the permissions on '.$folder.'.'.PHP_EOL;
+
+  $path = '';
+  foreach(explode('/', $folder) as $directory)
+    if($directory != '')
+    {
+      $path .= '/'.$directory;
+
+      // If the folder doesnt exist, create it
+      if(!is_dir($path))
+        if(!@mkdir($path, 0770) || !chmod($path, 0770)  || !chown($path, 'pi') || !chgrp($path, 'www-data'))
+        {
+          echo PHP_EOL;
+          echo 'An error occured when trying to create the folder:'.PHP_EOL;
+          echo $folder.PHP_EOL;
+          echo PHP_EOL;
+          echo 'Please check '.SETTINGS.'camera.php for any mistakes and try again.'.PHP_EOL;
+          return FALSE;
+        }
+    }
+
+  echo 'Successfuly created the folder: '.$folder.'.'.PHP_EOL;
 
   return TRUE;
 }
@@ -230,7 +239,7 @@ function camera_videos()
 /*----------------------------------------------------------------------------
   Get a list from a directory and updates the thumbnails if need be
   Returns FALSE on failure or
-  array( [$file => $thumbnail] [, $file => $thumbnail] [, ...] )
+  array( [$thumbnail => $file] [, $thumbnail => $file] [, ...] )
 ----------------------------------------------------------------------------*/
 function _camera_scan_directory($directory, $thumbnails, $thumbnail_size)
 {
@@ -251,7 +260,7 @@ function _camera_scan_directory($directory, $thumbnails, $thumbnail_size)
         case 'png':
         case 'gif':
           if(_camera_create_image_thumb($directory.'/'.$file, $thumbnails.'/'.$file_details['filename'].'.png', $thumbnail_size))
-            $files[$directory.'/'.$file] = $thumbnails.$thumb;
+            $files[$file_details['filename'].'.png'] = $file;
           break;
 
         case 'h264':
@@ -269,11 +278,11 @@ function _camera_scan_directory($directory, $thumbnails, $thumbnail_size)
   if(($listing = @scandir($thumbnails)) !== FALSE)
     foreach($listing as $file)
       if(!is_dir($directory.'/'.$file)) // Ignore directories
-        if(!isset($files[$directory.$file]))
+        if(!isset($files[$file]))
         {
           // OK lets remove the thumbnail
           $file_details = pathinfo($directory.'/'.$file);
-          @unlink($thumbnails.'/'.$file_details['filename'].'png');
+          @unlink($thumbnails.'/'.$file_details['filename'].'.png');
         }
 
   return $files;
@@ -286,6 +295,10 @@ function _camera_scan_directory($directory, $thumbnails, $thumbnail_size)
 ----------------------------------------------------------------------------*/
 function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
 {
+  // Check for bad resize
+  if(!isset($thumb_size['X']) || !is_numeric($thumb_size['X']) || $thumb_size['X'] < 1 || !isset($thumb_size['Y']) || !is_numeric($thumb_size['Y']) || $thumb_size['Y'] < 1)
+    return FALSE;
+
   // Source file is missing
   if(!is_file($file))
     return FALSE;
@@ -294,8 +307,8 @@ function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
   if(is_file($thumbnail))
     return TRUE;
 
-  // Check for bad resize
-  if(!isset($thumb_size['X']) || !is_numeric($thumb_size['X']) || $thumb_size['X'] < 1 || !isset($thumb_size['Y']) || !is_numeric($thumb_size['Y']) || $thumb_size['Y'] < 1)
+  // Create a zero byte thumbnail to stop race conditions where two people view the site at once and try to create thumbnails at once
+  if(!@touch($thumbnail))
     return FALSE;
 
   // Get the file information
@@ -323,7 +336,10 @@ function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
   }
 
   if(!isset($img) || !$img)
+  {
+    @unlink($thumbnail);
     return FALSE;
+  }
 
   // Calculate scale
   $x_scale = $source_x/$thumb_size['X'];
@@ -333,8 +349,14 @@ function _camera_create_image_thumb($file, $thumbnail, $thumb_size)
   $thumb_y = round($source_y/$scale);
 
   // Create new image
-  $thumb_img = imagecreatetruecolor($thumb_x, $thumb_y);
-  $success   = imagecopyresampled($thumb_img, $img, 0, 0, 0, 0, $thumb_x, $thumb_y, $source_x, $source_y) && imagepng($thumb_img, $thumbnail);
+  if(($thumb_img = imagecreatetruecolor($thumb_x, $thumb_y)) === FALSE)
+  {
+    @unlink($thumbnail);
+    return FALSE;
+  }
+
+  if(!($success = imagecopyresampled($thumb_img, $img, 0, 0, 0, 0, $thumb_x, $thumb_y, $source_x, $source_y) && imagepng($thumb_img, $thumbnail)))
+    @unlink($thumbnail);
 
   @imagedestroy($img);
   @imagedestroy($thumb_img);
