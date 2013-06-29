@@ -6,7 +6,7 @@
     mouseStatus = false;
   };
 
-  function updateGraphHorizontalBar(event, id, mouseDown, set_function) {    
+  function updateGraphHorizontalBar(event, id, mouseDown, set_function) {
     event.draggable = false;
     if(event.preventDefault) event.preventDefault();
     event.returnValue = false;
@@ -21,7 +21,7 @@
       document.getElementById(id + '_slider').style.left = (percentage - 25) + 'px';
       document.getElementById(id + '_value').innerHTML = percentage + '%';
 
-      if(set_function) {             
+      if(set_function != '') {
         document.getElementById(id + '_bar').style.width = percentage + 'px';
         window[set_function](id, percentage);
       }

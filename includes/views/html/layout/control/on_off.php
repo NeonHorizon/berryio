@@ -1,0 +1,1 @@
+<?=toggle('horizontal_on_off', $default, $id, TRUE)?>

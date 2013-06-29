@@ -42,7 +42,7 @@
 
     // Indicator light
     var valueIndicator = document.getElementById('pin_'+pin+'_value');
-    valueIndicator.src = '/images/gpio/value/'+value+'.png';
+    valueIndicator.src = '/images/layout/indicator/'+value+'.png';
     valueIndicator.title = value.replace('0', 'off').replace('1', 'on').replace('not_exported', '');
     valueIndicator.alt = valueIndicator.title;
 
@@ -51,13 +51,13 @@
     var toggleOn = document.getElementById('pin_'+pin+'_toggle_on');
     var toggleOff = document.getElementById('pin_'+pin+'_toggle_off');
     if(mode != 'out' || value == 'not_exported') {
-      toggleIndicator.src = '/images/gpio/toggle/not_applicable.png';
+      toggleIndicator.src = '/images/layout/toggle/vertical_on_off/not_applicable.png';
       toggleIndicator.title = '';
       toggleOn.style.visibility = 'hidden';
       toggleOff.style.visibility = 'hidden';
     }
     else {
-      toggleIndicator.src = '/images/gpio/toggle/'+value+'.png';
+      toggleIndicator.src = '/images/layout/toggle/vertical_on_off/'+value+'.png';
       toggleIndicator.title = valueIndicator.title;
       toggleOn.style.visibility = 'visible';
       toggleOff.style.visibility = 'visible';

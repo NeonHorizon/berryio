@@ -254,7 +254,7 @@ function _camera_scan_directory($files_directory, $thumbnails_directory, $extens
   $files = array();
   if(($listing = @scandir($files_directory)) === FALSE) return FALSE;
   foreach($listing as $file)
-    if(is_file($files_directory.'/'.$file)) // Files only
+    if($file != '..' && $file != '.' && is_file($files_directory.'/'.$file)) // Files only
     {
       $file_details = pathinfo($files_directory.'/'.$file);
       if(isset($file_details['extension']) && in_array($file_details['extension'], $extensions))
@@ -264,7 +264,7 @@ function _camera_scan_directory($files_directory, $thumbnails_directory, $extens
   // Scan the thumbnails directory and remove anything that isn't a thumbnail
   if(($listing = @scandir($thumbnails_directory)) !== FALSE)
     foreach($listing as $file)
-      if(is_file($thumbnails_directory.'/'.$file)) // Files only
+      if($file != '..' && $file != '.' && is_file($thumbnails_directory.'/'.$file)) // Files only
       {
         $file_details = pathinfo($thumbnails_directory.'/'.$file);
         if(!isset($file_details['extension']) || $file_details['extension'] != 'png' || !isset($files[$file_details['filename']]))

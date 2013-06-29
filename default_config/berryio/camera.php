@@ -25,5 +25,9 @@ $GLOBALS['CAMERA_STORE']['VIDEOS']['THUMBNAILS']  = '/home/pi/berryio/.thumbnail
 $GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES'] = array('X' => 133, 'Y' => 100);
 $GLOBALS['CAMERA_THUMBNAIL_SIZE']['VIDEOS'] = array('X' => 133, 'Y' => 100);
 
+// Size of the image veiwing window in the web interface
+$GLOBALS['CAMERA_VIEWFINDER'] = array('X' => 432, 'Y' => 324);
+
+
 // Do not change below this line
 define('CAMERA_SETTINGS_VERSION', '1');

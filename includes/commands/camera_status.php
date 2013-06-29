@@ -19,4 +19,6 @@ if(($page['images'] = camera_images()) === FALSE || ($page['videos'] = camera_vi
 }
 
 // Display status page
+require_once(FUNCTIONS.'graph.php');
+require_once(FUNCTIONS.'toggle.php');
 $content .= view('pages/camera_status', $page);

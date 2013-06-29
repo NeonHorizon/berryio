@@ -152,7 +152,7 @@ th, td {
   text-align:       left;
   vertical-align:   middle;
   padding:          2px 4px 2px 4px;
-  font-size:        inheret;
+  font-size:        inherit;
 }
 
 th {
@@ -220,6 +220,16 @@ input[type=button]:hover,
   background:       #aaaaaa url('/images/layout/backgrounds/pattern.png') repeat center center;
 }
 
+select, .select {
+  height:           22px;
+  margin:           0px;
+  padding:          0px;
+  color:            #ffffff;
+  border:           1px solid #aaaaaa;
+  font-size:        10px;
+  background:       #333333
+}
+
 
 /*------------------------------------------------------------------------------
   Graph
@@ -270,6 +280,36 @@ div.horizontal_bar_value {
 
 div.clickable_horizontal_bar div.horizontal_bar_value {
   line-height:      22px;
+}
+
+
+/*------------------------------------------------------------------------------
+  Toggle
+------------------------------------------------------------------------------*/
+
+div.toggle_horizontal_on_off {
+  position:         relative;
+  width:            56px;
+  height:           22px;
+  padding:          0px 10px 0px 10px;
+}
+
+div.toggle_horizontal_on_off div.on,
+div.toggle_horizontal_on_off div.off {
+  position:         absolute;
+  top:              0px;
+  height:           22px;
+  cursor:           pointer;
+}
+
+div.toggle_horizontal_on_off div.off {
+  left:             0px;
+  width:            30px;
+}
+
+div.toggle_horizontal_on_off div.on {
+  right:            0px;
+  width:            26px;
 }
 
 
@@ -446,7 +486,27 @@ div.gpio_toggle div.off {
   CAMERA
 ------------------------------------------------------------------------------*/
 
+div.camera_viewfinder {
+  padding:          10px;
+  line-height:      0px;
+}
+
 div.camera_thumbnails {
   min-width:        800px;
   overflow:         auto;
 }
+
+div.camera_thumbnails img {
+  vertical-align:   middle;
+}
+
+div.camera_controls {
+  width:            290px;
+}
+
+div.camera_controls th {
+  width:            90px;
+  height:           22px;
+  text-align:       right;
+}
+

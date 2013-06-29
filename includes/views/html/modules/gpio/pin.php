@@ -7,9 +7,9 @@
 
 
     <? if($value == 'not_exported'):?>
-      <img id="pin_<?=$pin?>_value" class="gpio_value" src="/images/gpio/value/<?=$value?>.png" alt="" title="" />
+      <img id="pin_<?=$pin?>_value" class="gpio_value" src="/images/layout/indicator/<?=$value?>.png" alt="" title="" />
     <? else:?>
-      <img id="pin_<?=$pin?>_value" class="gpio_value" src="/images/gpio/value/<?=$value?>.png" alt="<?= $value ? 'on' : 'off'?>" title="<?= $value ? 'on' : 'off'?>" />
+      <img id="pin_<?=$pin?>_value" class="gpio_value" src="/images/layout/indicator/<?=$value?>.png" alt="<?= $value ? 'on' : 'off'?>" title="<?= $value ? 'on' : 'off'?>" />
     <? endif?>
 
   <div class="gpio_mode">
@@ -23,9 +23,9 @@
 
   <div class="gpio_toggle">
     <? if($mode == 'out'):?>
-      <img id="pin_<?=$pin?>_toggle" class="gpio_toggle" src="/images/gpio/toggle/<?=$value?>.png" alt="<?= $value ? 'on' : 'off'?>" title="<?= $value ? 'on' : 'off'?>" />
+      <img id="pin_<?=$pin?>_toggle" class="gpio_toggle" src="/images/layout/toggle/vertical_on_off/<?=$value?>.png" alt="<?= $value ? 'on' : 'off'?>" title="<?= $value ? 'on' : 'off'?>" />
     <? else:?>
-      <img id="pin_<?=$pin?>_toggle" class="gpio_toggle" src="/images/gpio/toggle/not_applicable.png" alt="" title="" />
+      <img id="pin_<?=$pin?>_toggle" class="gpio_toggle" src="/images/layout/toggle/vertical_on_off/not_applicable.png" alt="" title="" />
     <? endif?>
 
     <? foreach($GLOBALS['GPIO_VALUES'] as $new_value):?>

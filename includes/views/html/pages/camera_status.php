@@ -1,4 +1,40 @@
 
+<div class="panel">
+
+  <h2>CAMERA SETTINGS</h2>
+
+  <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Settings'))?>
+  <?=view('modules/camera/controls', array('type' => 'VIDEOS', 'control' => 'Video'))?>
+  <?=view('modules/camera/controls', array('type' => 'IMAGES', 'control' => 'Images'))?>
+
+</div>
+
+<div class="panel">
+
+  <h2>VIEWFINDER</h2>
+
+  <div class="container camera_viewfinder">
+    <img src="/images/camera/default.jpg" alt="" title="" style="width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;" />
+  </div><br />
+
+  <div class="container camera_trigger">
+
+    <h3>Controls</h3>
+    TO DO
+
+  </div>
+</div>
+
+<div class="panel">
+
+  <h2>CAMERA PROCESSING</h2>
+
+  <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Processing', 'blanks' => 2))?>
+  <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Orientation'))?>
+  <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Effects'))?>
+
+</div>
+
 <div>
   <div class="panel camera_thumbnails">
 

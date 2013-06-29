@@ -1,0 +1,1 @@
+<?=graph_horizontal_bar($default, 0, 100, '', TRUE, $id, TRUE)?>

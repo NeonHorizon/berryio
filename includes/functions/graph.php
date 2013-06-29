@@ -5,7 +5,7 @@
 
 
 /*----------------------------------------------------------------------------
-  Outputs a horizontal bar graph suitable for displaying on a web page
+  Outputs a horizontal bar graph
   Positive indicates whether it flows from red to green or green to red
   $id is postfixed with _bar and _value for the bargraph width and
   percentage respectively
