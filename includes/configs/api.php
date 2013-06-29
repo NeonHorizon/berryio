@@ -10,6 +10,7 @@ $GLOBALS['API_COMMANDS'] = array(
   'gpio_set_value',
   'camera_status',
   'camera_show',
+  'camera_take_image',
   'spi_status',
   'spi_set_dac_value',
   'lcd_initialise',

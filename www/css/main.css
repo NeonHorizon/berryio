@@ -492,12 +492,15 @@ div.camera_viewfinder {
 }
 
 div.camera_thumbnails {
-  min-width:        800px;
+  width:            1000px;
   overflow:         auto;
+  white-space:      nowrap;
+  font-size:        0px;
 }
 
 div.camera_thumbnails img {
   vertical-align:   middle;
+  padding:          0px 5px 0px 5px;
 }
 
 div.camera_controls {

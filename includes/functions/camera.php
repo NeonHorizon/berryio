@@ -26,7 +26,7 @@ function camera_setup()
 
 
   // First check Raspbian has the required pre-requisites
-  echo 'Checking for camera support...'.PHP_EOL;
+  echo 'Checking for camera support....'.PHP_EOL;
   if(!is_file('/usr/bin/raspistill') || !is_file('/usr/bin/raspivid'))
   {
     echo PHP_EOL;
@@ -49,13 +49,13 @@ function camera_setup()
 
 
   // Do a test photo
-  echo 'Please wait, testing the camera can take stills.... (no photos are kept)'.PHP_EOL;
+  echo 'Please wait, testing the camera can take images.... (no images are kept)'.PHP_EOL;
   exec('raspistill -t 0 -o /dev/null 2>&1', $output, $return_var);
   // Because raspistill doesn't return the correct exit code we have to manually test the output for content
   if(trim(implode('', $output)) != '')
   {
     echo PHP_EOL;
-    echo 'An error occured when trying to take a photo.'.PHP_EOL;
+    echo 'An error occured when trying to take an image.'.PHP_EOL;
     echo 'This could be because your camera is not connected properly,'.PHP_EOL;
     echo 'or it may simply be that you have not yet turned on the camera with raspi-config.'.PHP_EOL;
     echo PHP_EOL;
@@ -76,6 +76,23 @@ function camera_setup()
   {
     echo PHP_EOL;
     echo 'An error occured when trying to take video.'.PHP_EOL;
+    echo PHP_EOL;
+    echo 'The error returned was as follows:'.PHP_EOL;
+    echo implode(PHP_EOL, $output);
+    return FALSE;
+  }
+  echo 'Success!'.PHP_EOL;
+
+  echo PHP_EOL;
+
+
+  // Grant the webserver access to the camera
+  echo 'Granting the webserver access to the camera....'.PHP_EOL;
+  exec('adduser www-data video', $output, $return_var);
+  if($return_var != 0)
+  {
+    echo PHP_EOL;
+    echo 'An error occured when trying to give the webserver access to the camera.'.PHP_EOL;
     echo PHP_EOL;
     echo 'The error returned was as follows:'.PHP_EOL;
     echo implode(PHP_EOL, $output);
@@ -448,4 +465,27 @@ function _camera_show_file($file)
   echo file_get_contents($file);
 
   exit();
+}
+
+
+/*----------------------------------------------------------------------------
+  Takes an image and returns the filename (without the extension)
+----------------------------------------------------------------------------*/
+function camera_take_image()
+{
+  if(!is_dir($GLOBALS['CAMERA_STORE']['IMAGES']['FILES']))
+    return FALSE;
+
+  // Temporary until we get the options working
+  $extension = 'jpg';
+
+  // Generate a filename
+  $filename = date('Y-m-d_H-i-s_U');
+
+  // Take the photo
+  exec('/usr/bin/raspistill -t 0 -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension, $output, $return_var);
+  if($return_var)
+    return FALSE;
+
+  return $filename;
 }

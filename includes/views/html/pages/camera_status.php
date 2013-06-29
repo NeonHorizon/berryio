@@ -14,10 +14,10 @@
   <h2>VIEWFINDER</h2>
 
   <div class="container camera_viewfinder">
-    <img src="/images/camera/default.jpg" alt="" title="" style="width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;" />
+    <img id="camera_viewfinder" src="/images/camera/default.jpg" alt="" title="" style="width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;" />
   </div><br />
 
-  <?=button_momentary('Take Photo', 'camera_trigger', 'cameraTakeImage')?>
+  <?=button_momentary('Take Photo', 'camera_trigger', 'cameraTakeImage', TRUE)?>
 
 </div>
 
@@ -36,15 +36,11 @@
 
     <h2>IMAGES</h2>
 
-    <? if(count($images) < 1):?>
-      No images have been taken yet...
-    <? else:?>
-
+    <div id="camera_images" style="height: <?=$GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']['Y']?>px;">
       <? foreach($images as $name => $file):?>
         <img src="/camera_show/image_thumbnail/<?=h($name)?>.png" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
-
-    <? endif?>
+    </div>
 
   </div>
 </div>
@@ -54,15 +50,11 @@
 
     <h2>VIDEOS</h2>
 
-    <? if(count($videos) < 1):?>
-      No videos have been taken yet...
-    <? else:?>
-
+    <div id="camera_videos" style="height: <?=$GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']['Y']?>px;">
       <? foreach($videos as $name => $file):?>
         <img src="/camera_show/image_thumbnail/<?=h($name)?>.png" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
-
-    <? endif?>
+    </div>
 
   </div>
 </div>
