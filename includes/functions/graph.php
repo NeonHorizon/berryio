@@ -34,7 +34,7 @@ function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percenta
 
   // Load the javascript for interactive graphs if need be
   if($set_function)
-    $GLOBALS['JAVASCRIPT']['graph/horizontalBar'] = 'graph/horizontalBar';
+    $GLOBALS['JAVASCRIPT']['graph/graphHorizontalBar'] = 'graph/graphHorizontalBar';
 
   $data['percentage'] = $value != '' ? round((($value - $min) / ($max - $min)) * 100) : '';
   $data['show_percentage'] = $show_percentage;

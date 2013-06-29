@@ -19,6 +19,11 @@ if(($page['images'] = camera_images()) === FALSE || ($page['videos'] = camera_vi
 }
 
 // Display status page
-require_once(FUNCTIONS.'graph.php');
-require_once(FUNCTIONS.'toggle.php');
+if($GLOBALS['EXEC_MODE'] == 'html')
+{
+  $GLOBALS['JAVASCRIPT']['camera/cameraTake'] = 'camera/cameraTake';
+  require_once(FUNCTIONS.'graph.php');
+  require_once(FUNCTIONS.'toggle.php');
+  require_once(FUNCTIONS.'button.php');
+}
 $content .= view('pages/camera_status', $page);

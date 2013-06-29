@@ -17,12 +17,8 @@
     <img src="/images/camera/default.jpg" alt="" title="" style="width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;" />
   </div><br />
 
-  <div class="container camera_trigger">
+  <?=button_momentary('Take Photo', 'camera_trigger', 'cameraTakeImage')?>
 
-    <h3>Controls</h3>
-    TO DO
-
-  </div>
 </div>
 
 <div class="panel">

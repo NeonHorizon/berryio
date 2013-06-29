@@ -222,7 +222,7 @@ input[type=button]:hover,
 
 select, .select {
   height:           22px;
-  margin:           0px;
+  margin:           0px 0px 0px 10px;
   padding:          0px;
   color:            #ffffff;
   border:           1px solid #aaaaaa;
@@ -508,5 +508,10 @@ div.camera_controls th {
   width:            90px;
   height:           22px;
   text-align:       right;
+  padding-right:    0px;
 }
 
+#camera_trigger_img {
+  cursor:           pointer;
+  padding:          13px 10px 6px 10px;
+}
