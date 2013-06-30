@@ -224,10 +224,10 @@ select, .select {
   height:           22px;
   margin:           0px 0px 0px 10px;
   padding:          0px;
-  color:            #ffffff;
+  color:            #000000;
   border:           1px solid #aaaaaa;
   font-size:        10px;
-  background:       #333333
+  background:       #aaaaaa;
 }
 
 
