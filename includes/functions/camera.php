@@ -238,7 +238,7 @@ function _camera_setup_check_folder($folder, $purpose)
 /*----------------------------------------------------------------------------
   Get a list of images
   Returns FALSE on failure or
-  array( [$name => $file] [, $name => $file] [, ...] )
+  array( [$thumb => $file] [, $thumb => $file] [, ...] )
 ----------------------------------------------------------------------------*/
 function camera_images()
 {
@@ -249,7 +249,7 @@ function camera_images()
 /*----------------------------------------------------------------------------
   Get a list of videos
   Returns FALSE on failure or
-  array( [$name => $file] [, $name => $file] [, ...] )
+  array( [$thumb => $file] [, $thumb => $file] [, ...] )
 ----------------------------------------------------------------------------*/
 function camera_videos()
 {
@@ -260,7 +260,7 @@ function camera_videos()
 /*----------------------------------------------------------------------------
   Get a list of files from a directory and remove any duff thumbnails
   Returns FALSE on failure or
-  array( [$name => $file] [, $name => $file] [, ...] )
+  array( [$thumb => $file] [, $thumb => $file] [, ...] )
 ----------------------------------------------------------------------------*/
 function _camera_scan_directory($files_directory, $thumbnails_directory, $extensions)
 {
@@ -275,7 +275,7 @@ function _camera_scan_directory($files_directory, $thumbnails_directory, $extens
     {
       $file_details = pathinfo($files_directory.'/'.$file);
       if(isset($file_details['extension']) && in_array($file_details['extension'], $extensions))
-        $files[$file_details['filename']] = $file;
+        $files[$file_details['filename'].'.png'] = $file;
     }
 
   // Scan the thumbnails directory and remove anything that isn't a thumbnail
@@ -284,7 +284,7 @@ function _camera_scan_directory($files_directory, $thumbnails_directory, $extens
       if($file != '..' && $file != '.' && is_file($thumbnails_directory.'/'.$file)) // Files only
       {
         $file_details = pathinfo($thumbnails_directory.'/'.$file);
-        if(!isset($file_details['extension']) || $file_details['extension'] != 'png' || !isset($files[$file_details['filename']]))
+        if(!isset($file_details['extension']) || $file_details['extension'] != 'png' || !isset($files[$file]))
           @unlink($thumbnails_directory.'/'.$file);
       }
 
@@ -460,6 +460,10 @@ function _camera_show_file($file)
     return FALSE;
   finfo_close($finfo);
 
+  // Set a cache duration
+  header('Cache-Control: max-age=3600');
+  header('Expires: '.gmdate('D, d M Y H:i:s', time()+3600).' GMT');
+
   // Dump the file
   header('Content-type: '.$mime);
   echo file_get_contents($file);
@@ -487,5 +491,5 @@ function camera_take_image()
   if($return_var)
     return FALSE;
 
-  return $filename;
+  return $filename.'.'.$extension.PHP_EOL.$filename.'.png';
 }

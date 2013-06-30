@@ -37,8 +37,8 @@
     <h2>IMAGES</h2>
 
     <div id="camera_images" style="height: <?=$GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']['Y']?>px;">
-      <? foreach($images as $name => $file):?>
-        <img src="/camera_show/image_thumbnail/<?=h($name)?>.png" alt="<?=$name?>" title="<?=$name?>" />
+      <? foreach($images as $thumb => $file):?>
+        <img src="/camera_show/image_thumbnail/<?=h($thumb)?>" alt="<?=$file?>" title="<?=$file?>" onclick="cameraViewfinderSet('<?=$file?>')" />
       <? endforeach?>
     </div>
 
@@ -51,8 +51,8 @@
     <h2>VIDEOS</h2>
 
     <div id="camera_videos" style="height: <?=$GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']['Y']?>px;">
-      <? foreach($videos as $name => $file):?>
-        <img src="/camera_show/image_thumbnail/<?=h($name)?>.png" alt="<?=$name?>" title="<?=$name?>" />
+      <? foreach($videos as $thumb => $file):?>
+        <img src="/camera_show/image_thumbnail/<?=h($thumb)?>" alt="<?=$name?>" title="<?=$name?>" />
       <? endforeach?>
     </div>
 

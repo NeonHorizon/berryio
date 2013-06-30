@@ -501,6 +501,7 @@ div.camera_thumbnails {
 div.camera_thumbnails img {
   vertical-align:   middle;
   padding:          0px 5px 0px 5px;
+  cursor:           pointer;
 }
 
 div.camera_controls {

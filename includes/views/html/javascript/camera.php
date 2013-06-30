@@ -2,9 +2,9 @@
 <script type="text/javascript">
 
 
-  function cameraImagesAdd(file) {
+  function cameraImagesAdd(thumb, file) {
     var images = document.getElementById('camera_images');
-    images.innerHTML += '<img src="/camera_show/image_thumbnail/'+file+'.png" alt="'+file+'" title="'+file+'" />';
+    images.innerHTML += '<img src="/camera_show/image_thumbnail/'+thumb+'" alt="'+file+'" title="'+file+'" onclick="cameraViewfinderSet(\''+file+'\')" />';
   }
 
 
@@ -25,7 +25,7 @@
             if(result[0] == 'OK:') {
               updateButtonMomentary('', id, 2, '');
               cameraViewfinderSet(result[1]);
-              cameraImagesAdd(result[1]);
+              cameraImagesAdd(result[1], result[2]);
               setTimeout(function(){updateButtonMomentary('', id, 0, '')}, 5000);
             }
           }
