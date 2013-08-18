@@ -473,6 +473,62 @@ function _camera_show_file($file)
 
 
 /*----------------------------------------------------------------------------
+  Delete an image or video and its thumbnail
+  Returns FALSE on failure or exits on success
+----------------------------------------------------------------------------*/
+function camera_delete($type, $file)
+{
+  switch($type)
+  {
+    case 'image':
+      $global_type = 'IMAGES';
+      break;
+
+    case 'video':
+      $global_type = 'VIDEOS';
+      break;
+
+    default:
+      return FALSE;
+  }
+
+  // Split out the file from the extension
+  $file_details = pathinfo($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$file);
+
+  // If we have an extension and it is in the alowed types, try and delete the file and its thumbnail
+  if(isset($file_details['extension']) && in_array($file_details['extension'], $GLOBALS['CAMERA_EXTENSIONS'][$global_type]))
+    return _camera_delete_file($global_type, $file_details['filename'], $file_details['extension']);
+
+  // Since we are here its likely we can't find the source so we will need to look for it in the sensible extensions
+  foreach($GLOBALS['CAMERA_EXTENSIONS'][$global_type] as $extension)
+    if(_camera_delete_file($global_type, $file_details['filename'], $extension))
+      return TRUE;
+
+  return FALSE;
+}
+
+
+/*----------------------------------------------------------------------------
+  Deletes a file if it exists and also its associated thumbnail
+----------------------------------------------------------------------------*/
+function _camera_delete_file($global_type, $filename, $extension)
+{
+  // If the file doesn't exist fail
+  if(!is_file($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$filename.'.'.$extension))
+    return FALSE;
+
+  // Delete it
+  if(!@unlink($GLOBALS['CAMERA_STORE'][$global_type]['FILES'].'/'.$filename.'.'.$extension))
+    return FALSE;
+
+  // Delete the thumbnail (if it exists)
+  @unlink($GLOBALS['CAMERA_STORE'][$global_type]['THUMBNAILS'].'/'.$filename.'.png');
+
+  return TRUE;
+}
+
+
+/*----------------------------------------------------------------------------
   Takes an image and returns the filename (without the extension)
 ----------------------------------------------------------------------------*/
 function camera_take_image()

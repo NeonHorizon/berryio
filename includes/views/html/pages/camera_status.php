@@ -37,8 +37,11 @@
     <h2>IMAGES</h2>
 
     <div id="camera_images" style="height: <?=$GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']['Y']?>px;">
-      <? foreach($images as $thumb => $file):?>
-        <img src="/camera_show/image_thumbnail/<?=h($thumb)?>" alt="<?=$file?>" title="<?=$file?>" onclick="cameraViewfinderSet('<?=$file?>')" />
+      <? $i = 1; foreach($images as $thumb => $file):?>
+        <div id="image_<?=$i?>" class="thumbnail">
+          <img src="/camera_show/image_thumbnail/<?=h($thumb)?>" alt="<?=$file?>" title="<?=$file?>" onclick="cameraViewfinderSet('<?=$file?>')" />
+          <img class="delete_button" src="/images/layout/delete.png" alt="delete" title="delete" onclick="cameraDelete('image', '<?=$i++?>', '<?=$file?>')" />
+        </div>
       <? endforeach?>
     </div>
 
@@ -51,8 +54,11 @@
     <h2>VIDEOS</h2>
 
     <div id="camera_videos" style="height: <?=$GLOBALS['CAMERA_THUMBNAIL_SIZE']['IMAGES']['Y']?>px;">
-      <? foreach($videos as $thumb => $file):?>
-        <img src="/camera_show/image_thumbnail/<?=h($thumb)?>" alt="<?=$name?>" title="<?=$name?>" />
+      <? $i = 1; foreach($videos as $thumb => $file):?>
+        <div id="video_<?=$i?>" class="thumbnail">
+          <img src="/camera_show/video_thumbnail/<?=h($thumb)?>" alt="<?=$name?>" title="<?=$name?>" />
+          <img class="delete_button" src="/images/layout/delete.png" alt="delete" title="delete" onclick="cameraDelete('video', '<?=$i++?>', '<?=$file?>')" />
+        </div>
       <? endforeach?>
     </div>
 

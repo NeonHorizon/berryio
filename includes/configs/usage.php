@@ -23,6 +23,7 @@ $GLOBALS['USAGE_COMMANDS']['Camera Control'] = array(
   'camera_status',
   'camera_take_image',
   array('camera_show', 'image|image_thumbnail|video|video_thumbnail', '<filename>'),
+  array('camera_delete', 'image|video', '<filename>'),
 );
 
 

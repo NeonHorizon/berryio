@@ -500,8 +500,19 @@ div.camera_thumbnails {
 
 div.camera_thumbnails img {
   vertical-align:   middle;
-  padding:          0px 5px 0px 5px;
   cursor:           pointer;
+}
+
+div.camera_thumbnails div.thumbnail {
+  position:         relative;
+  display:          inline-block;
+  padding:          0px 10px 0px 10px;
+}
+
+div.camera_thumbnails img.delete_button {
+  position:         absolute;
+  top:              -10px;
+  right:            -5px;
 }
 
 div.camera_controls {

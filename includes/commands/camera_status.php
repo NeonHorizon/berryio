@@ -21,6 +21,7 @@ if(($page['images'] = camera_images()) === FALSE || ($page['videos'] = camera_vi
 // Display status page
 if($GLOBALS['EXEC_MODE'] == 'html')
 {
+  $GLOBALS['JAVASCRIPT']['cursor'] = 'cursor';
   $GLOBALS['JAVASCRIPT']['camera'] = 'camera';
   require_once(FUNCTIONS.'graph.php');
   require_once(FUNCTIONS.'toggle.php');
