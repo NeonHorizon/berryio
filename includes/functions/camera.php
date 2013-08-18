@@ -72,7 +72,7 @@ function camera_setup()
   echo 'Please wait, testing the camera can take video.... (no video is kept)'.PHP_EOL;
   exec('raspivid -t 1000 -o /dev/null 2>&1', $output, $return_var);
   // Because raspistill doesn't return the correct exit code we have to manually test the output for content
-  if(trim(implode('', $output)) != '')
+  if($return_var || trim(implode('', $output)) != '')
   {
     echo PHP_EOL;
     echo 'An error occured when trying to take video.'.PHP_EOL;
@@ -488,7 +488,9 @@ function camera_take_image()
 
   // Take the photo
   exec('/usr/bin/raspistill -t 0 -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension, $output, $return_var);
-  if($return_var)
+
+  // Because raspistill doesn't return the correct exit code we have to manually test the output for content
+  if($return_var || trim(implode('', $output)) != '')
     return FALSE;
 
   return $filename.'.'.$extension.PHP_EOL.$filename.'.png';

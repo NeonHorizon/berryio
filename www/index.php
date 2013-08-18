@@ -25,7 +25,7 @@ $args = $argv;
 $EXEC = array_shift($args).($_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT'] : '');
 
 // Show welcome by default
-if($args[0] == '')
+if(!isset($args[0]) || $args[0] == '')
   go_to('welcome');
 
 // Presume its OK unless stated otherwise

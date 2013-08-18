@@ -28,6 +28,9 @@
               cameraImagesAdd(result[1], result[2]);
               setTimeout(function(){updateButtonMomentary('', id, 0, '')}, 5000);
             }
+            else {
+              window.location = '/camera_take_image';
+            }
           }
         }
       }
