@@ -11,7 +11,7 @@
   2        Power            5v                              2
   3        Contrast         Adjusted between 0v and 5v    (see below)
   4        Register Select  GPIO 17*                        11*
-  5        Read/Write       Must be grounded!               2
+  5        Read/Write       Must be grounded!               6
   6        Enable Signal    GPIO 18*                        12*
   7        Data Bus 0       Ground                          6
   8        Data Bus 1       Ground                          6
