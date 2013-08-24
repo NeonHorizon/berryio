@@ -38,3 +38,6 @@ define('LCD_D4_GPIO', 22);  // Data Bus 4
 define('LCD_D5_GPIO', 23);  // Data Bus 5
 define('LCD_D6_GPIO', 24);  // Data Bus 6
 define('LCD_D7_GPIO', 25);  // Data Bus 7
+
+// Do not change below this line
+define('LCD_SETTINGS_VERSION', '1');
