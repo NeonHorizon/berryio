@@ -13,11 +13,12 @@ $GLOBALS['CAMERA_OPTIONS']['COMMON']['Processing'] = array(
   'co'  => array( 'name' => 'Contrast',            'type' => 'percent',  'default' => 50,        'multiply' => 2,      'offset' => -100, ), // -100 to 100
   'sh'  => array( 'name' => 'Sharpness',           'type' => 'percent',  'default' => 50,        'multiply' => 2,      'offset' => -100, ), // -100 to 100
   'sa'  => array( 'name' => 'Saturation',          'type' => 'percent',  'default' => 50,        'multiply' => 2,      'offset' => -100, ), // -100 to 100
+  'w'   => array( 'name' => 'Width',               'type' => 'select',   'default' => 2592,      'options'  => array(  64 => 64, 160 => 160, 320 => 320, 640 => 640, 1280 => 1280, 1360 => 1360, 1600 => 1600, 1920 => 1920, 2592 => '2592 (images only)', )    ),
+  'h'   => array( 'name' => 'Height',              'type' => 'select',   'default' => 1944,      'options'  => array(  64 => 64, 120 => 120, 240 => 240, 480 => 480, 720  => 720,  768  => 768,  900  => 900,  1080 => 1080, 1944 => '1944 (images only)', )    ),
 );
 
 $GLOBALS['CAMERA_OPTIONS']['COMMON']['Settings'] = array(
-  'w'   => array( 'name' => 'Width',               'type' => 'select',   'default' => 2592,      'options'  => array(  64 => 64, 160 => 160, 320 => 320, 640 => 640, 1280 => 1280, 1360 => 1360, 1600 => 1600, 1920 => 1920, 2592 => '2592 (images only)', )    ),
-  'h'   => array( 'name' => 'Height',              'type' => 'select',   'default' => 1944,      'options'  => array(  64 => 64, 120 => 120, 240 => 240, 480 => 480, 720  => 720,  768  => 768,  900  => 900,  1080 => 1080, 1944 => '1944 (images only)', )    ),
+  't'   => array( 'name' => 'Timer',               'type' => 'select',   'default' => 0,         'options'  => array(  0 => 'Instant', 2 => '2 Seconds', 5 => '5 Seconds', 10 => '10 Seconds', 30 => '30 Seconds', 60 => '1 Minute', 120 => '2 Minutes', 300 => '5 Minutes', )  ),
   'ISO' => array( 'name' => 'ISO',                 'type' => 'select',   'default' => 200,       'options'  => array(  100 => 100, 200 => 200, 400 => 400, 800 => 800) ),
   'ev'  => array( 'name' => 'Exposure',            'type' => 'percent',  'default' => 50,        'multiply' => 0.2,    'offset' => -10,  ), // -10 to 10
   'mm'  => array( 'name' => 'Metering',            'type' => 'select',   'default' => 'average', 'options'  => array(  'average' => 'Average', 'spot' => 'Spot', 'backlit' => 'Backlit', 'matrix' => 'Matrix' ), ),

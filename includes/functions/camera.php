@@ -599,7 +599,6 @@ function camera_take_image($options = array())
   $filename = date('Y-m-d_H-i-s_U');
 
   // Generate the options
-  $exec_options  = ' -t 0'; // Take it instantly
   $exec_options .= ' -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension; // Set the filename
   foreach($params as $option => $value)
     $exec_options .= ' -'.$option.' '.escapeshellarg($value);

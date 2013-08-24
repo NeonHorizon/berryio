@@ -25,7 +25,7 @@
 
   <h2>CAMERA PROCESSING</h2>
 
-  <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Processing', 'blanks' => 2))?>
+  <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Processing'))?>
   <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Orientation'))?>
   <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Effects'))?>
 
