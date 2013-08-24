@@ -8,8 +8,26 @@ $title = 'Camera Control';
 // Load the Camera functions
 require_once(FUNCTIONS.'camera.php');
 
-// Set the GPIO value
-if(($image = camera_take_image()) === FALSE)
+// Convert arguments to options
+$this_option = '';
+$this_value = '';
+foreach($args as $this_arg)
+  if(strlen($this_arg) > 1 && $this_arg[0] == '-')
+  {
+    // Store previous option
+    $options[$this_option] = $this_value;
+
+    // Start new one
+    $this_option = substr($this_arg, 1);
+    $this_value = '';
+  }
+  else
+    $this_value .= $this_arg;
+$options[$this_option] = $this_value;
+unset($options['']);
+
+// Take the image
+if(($image = camera_take_image($options)) === FALSE)
 {
   // Find out the command line executable (if this is not running on the command line we are going to need to guess)
   $berryio = $GLOBALS['EXEC_MODE'] != 'cli' ? 'berryio' : $GLOBALS['EXEC'];

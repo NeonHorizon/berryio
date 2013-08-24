@@ -529,21 +529,83 @@ function _camera_delete_file($global_type, $filename, $extension)
 
 
 /*----------------------------------------------------------------------------
-  Takes an image and returns the filename (without the extension)
+  Takes an image and returns the image filename and thumbnail filename
+  options should be in the format array( [$option => $value] [, $option => $value] [, ...] )
 ----------------------------------------------------------------------------*/
-function camera_take_image()
+function camera_take_image($options = array())
 {
-  if(!is_dir($GLOBALS['CAMERA_STORE']['IMAGES']['FILES']))
-    return FALSE;
+  // Fail if the directory isn't there
+  if(!is_dir($GLOBALS['CAMERA_STORE']['IMAGES']['FILES'])) return FALSE;
 
-  // Temporary until we get the options working
-  $extension = 'jpg';
+  // Parse the options
+  foreach($GLOBALS['CAMERA_OPTIONS']['COMMON'] + $GLOBALS['CAMERA_OPTIONS']['IMAGES'] as $group)
+    foreach($group as $option => $details)
+      switch($details['type'])
+      {
+        case 'percent':
+          // If we dont have a supplied value convert the default
+          if(!isset($options[$option])) $options[$option] = $details['default'] * $details['multiply'] + $details['offset'];
+
+          // Test it
+          if(!is_numeric($options[$option]) || $options[$option] - $details['offset'] < 0 || $options[$option] > (100 * $details['multiply'] + $details['offset']))
+            return FALSE;
+
+          // Use it
+          $params[$option] = $options[$option] + 0; // Force it to a number just to be safe
+          unset($options[$option]);
+          break;
+
+        case 'on_off':
+          // If we dont have a supplied value use the default
+          if(!isset($options[$option])) $options[$option] = $details['default'];
+
+          // Only set the param if the value is true (note: blank is true as the CLI doesn't use a value)
+          if($options[$option] === '' || $options[$option] === TRUE || $options[$option] === '1' || $options[$option] === 1)
+            $params[$option] = '';
+
+          // Otherwise if it not set as false either it must be a bad value
+          elseif($options[$option] !== FALSE && $options[$option] !== '0' && $options[$option] !== 0)
+            return FALSE;
+
+          unset($options[$option]);
+          break;
+
+        case 'select':
+          // If we dont have a supplied value use the default
+          if(!isset($options[$option])) $options[$option] = $details['default'];
+
+          // Check its valid
+          if(!array_key_exists($options[$option], $details['options'])) return FALSE;
+
+          // Use it
+          $params[$option] = $options[$option];
+          unset($options[$option]);
+          break;
+
+        default:
+          return FALSE;
+      }
+
+  // Anything left we dont understand?
+  if(isset($options) && count($options) >  0) return FALSE;
+
+  // Deal with special cases
+  if($params['cfx'] === '') unset($params['cfx']);
+
+  // Calculate the extension
+  $extension = $params['e'];
 
   // Generate a filename
   $filename = date('Y-m-d_H-i-s_U');
 
+  // Generate the options
+  $exec_options  = ' -t 0'; // Take it instantly
+  $exec_options .= ' -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension; // Set the filename
+  foreach($params as $option => $value)
+    $exec_options .= ' -'.$option.' '.escapeshellarg($value);
+
   // Take the photo
-  exec('/usr/bin/raspistill -t 0 -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension, $output, $return_var);
+  exec('/usr/bin/raspistill'.$exec_options, $output, $return_var);
 
   // Because raspistill doesn't return the correct exit code we have to manually test the output for content
   if($return_var || trim(implode('', $output)) != '')

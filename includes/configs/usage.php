@@ -21,7 +21,7 @@ $GLOBALS['USAGE_COMMANDS']['GPIO Control'] = array(
 $GLOBALS['USAGE_COMMANDS']['Camera Control'] = array(
   'camera_setup',
   'camera_status',
-  'camera_take_image',
+  array('camera_take_image', '[<raspistill short form options>]'),
   array('camera_show', 'image|image_thumbnail|video|video_thumbnail', '<filename>'),
   array('camera_delete', 'image|video', '<filename>'),
 );
