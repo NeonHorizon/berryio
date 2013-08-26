@@ -12,7 +12,7 @@
 
     changeInProgress = true;
 
-    updateHttp = new XMLHttpRequest();
+    var updateHttp = new XMLHttpRequest();
     updateHttp.onreadystatechange = function() {
       if(updateHttp.readyState == 4) {
         if(updateHttp.status == 200) {
@@ -22,14 +22,14 @@
               if(line != 0 && result[line] != '') {
                 var channelInfo = result[line].split(',');
                 value = Math.round(channelInfo[2] / 10.23);
-                document.getElementById('spi_adc_'+channelInfo[0]+'_'+channelInfo[1]+'_bar').style.width = value + 'px';
-                document.getElementById('spi_adc_'+channelInfo[0]+'_'+channelInfo[1]+'_value').innerHTML = value + '%';
+                document.getElementById('spi_adc_' + channelInfo[0] + '_' + channelInfo[1] + '_bar').style.width = value + 'px';
+                document.getElementById('spi_adc_' + channelInfo[0] + '_' + channelInfo[1] + '_value').innerHTML = value + '%';
               }
             }
           }
         }
         changeInProgress = false;
-        updater = setTimeout(updateSPIValues, <?=SPI_UPDATE_INTERVAL?>);
+        var updater = setTimeout(updateSPIValues, <?=SPI_UPDATE_INTERVAL?>);
       }
     }
     updateHttp.open('GET', '/api_command/spi_status', true);
@@ -47,7 +47,7 @@
 	    changeInProgress = true;
       var channelInfo = id.split('_');
 
-	    changeHttp = new XMLHttpRequest();
+	    var changeHttp = new XMLHttpRequest();
 	    changeHttp.onreadystatechange = function() {
 	      if(changeHttp.readyState == 4) {
 	        if(changeHttp.status == 200) {
@@ -64,6 +64,6 @@
   }
 
 
-  updater = setTimeout(updateSPIValues, <?=SPI_UPDATE_INTERVAL?>);
+  var updater = setTimeout(updateSPIValues, <?=SPI_UPDATE_INTERVAL?>);
 
 </script>

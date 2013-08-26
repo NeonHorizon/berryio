@@ -13,8 +13,8 @@
 
   <h2>VIEWFINDER</h2>
 
-  <div class="container camera_viewfinder">
-    <img id="camera_viewfinder" src="/images/camera/default.jpg" alt="" title="" style="width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;" />
+  <div class="container camera_viewfinder" style="width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;">
+    <img id="camera_viewfinder" src="/images/camera/default.jpg" alt="" title="" style="max-width: <?=$GLOBALS['CAMERA_VIEWFINDER']['X']?>px; max-height: <?=$GLOBALS['CAMERA_VIEWFINDER']['Y']?>px;" />
   </div><br />
 
   <?=button_momentary('Take Photo', 'camera_trigger', 'cameraTakeImage', TRUE)?>
@@ -68,6 +68,10 @@
 <div class="panel not_too_wide">
 
   <h2>HINTS AND TIPS</h2>
+
+  <p class="left">
+    <b>VIDEO NOT YET SUPPORTED (COMING SOON)</b>
+  </p>
 
   <p class="left">
     The image and video folder locations are set in the file<br />

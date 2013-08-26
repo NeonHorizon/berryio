@@ -18,12 +18,12 @@ $GLOBALS['CAMERA_OPTIONS']['COMMON']['Processing'] = array(
 );
 
 $GLOBALS['CAMERA_OPTIONS']['COMMON']['Settings'] = array(
-  't'   => array( 'name' => 'Timer',               'type' => 'select',   'default' => 0,         'options'  => array(  0 => 'Instant', 2 => '2 Seconds', 5 => '5 Seconds', 10 => '10 Seconds', 30 => '30 Seconds', 60 => '1 Minute', 120 => '2 Minutes', 300 => '5 Minutes', )  ),
+  't'   => array( 'name' => 'Timer',               'type' => 'select',   'default' => 0,         'options'  => array(  0 => 'Instant', 2000 => '2 Seconds', 5000 => '5 Seconds', 10000 => '10 Seconds', 30000 => '30 Seconds', 60000 => '1 Minute', 120000 => '2 Minutes', 300000 => '5 Minutes', )  ),
   'ISO' => array( 'name' => 'ISO',                 'type' => 'select',   'default' => 200,       'options'  => array(  100 => 100, 200 => 200, 400 => 400, 800 => 800) ),
   'ev'  => array( 'name' => 'Exposure',            'type' => 'percent',  'default' => 50,        'multiply' => 0.2,    'offset' => -10,  ), // -10 to 10
   'mm'  => array( 'name' => 'Metering',            'type' => 'select',   'default' => 'average', 'options'  => array(  'average' => 'Average', 'spot' => 'Spot', 'backlit' => 'Backlit', 'matrix' => 'Matrix' ), ),
   'ex'  => array( 'name' => 'Mode',                'type' => 'select',   'default' => 'auto',    'options'  => array(  'off' => 'Off','auto' => 'Automatic', 'night' => 'Night', 'nightpreview' => 'Night Preview', 'backlight' => 'Back Lit', 'spotlight' => 'Spotlight',   'sports' => 'Sports', 'snow' => 'Snow', 'beach' => 'Beach', 'verylong' => 'Long Exposure', 'fixedfps' => 'Fixed FPS', 'antishake' => 'Antishake', 'fireworks' => 'Fireworks', ), ),
-  'awb' => array( 'name' => 'White Balance',       'type' => 'select',   'default' => 'auto',    'options'  => array(  'off' => 'Off', 'auto' => 'Automatic', 'sun' => 'Sunny', 'cloud' => 'Cloudy', 'shade' => 'Shaded', 'cloudshade' => 'Cloudy/Shady','tungsten' => 'Tungsten', 'fluorescent' => 'Fluorescent', 'incandescent' => 'Incandescent', 'flash' => 'Flash', 'horizon' => 'Horizon', ), ),
+  'awb' => array( 'name' => 'White Balance',       'type' => 'select',   'default' => 'auto',    'options'  => array(  'off' => 'Off', 'auto' => 'Automatic', 'sun' => 'Sunny', 'cloud' => 'Cloudy', 'shade' => 'Shaded', 'tungsten' => 'Tungsten', 'fluorescent' => 'Fluorescent', 'incandescent' => 'Incandescent', 'flash' => 'Flash', 'horizon' => 'Horizon', ), ),
 );
 
 $GLOBALS['CAMERA_OPTIONS']['COMMON']['Orientation'] = array(
@@ -34,7 +34,7 @@ $GLOBALS['CAMERA_OPTIONS']['COMMON']['Orientation'] = array(
 
 $GLOBALS['CAMERA_OPTIONS']['COMMON']['Effects'] = array(
   'cfx' => array( 'name' => 'Colour',              'type' => 'select',   'default' => '',       'options'  => array(  '' => 'Colour', '128:128' => 'Monochrome'), ),
-  'ifx' => array( 'name' => 'Special FX',          'type' => 'select',   'default' => 'none',    'options'  => array(  'none' => 'Off', 'negative' => 'Negative', 'solarise' => 'Solarise', 'whiteboard' => 'Whiteboard', 'blackboard' => 'Blackboard', 'sketch' => 'Sketch', 'denoise' => 'Remove Noise', 'emboss ' => 'Emboss', 'oilpaint' => 'Oil Painting', 'hatch' => 'Hatch Sketch', 'gpen' => 'Gpen', 'pastel' => 'Pastel', 'watercolour' => 'Watercolour', 'film' => 'Film', 'blur' => 'Blur', 'saturation' => 'Colour Saturate', 'colourswap' => 'Swap Colours', 'washedout' => 'Wash Out', 'posterise' => 'Posterise', 'colourpoint' => 'Colourpoint', 'colourbalance' => 'Colour Balance', 'cartoon' => 'Cartoon', ), ),
+  'ifx' => array( 'name' => 'Special FX',          'type' => 'select',   'default' => 'none',    'options'  => array(  'none' => 'Off', 'negative' => 'Negative', 'solarise' => 'Solarise', 'sketch' => 'Sketch', 'denoise' => 'Remove Noise', 'oilpaint' => 'Oil Painting', 'hatch' => 'Hatch Sketch', 'gpen' => 'Graphite Pen', 'pastel' => 'Pastel', 'watercolour' => 'Watercolour', 'film' => 'Film', 'blur' => 'Blur', 'saturation' => 'Colour Saturate', 'colourswap' => 'Swap Colours', 'washedout' => 'Wash Out', 'posterise' => 'Posterise', 'colourpoint' => 'Colourpoint', 'colourbalance' => 'Colour Balance', 'cartoon' => 'Cartoon', ), ),
 );
 
 // Image Only Options

@@ -1,5 +1,6 @@
 
 <script type="text/javascript">
+
   function getScrollY() {
     var scroll = 0;
     if( typeof( window.pageYOffset ) == 'number' )
@@ -10,4 +11,5 @@
       return document.documentElement.scrollTop;
     return 0;
   }
+
 </script>

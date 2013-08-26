@@ -12,7 +12,8 @@ require_once(FUNCTIONS.'camera.php');
 $this_option = '';
 $this_value = '';
 foreach($args as $this_arg)
-  if(strlen($this_arg) > 1 && $this_arg[0] == '-')
+  // If it starts with a - and its not a negative number then its an option
+  if(strlen($this_arg) > 1 && $this_arg[0] == '-' && !is_numeric(substr($this_arg, 1)))
   {
     // Store previous option
     $options[$this_option] = $this_value;

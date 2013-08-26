@@ -547,11 +547,12 @@ function camera_take_image($options = array())
           if(!isset($options[$option])) $options[$option] = $details['default'] * $details['multiply'] + $details['offset'];
 
           // Test it
-          if(!is_numeric($options[$option]) || $options[$option] - $details['offset'] < 0 || $options[$option] > (100 * $details['multiply'] + $details['offset']))
-            return FALSE;
+          if(!is_numeric($options[$option]) || $options[$option] < $details['offset'] || $options[$option] > (100 * $details['multiply'] + $details['offset']))
+          { echo "fail".$option." ".$options[$option]; exit();
+            return FALSE; }
 
           // Use it
-          $params[$option] = $options[$option] + 0; // Force it to a number just to be safe
+          $params[$option] = escapeshellarg($options[$option] + 0); // Force it to a number just to be safe
           unset($options[$option]);
           break;
 
@@ -560,11 +561,11 @@ function camera_take_image($options = array())
           if(!isset($options[$option])) $options[$option] = $details['default'];
 
           // Only set the param if the value is true (note: blank is true as the CLI doesn't use a value)
-          if($options[$option] === '' || $options[$option] === TRUE || $options[$option] === '1' || $options[$option] === 1)
+          if($options[$option] === '' || $options[$option] === TRUE || $options[$option] === '1'  || $options[$option] === 'on' || $options[$option] === 1)
             $params[$option] = '';
 
           // Otherwise if it not set as false either it must be a bad value
-          elseif($options[$option] !== FALSE && $options[$option] !== '0' && $options[$option] !== 0)
+          elseif($options[$option] !== FALSE && $options[$option] !== '0' && $options[$option] !== 'off' && $options[$option] !== 0)
             return FALSE;
 
           unset($options[$option]);
@@ -578,7 +579,7 @@ function camera_take_image($options = array())
           if(!array_key_exists($options[$option], $details['options'])) return FALSE;
 
           // Use it
-          $params[$option] = $options[$option];
+          $params[$option] = escapeshellarg($options[$option]);
           unset($options[$option]);
           break;
 
@@ -589,19 +590,20 @@ function camera_take_image($options = array())
   // Anything left we dont understand?
   if(isset($options) && count($options) >  0) return FALSE;
 
-  // Deal with special cases
-  if($params['cfx'] === '') unset($params['cfx']);
+  // Special Case
+  if($params['cfx'] === "''")
+    unset($params['cfx']);
 
   // Calculate the extension
-  $extension = $params['e'];
+  $extension = trim($params['e'], '\' ');
 
   // Generate a filename
   $filename = date('Y-m-d_H-i-s_U');
 
   // Generate the options
-  $exec_options .= ' -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension; // Set the filename
+  $exec_options = ' -o '.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/'.$filename.'.'.$extension; // Set the filename
   foreach($params as $option => $value)
-    $exec_options .= ' -'.$option.' '.escapeshellarg($value);
+    $exec_options .= ' -'.$option.' '.$value;
 
   // Take the photo
   exec('/usr/bin/raspistill'.$exec_options, $output, $return_var);

@@ -10,7 +10,7 @@
       return;
     }
 
-    updateHttp = new XMLHttpRequest();
+    var updateHttp = new XMLHttpRequest();
     updateHttp.onreadystatechange = function() {
       if(updateHttp.readyState == 4) {
         if(updateHttp.status == 200) {
@@ -73,7 +73,7 @@
     }
 
     changeInProgress = true;
-    changeHttp = new XMLHttpRequest();
+    var changeHttp = new XMLHttpRequest();
     changeHttp.onreadystatechange = function() {
       if(changeHttp.readyState == 4) {
         if(changeHttp.status == 200) {
@@ -97,7 +97,7 @@
     }
 
     changeInProgress = true;
-    changeHttp = new XMLHttpRequest();
+    var changeHttp = new XMLHttpRequest();
     changeHttp.onreadystatechange = function() {
       if(changeHttp.readyState == 4) {
         if(changeHttp.status == 200) {
