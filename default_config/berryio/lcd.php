@@ -39,5 +39,11 @@ define('LCD_D5_GPIO', 23);  // Data Bus 5
 define('LCD_D6_GPIO', 24);  // Data Bus 6
 define('LCD_D7_GPIO', 25);  // Data Bus 7
 
+
+// LCD SIZE
+define('LCD_ROWS', 2);
+define('LCD_COLS', 16);
+
+
 // Do not change below this line
 define('LCD_SETTINGS_VERSION', '1');
