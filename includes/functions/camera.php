@@ -265,7 +265,7 @@ function camera_videos()
 function _camera_scan_directory($files_directory, $thumbnails_directory, $extensions)
 {
   // Check the directories are set up
-  if(!is_dir($files_directory) || !is_dir($thumbnails_directory)) return FALSE;
+  if(!@is_dir($files_directory) || !@is_dir($thumbnails_directory)) return FALSE;
 
   // Scan the directory
   $files = array();
