@@ -2,11 +2,12 @@ BerryIO
 =======
 
 - **Description:** BerryIO is a web browser based control system for the RaspberryPi
+- **Project Website:** [GitHub](https://github.com/NeonHorizon/berryio)
 - **License:** GPL Version 3
 - **Platform:** Tested on Raspbian Wheezy (2012-09-18 and newer) may work on others
-- **Requirements:** A Raspberry Pi running Raspbian and a decent web browser (Internet Explorer versions older than 8 are not supported)
-- **Project Website:** [GitHub](https://github.com/NeonHorizon/berryio)
+- **Requirements:** A Raspberry Pi running Raspbian and a web browser (Internet Explorer versions before 8 are not supported)
 
+==
 ![overview](http://frozenmist.co.uk/downloads/berryio/IMAGES/berryio.png)
 
 ###Getting Started
@@ -26,19 +27,20 @@ There is also a command line interface, so you can issue commands directly to it
 
 For those interested in the technical details its mostly written in PHP which runs the back end for both the command line and the web browser interface (which is served with Apache). SPI control is written in C, the emailing is done with msmtp and the network can be managed by Raspians wpagui (although I hope to include functions in BerryIO to configure the network at some point).
 
+
 ###Features
-Full GPIO control including input/output mode switching and on off toggling.
-Support for Raspberry Pi revision 1 and 2 including 512MB version.
-Ability to take photos and adjust camera settings.
-SPI DAC control and ADC values display.
-Control of HDD44780 or KS0066U compatible LCD's (and VFD's).
-CPU information display, including temperature.
-Disk and memory usage information.
-Network status view showing connectivity, signal strength, etc.
-Command line interface which offers the same level of control as the web browser interface.
-Email notification with a link to the BerryIO web browser interface.
-Integrated upgrade system.
-API system for developing mobile apps.
+- Full GPIO control including input/output mode switching and on off toggling.
+- Support for Raspberry Pi revision 1 and 2 including 512MB version.
+- Ability to take photos and adjust camera settings (video coming soon).
+- SPI DAC control and ADC values display.
+- Control of HDD44780 or KS0066U compatible LCD's (and VFD's).
+- CPU information display, including temperature.
+- Disk and memory usage information.
+- Network status view showing connectivity, signal strength, etc.
+- Command line interface which offers the same level of control as the web browser interface.
+- Email notification with a link to the BerryIO web browser interface.
+- Integrated upgrade system.
+- API system for developing mobile apps.
 
 
 ###License Information
