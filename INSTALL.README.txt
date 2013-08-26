@@ -92,7 +92,7 @@ You do not need to download anything prior to following these instructions.
 Simply make sure you have an Internet connection on your Raspberry Pi and
 enter the commands below.
 
-// Make sure your distribution is up to date
+// Make sure your Raspbian install is up to date
 sudo apt-get update
 sudo apt-get upgrade
 
