@@ -36,6 +36,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.8.1', '2013-04-07', array('Removed excess files and folders which should have been deleted in version 1.7.0')),
   array('1.8.2', '2013-05-19', array('Changed SPI Control web interface to use API for changes', 'New dragable javascript sliders in SPI module')),
   array('1.9.0', '2013-08-26', array('Added support for camera module', 'Added support for different sized LCD screens', 'Multiple minor improvements')),
+  array('1.9.1', '2013-11-07', array('GPIO compatibility changes for Raspbian 2013-09-25')),
 );
 
 // Version Numbering

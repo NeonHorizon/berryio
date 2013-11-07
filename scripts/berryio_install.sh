@@ -42,6 +42,10 @@ echo -e "\nGranting the webserver access to the email configuration...."
 chmod 640 /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 chgrp www-data /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 
+echo -e "\nGranting the webserver access to the GPIO...."
+addgroup gpio 2> /dev/null
+adduser www-data gpio || { echo -e "Install failed!" 1>&2; exit 1; }
+
 echo -e "\nEnabling the required Apache modules...."
 a2enmod rewrite authnz_external || { echo -e "Install failed!" 1>&2; exit 1; }
 
