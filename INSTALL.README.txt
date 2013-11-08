@@ -1,8 +1,7 @@
 // ------------------------- PROJECT INFORMATION -------------------------
 
-Further details about BerryIO and how to contribute are available on 
-the project website here: https://github.com/NeonHorizon/berryio
-...and in the file: CONTRIBUTING_CODE.README.txt
+Further details about BerryIO are available on the project website here: 
+https://github.com/NeonHorizon/berryio
 
 
 // ------------------------ SECURITY INFORMATION -------------------------
@@ -13,7 +12,8 @@ malicious attacker could snoop on your password. If you wish to access
 BerryIO over the internet you should at the very least encrypt the web
 interface with SSL/https security which you can do by changing the
 configuration in the file /etc/apache2/sites-available/berryio. Please
-consult the Apache manual for more details.
+consult the Apache manual for more details:
+http://httpd.apache.org/docs/
 
 
 // -------------------- PRE-INSTALLATION INFORMATION ---------------------
@@ -92,7 +92,9 @@ You do not need to download anything prior to following these instructions.
 Simply make sure you have an Internet connection on your Raspberry Pi and
 enter the commands below.
 
-// Make sure your Raspbian install is up to date
+// Make sure your Raspbian install is up to date with apt-get (as below)
+// (Please do not use rpi-update as this will migrate your Pi to the dev
+// firmware which we do not support)
 sudo apt-get update
 sudo apt-get upgrade
 
