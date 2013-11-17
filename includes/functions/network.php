@@ -9,15 +9,19 @@
 
   Output:
 
-    array( [$device => $device_details] [, $device_name => $device_details] [, ...] );
+    array( [$device_name => $device_details] [, $device_name => $device_details] [, ...] );
+    
+    $device_details = array( [$parameter_name => $parameter_details] [, $parameter_name => $parameter_details] [, ...] );
 
-    $device_details = array( [text => $parameter_value] |
-                             [bool => TRUE|FALSE] |
-                             [value => $parameter_value,
-                              min => $parameter_min,
-                              max => $parameter_max,
-                              positive => TRUE|FALSE]
-                           );
+    $parameter_details = array(
+      [ text => $parameter_details ] |
+      [ bool => TRUE | FALSE ] |
+      [ text => $parameter_details,
+        value => $parameter_value,
+        min => $parameter_min,
+        max => $parameter_max,
+        positive => TRUE|FALSE ]
+    );
 
     ....or FALSE on failure
 
