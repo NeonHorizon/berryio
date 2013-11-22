@@ -8,7 +8,7 @@ $title = 'CPU Status';
 // Load the cpu functions
 require_once(FUNCTIONS.'cpu.php');
 
-// Get the disk partition details
+// Get the cpu details
 $page['temperature'] = cpu_get_temp();
 $page['speed'] = cpu_get_speed();
 $page['voltage'] = cpu_get_volts();
