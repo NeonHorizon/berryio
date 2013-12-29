@@ -18,7 +18,7 @@ $GLOBALS['CAMERA_OPTIONS']['COMMON']['Processing'] = array(
 );
 
 $GLOBALS['CAMERA_OPTIONS']['COMMON']['Settings'] = array(
-  't'   => array( 'name' => 'Timer',               'type' => 'select',   'default' => 0,         'options'  => array(  0 => 'Instant', 2000 => '2 Seconds', 5000 => '5 Seconds', 10000 => '10 Seconds', 30000 => '30 Seconds', 60000 => '1 Minute', 120000 => '2 Minutes', 300000 => '5 Minutes', )  ),
+  't'   => array( 'name' => 'Timer',               'type' => 'select',   'default' => 1,         'options'  => array(  1 => 'Instant', 2000 => '2 Seconds', 5000 => '5 Seconds', 10000 => '10 Seconds', 30000 => '30 Seconds', 60000 => '1 Minute', 120000 => '2 Minutes', 300000 => '5 Minutes', )  ),
   'ISO' => array( 'name' => 'ISO',                 'type' => 'select',   'default' => 200,       'options'  => array(  100 => 100, 200 => 200, 400 => 400, 800 => 800) ),
   'ev'  => array( 'name' => 'Exposure',            'type' => 'percent',  'default' => 50,        'multiply' => 0.2,    'offset' => -10,  ), // -10 to 10
   'mm'  => array( 'name' => 'Metering',            'type' => 'select',   'default' => 'average', 'options'  => array(  'average' => 'Average', 'spot' => 'Spot', 'backlit' => 'Backlit', 'matrix' => 'Matrix' ), ),

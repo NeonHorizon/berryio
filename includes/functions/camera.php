@@ -50,7 +50,7 @@ function camera_setup()
 
   // Do a test photo
   echo 'Please wait, testing the camera can take images.... (no images are kept)'.PHP_EOL;
-  exec('raspistill -t 0 -o /dev/null 2>&1', $output, $return_var);
+  exec('raspistill -t 1 -o /dev/null 2>&1', $output, $return_var);
   // Because raspistill doesn't return the correct exit code we have to manually test the output for content
   if(trim(implode('', $output)) != '')
   {
