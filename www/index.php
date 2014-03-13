@@ -20,7 +20,7 @@ settings('menu', 2);
 /*------------------------------------------------------------------------------
   Get the command and run it
 ------------------------------------------------------------------------------*/
-$argv = explode('/', rtrim($_SERVER["SERVER_NAME"].$_SERVER['PATH_INFO'], '/'));
+$argv = explode('/', rtrim($_SERVER["SERVER_NAME"].(isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : ''), '/'));
 $args = $argv;
 $EXEC = array_shift($args).($_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT'] : '');
 
