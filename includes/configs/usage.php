@@ -71,6 +71,6 @@ $GLOBALS['USAGE_COMMANDS']['API'] = array(
 $GLOBALS['USAGE_COMMANDS']['Version Control'] = array(
   'version',
   'check_version',
-  'upgrade',  
   'changelog',
+  'upgrade',  
 );
