@@ -6,8 +6,6 @@
 $GLOBALS['USAGE_COMMANDS']['General'] = array(
   'help',
   'about',
-  'version',
-  'upgrade',
 );
 
 
@@ -71,6 +69,8 @@ $GLOBALS['USAGE_COMMANDS']['API'] = array(
 
 
 $GLOBALS['USAGE_COMMANDS']['Version Control'] = array(
+  'version',
   'check_version',
+  'upgrade',  
   'changelog',
 );
