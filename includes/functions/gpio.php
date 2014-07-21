@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
   Load the GPIO settings and define some of our own
 ------------------------------------------------------------------------------*/
-settings('gpio', 2);
+settings('gpio', 3);
 $GLOBALS['GPIO_MODES'] = array('in', 'out', 'not_exported');
 $GLOBALS['GPIO_VALUES'] = array(0, 1);
 

@@ -3,60 +3,63 @@
   BerryIO GPIO Settings
 ------------------------------------------------------------------------------*/
 
-// Settings for original revision 1 board
-// Uncomment if this is the board you have by removing the /* at the start
+// Below is a list of different GPIO Pin configs for the different boards
+//
+// Uncomment the config you are using by removing the /* at the start
 // and the */ at the end
-// You can rename your pins here if you use this board
+//
+// Comment out the config you are not using by adding /* at the start
+// and */ at the end
+//
+// You can rename your pins here by changing the text on the right
+
+
+// Settings for original revision 1 board
 /*
 $GLOBALS['GPIO_PINS'] = array(
-  0  => 'I2C SDA0',
-  1  => 'I2C SCL0',
-  4  => 'GPCLK0',
-  7  => 'SPI CE1',
-  8  => 'SPI CE0',
-  9  => 'SPI MISO',
-  10 => 'SPI MOSI',
-  11 => 'SPI SCKL',
-  14 => 'UART TXD',
-  15 => 'UART RXD',
-  17 => '',
+  0  => 'I2C SDA1',
+  1  => 'I2C SCL1',
+  4  => 'GPIO_GCLK',
+  7  => 'SPI_CE1_N',
+  8  => 'SPI_CE0_N',
+  9  => 'SPI_MISO',
+  10 => 'SPI_MOSI',
+  11 => 'SPI_SCLK',
+  14 => 'UART TXD0',
+  15 => 'UART RXD0',
+  17 => 'GPIO_GEN0',
   18 => 'PCM CLK',
   21 => 'PCM DOUT',
-  22 => '',
-  23 => '',
-  24 => '',
-  25 => '',
+  22 => 'GPIO_GEN3',
+  23 => 'GPIO_GEN4',
+  24 => 'GPIO_GEN5',
+  25 => 'GPIO_GEN6',
 );
 */
 
-// Settings for revision 2 board (including 512MB version)
-// Comment out if you dont have this board by adding /* at the start
-// and */ at the end
-// You can rename your pins here if you use this board
+
+// Settings for revision 2 board (including 512MB version bit not B+)
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
   3  => 'I2C SCL1',
-  4  => 'GPCLK0',
-  7  => 'SPI CE1',
-  8  => 'SPI CE0',
-  9  => 'SPI MISO',
-  10 => 'SPI MOSI',
-  11 => 'SPI SCKL',
-  14 => 'UART TXD',
-  15 => 'UART RXD',
-  17 => '',
+  4  => 'GPIO_GCLK',
+  7  => 'SPI_CE1_N',
+  8  => 'SPI_CE0_N',
+  9  => 'SPI_MISO',
+  10 => 'SPI_MOSI',
+  11 => 'SPI_SCLK',
+  14 => 'UART TXD0',
+  15 => 'UART RXD0',
+  17 => 'GPIO_GEN0',
   18 => 'PCM CLK',
-  22 => '',
-  23 => '',
-  24 => '',
-  25 => '',
-  27 => '',
+  22 => 'GPIO_GEN3',
+  23 => 'GPIO_GEN4',
+  24 => 'GPIO_GEN5',
+  25 => 'GPIO_GEN6',
+  27 => 'GPIO_GEN2',
 );
 
-// Extra GPIO Pins
-// Uncomment if you have fitted the optional P5 header on the revision 2 board
-// by removing the /* at the start and the */ at the end
-// You can rename your pins here if you use this board
+// Extra GPIO Pins on the optional P5 header on the revision 2 board
 /*
 $GLOBALS['GPIO_PINS'] += array(
   28 => 'I2C SDA0',
@@ -66,8 +69,41 @@ $GLOBALS['GPIO_PINS'] += array(
 );
 */
 
-define('GPIO_PINS_PER_ROW', 6);  // Change to fit your browser window
+
+// Settings for model B+ board
+/*
+$GLOBALS['GPIO_PINS'] = array(
+  2  => 'I2C SDA1',
+  3  => 'I2C SCL1',
+  4  => 'GPIO_GCLK',
+  5  => '',
+  6  => '',
+  7  => 'SPI_CE1_N',
+  8  => 'SPI_CE0_N',
+  9  => 'SPI_MISO',
+  10 => 'SPI_MOSI',
+  11 => 'SPI_SCLK',
+  12  => '',
+  13  => '',
+  14 => 'UART TXD0',
+  15 => 'UART RXD0',
+  17 => 'GPIO_GEN0',
+  18 => 'PCM CLK',
+  19  => '',
+  20  => '',
+  21  => '',
+  22 => 'GPIO_GEN3',
+  23 => 'GPIO_GEN4',
+  24 => 'GPIO_GEN5',
+  25 => 'GPIO_GEN6',
+  26 => '',
+  27 => 'GPIO_GEN2',
+);
+*/
+
+
+define('GPIO_PINS_PER_ROW', 5);  // Change to fit your browser window
 define('GPIO_UPDATE_INTERVAL', 400);  // Update interval in ms
 
 // Do not change below this line
-define('GPIO_SETTINGS_VERSION', '2');
+define('GPIO_SETTINGS_VERSION', '3');
