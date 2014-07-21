@@ -10,7 +10,7 @@
   Output:
 
     array( [$device_name => $device_details] [, $device_name => $device_details] [, ...] );
-    
+
     $device_details = array( [$parameter_name => $parameter_details] [, $parameter_name => $parameter_details] [, ...] );
 
     $parameter_details = array(
@@ -75,7 +75,7 @@ function network_list()
   // Should really use iw here but it doesn't work with some cards
   // The reason for the redirect is to ignore non wireless cards
   $output = array();
-  exec('/sbin/iwconfig 2>/dev/null', $output, $return_var);
+  exec('/sbin/iwconfig', $output, $return_var);
   if($return_var) return FALSE;
   foreach($output as $line)
   {

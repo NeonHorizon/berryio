@@ -39,6 +39,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.9.1', '2013-11-07', array('GPIO compatibility changes for Raspbian 2013-09-25')),
   array('1.9.2', '2013-12-29', array('Camera compatibility changes for Raspbian 2013-12-20')),
   array('1.9.3', '2014-07-21', array('Added Model B+ detection')),
+  array('1.9.4', '2014-07-21', array('Added fix for problems fetching network information through the web interface')),
 );
 
 // Version Numbering
