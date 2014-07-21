@@ -41,6 +41,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.9.3',  '2014-07-21', array('Added Model B+ detection')),
   array('1.9.4',  '2014-07-21', array('Added fix for problems fetching network information through the web interface')),
   array('1.9.5',  '2014-07-21', array('Added configs for Model B+')),
+  array('1.10.0', '2014-07-21', array('Added Model B+ autodetection during install')),
 );
 
 // Version Numbering

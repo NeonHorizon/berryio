@@ -85,30 +85,28 @@ done
 echo -e "<?\n/*------------------------------------------------------------------------------\n  BerryIO Email Settings\n------------------------------------------------------------------------------*/\n\ndefine('EMAIL_FROM', '$mailFrom');\ndefine('EMAIL_TO', '$mailTo');\n" > /etc/berryio/email.php
 
 echo -e "\n\nConfiguring GPIO settings\n-------------------------"
-piRevision="2";
-cat /proc/cpuinfo | grep 'Revision' | grep '0002\|0003' >> /dev/null && piRevision='1';
-echo -e "\nYour Pi has been detected as a Revision $piRevision.0"
+GPIOConfig="rev2.0";
+cat /proc/cpuinfo | grep 'Revision' | grep '0002\|0003' >> /dev/null && GPIOConfig='rev1.0';
+cat /proc/cpuinfo | grep 'Revision' | grep '00010' >> /dev/null && GPIOConfig='b_plus';
+echo -e "\nYour Pi has been detected as a $GPIOConfig"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
   gpioConfigured="X";
-  echo -e "The GPIO configuration for a Revision $piRevision.0 Pi will be set"
+  echo -e "The GPIO configuration for a $GPIOConfig will be set"
   until [[ "$gpioConfigured" =~ ^[yYnN]$ || -z "$gpioConfigured" ]]; do
     read -p "Is this correct? [Y/n]: " -n1 gpioConfigured
     echo
   done
   if [[ "$gpioConfigured" =~ ^[nN]$ ]]; then
-    piRevision='';
-    until [[ "$piRevision" =~ ^[12]$ ]]; do
-      read -p "Please enter your revision [1/2]: " -n1 piRevision
-      echo
+    GPIOConfig='';
+    until [[ "$GPIOConfig" = 'rev1.0' ]] || [[ "$GPIOConfig" = 'rev2.0' ]] || [[ "$GPIOConfig" = 'b_plus' ]]; do
+      read -p "Please enter your Pi variant [rev1.0|rev2.0|b_plus]: " GPIOConfig
     done
     echo
   fi
 done
 
-if [[ "$piRevision" == "1" ]]; then
-  cp /usr/share/berryio/default_config/berryio/gpio.rev1.0.example.php /etc/berryio/gpio.php || { echo -e "Install failed!" 1>&2; exit 1; }
-fi
+cp "/usr/share/berryio/default_config/berryio/gpio.$GPIOConfig.example.php" /etc/berryio/gpio.php || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nInstall successful!"
 echo -e "Finish the configuration as described in /usr/share/berryio/INSTALL.README.txt"
