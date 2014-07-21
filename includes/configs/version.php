@@ -38,6 +38,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.9.0', '2013-08-26', array('Added support for camera module', 'Added support for different sized LCD screens', 'Multiple minor improvements')),
   array('1.9.1', '2013-11-07', array('GPIO compatibility changes for Raspbian 2013-09-25')),
   array('1.9.2', '2013-12-29', array('Camera compatibility changes for Raspbian 2013-12-20')),
+  array('1.9.3', '2014-07-21', array('Added Model B+ detection')),
 );
 
 // Version Numbering
