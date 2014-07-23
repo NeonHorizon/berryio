@@ -30,7 +30,7 @@ For those interested in the technical details its mostly written in PHP which ru
 
 ###Features
 - Full GPIO control including input/output mode switching and on off toggling.
-- Support for Raspberry Pi revision 1 and 2 including 512MB version.
+- Support for Raspberry Pi Model A, Model B revision 1 and 2 (including both 256MB and 512MB versions) and Model B+.
 - Ability to take photos and adjust camera settings (video coming soon).
 - SPI DAC control and ADC values display.
 - Control of HDD44780 or KS0066U compatible LCD's (and VFD's).
@@ -54,5 +54,6 @@ You should have received a copy of the GNU General Public License along with thi
 ###Credits
 
 SPI module based on code from the Gertboard test suite:
+
 Copyright (C) Gert Jan van Loo & Myra VanInwegen 2012
 
