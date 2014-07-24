@@ -87,7 +87,7 @@ echo -e "<?\n/*-----------------------------------------------------------------
 echo -e "\n\nConfiguring GPIO settings\n-------------------------"
 GPIOConfig="rev2.0";
 cat /proc/cpuinfo | grep 'Revision' | grep '0002\|0003' >> /dev/null && GPIOConfig='rev1.0';
-cat /proc/cpuinfo | grep 'Revision' | grep '00010' >> /dev/null && GPIOConfig='b_plus';
+cat /proc/cpuinfo | grep 'Revision' | grep '0010' >> /dev/null && GPIOConfig='b_plus';
 echo -e "\nYour Pi has been detected as a $GPIOConfig"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
