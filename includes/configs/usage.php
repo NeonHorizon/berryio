@@ -49,10 +49,10 @@ $GLOBALS['USAGE_COMMANDS']['Email Control'] = array(
 $GLOBALS['USAGE_COMMANDS']['System Status'] = array(
   'system_status',
   'network_status',
+  'board_status',
   'cpu_status',
   'memory_status',
   'disk_status',
-  'board_status',
 );
 
 
@@ -72,5 +72,5 @@ $GLOBALS['USAGE_COMMANDS']['Version Control'] = array(
   'version',
   'check_version',
   'changelog',
-  'upgrade',  
+  'upgrade',
 );
