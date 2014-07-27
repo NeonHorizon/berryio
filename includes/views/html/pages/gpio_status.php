@@ -8,7 +8,8 @@
     <? $count = 0; foreach($gpio_modes as $pin => $mode):?>
       <? if($count >= GPIO_PINS_PER_ROW):?>
         </div>
-        <div class="stacked_container gpio_pins">
+        <div class="divider"></div>
+        <div class="container gpio_pins">
       <? $count = 0; endif ?>
       <?=view('modules/gpio/pin', array('pin' => $pin, 'mode' => $mode, 'value' => $gpio_values[$pin]))?>
     <? $count++; endforeach?>

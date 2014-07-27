@@ -1,0 +1,1 @@
+<? if($show_percentage):?><?=$percentage?>%<? endif?>

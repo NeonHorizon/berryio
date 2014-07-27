@@ -13,11 +13,13 @@
 
     $location_details = array( [text => $parameter_value] |
                                [bool => TRUE|FALSE] |
-                               [value => $parameter_value,
+                               [text => $parameter_value,
+                                value => $parameter_value,
                                 min => $parameter_min,
                                 max => $parameter_max,
-                                positive => TRUE|FALSE,
-                                absolute => TRUE|FALSE (indicates if scale is just a guide or not)]
+                                positive => TRUE|FALSE (indicates if the scale should go from good to bad or bad to good),
+                                virtual => TRUE|FALSE (indicates if its virtual or memory or not),
+                                absolute => TRUE|FALSE (indicates if scale is just a guide or an absolute percentage)]
                              );
 
     ....or FALSE on failure
@@ -25,6 +27,10 @@
 ----------------------------------------------------------------------------*/
 function memory_list()
 {
+  // Fixed memory amounts
+  $memory_cpu = memory_cpu();
+  $memory_gpu = memory_gpu();
+
   $locations = array();
 
   // Fetch location information from free command
@@ -32,6 +38,7 @@ function memory_list()
   $output = array();
   exec('/usr/bin/free --bytes --old', $output, $return_var);
   if($return_var) return FALSE;
+
   foreach($output as $line)
   {
     $columns = get_columns($line);
@@ -41,40 +48,93 @@ function memory_list()
     if(count($columns) >= 4 && $columns[0] != 'total')
     {
       $location = rtrim($columns[0], ':');
-      if($location == 'Mem')
-      {
-        $location = 'RAM'; // Tidyup abbreviations used in free command
-        $locations[$location]['Virtual']['bool'] = FALSE;
-      }
-      else
-        $locations[$location]['Virtual']['bool'] = TRUE;
 
-      $locations[$location]['Memory Location']['text'] = $location;
+      // Tidyup abbreviations used in free command
+      if($location == 'Mem') $location = 'RAM';
 
       if(is_numeric($columns[1]) && is_numeric($columns[2]) && is_numeric($columns[3]))
       {
         // Reset the power unit so it is recalculated based on the size
         unset($power);
 
-        $locations[$location]['Size']['text'] = si_unit($columns[1], $power, 1024, 1).'B';
-        $locations[$location]['Free']['text'] = si_unit($columns[3], $power, 1024, 1).'B';
-        $locations[$location]['Used']['text'] = si_unit($columns[2], $power, 1024, 1).'B';
-        $locations[$location]['Used']['min'] = 0;
-        $locations[$location]['Used']['max'] = $columns[1];
-        $locations[$location]['Used']['value'] = $columns[2];
-        $locations[$location]['Used']['positive'] = FALSE;
-        $locations[$location]['Used']['absolute'] = TRUE;
+        // Include onboard GPU memory
+        if($memory_cpu && $memory_gpu && $location == 'RAM')
+        {
+          $reserved = $memory_cpu - $columns[1];
+          $used = $columns[2] + $memory_gpu + $reserved;
+
+
+          // RAM (Total)
+          $locations[$location]['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location]['Type']['text'] = $location;
+
+          $locations[$location]['Size']['value'] = $memory_cpu + $memory_gpu;
+          $locations[$location]['Size']['text'] = si_unit($memory_cpu + $memory_gpu, $power, 1024, 1).'B';
+
+          $locations[$location]['Free']['value'] = $columns[3];
+          $locations[$location]['Free']['text'] = si_unit($columns[3], $power, 1024, 1).'B';
+
+          $locations[$location]['Used']['value'] = $used;
+          $locations[$location]['Used']['text'] = si_unit($used, $power, 1024, 1).'B';
+          $locations[$location]['Used']['min'] = 0;
+          $locations[$location]['Used']['max'] = $memory_cpu + $memory_gpu;
+          $locations[$location]['Used']['positive'] = FALSE;
+          $locations[$location]['Used']['absolute'] = TRUE;
+
+
+          // RAM (GPU)
+          $locations[$location.' (GPU)']['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location.' (GPU)']['Type']['text'] = $location.' (GPU)';
+
+          $locations[$location.' (GPU)']['Used']['value'] = $memory_gpu;
+          $locations[$location.' (GPU)']['Used']['text'] = si_unit($memory_gpu, $power, 1024, 1).'B';
+          $locations[$location.' (GPU)']['Used']['min'] = 0;
+          $locations[$location.' (GPU)']['Used']['max'] = $columns[3] + $memory_gpu;
+          $locations[$location.' (GPU)']['Used']['positive'] = FALSE;
+          $locations[$location.' (GPU)']['Used']['absolute'] = FALSE;
+
+
+          // RAM (Reserved)
+          $locations[$location.' (Reserved)']['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location.' (Reserved)']['Type']['text'] = $location.' (Reserved)';
+
+          $locations[$location.' (Reserved)']['Used']['value'] = $reserved;
+          $locations[$location.' (Reserved)']['Used']['text'] = si_unit($reserved, $power, 1024, 1).'B';
+          $locations[$location.' (Reserved)']['Used']['min'] = 0;
+          $locations[$location.' (Reserved)']['Used']['max'] = $columns[3] + $reserved;
+          $locations[$location.' (Reserved)']['Used']['positive'] = FALSE;
+          $locations[$location.' (Reserved)']['Used']['absolute'] = FALSE;
+        }
+        else
+        {
+          $locations[$location]['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location]['Type']['text'] = $location;
+
+          $locations[$location]['Size']['value'] = $columns[1];
+          $locations[$location]['Size']['text'] = si_unit($columns[1], $power, 1024, 1).'B';
+
+          $locations[$location]['Free']['value'] = $columns[3];
+          $locations[$location]['Free']['text'] = si_unit($columns[3], $power, 1024, 1).'B';
+
+          $locations[$location]['Used']['value'] = $columns[2];
+          $locations[$location]['Used']['text'] = si_unit($columns[2], $power, 1024, 1).'B';
+          $locations[$location]['Used']['min'] = 0;
+          $locations[$location]['Used']['max'] = $columns[1];
+          $locations[$location]['Used']['positive'] = FALSE;
+          $locations[$location]['Used']['absolute'] = TRUE;
+        }
 
         // If we know the buffers and the cache we can calculate the app
         if(isset($columns[5]) && is_numeric($columns[5]) && is_numeric($columns[6]) && is_numeric($columns[6]))
         {
           $apps = $columns[1] - $columns[3] - $columns[5] - $columns[6];
-          $locations[$location.' (Apps)']['Virtual']['bool'] = FALSE;
-          $locations[$location.' (Apps)']['Memory Location']['text'] = $location.' (Apps)';
+          $locations[$location.' (Apps)']['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location.' (Apps)']['Type']['text'] = $location.' (Apps)';
+
+          $locations[$location.' (Apps)']['Used']['value'] = $apps;
           $locations[$location.' (Apps)']['Used']['text'] = si_unit($apps, $power, 1024, 1).'B';
           $locations[$location.' (Apps)']['Used']['min'] = 0;
           $locations[$location.' (Apps)']['Used']['max'] = $columns[3] + $apps;
-          $locations[$location.' (Apps)']['Used']['value'] = $apps;
           $locations[$location.' (Apps)']['Used']['positive'] = FALSE;
           $locations[$location.' (Apps)']['Used']['absolute'] = FALSE;
         }
@@ -82,12 +142,13 @@ function memory_list()
         // Buffer calulations
         if(isset($columns[5]) && is_numeric($columns[5]))
         {
-          $locations[$location.' (Buffers)']['Virtual']['bool'] = FALSE;
-          $locations[$location.' (Buffers)']['Memory Location']['text'] = $location.' (Buffers)';
+          $locations[$location.' (Buffers)']['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location.' (Buffers)']['Type']['text'] = $location.' (Buffers)';
+
+          $locations[$location.' (Buffers)']['Used']['value'] = $columns[5];
           $locations[$location.' (Buffers)']['Used']['text'] = si_unit($columns[5], $power, 1024, 1).'B';
           $locations[$location.' (Buffers)']['Used']['min'] = 0;
           $locations[$location.' (Buffers)']['Used']['max'] = $columns[3] + $columns[5];
-          $locations[$location.' (Buffers)']['Used']['value'] = $columns[5];
           $locations[$location.' (Buffers)']['Used']['positive'] = FALSE;
           $locations[$location.' (Buffers)']['Used']['absolute'] = FALSE;
         }
@@ -97,12 +158,13 @@ function memory_list()
         // Cache calulations
         if(isset($columns[6]) && is_numeric($columns[6]))
         {
-          $locations[$location.' (Cache)']['Virtual']['bool'] = FALSE;
-          $locations[$location.' (Cache)']['Memory Location']['text'] = $location.' (Cache)';
+          $locations[$location.' (Cache)']['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location.' (Cache)']['Type']['text'] = $location.' (Cache)';
+
+          $locations[$location.' (Cache)']['Used']['value'] = $columns[6];
           $locations[$location.' (Cache)']['Used']['text'] = si_unit($columns[6], $power, 1024, 1).'B';
           $locations[$location.' (Cache)']['Used']['min'] = 0;
           $locations[$location.' (Cache)']['Used']['max'] = $columns[3] + $columns[6];
-          $locations[$location.' (Cache)']['Used']['value'] = $columns[6];
           $locations[$location.' (Cache)']['Used']['positive'] = FALSE;
           $locations[$location.' (Cache)']['Used']['absolute'] = FALSE;
         }
@@ -112,6 +174,9 @@ function memory_list()
       else
       {
         // Fallback if we don't get numerical values
+        $locations[$location]['Virtual']['bool'] = !($location == 'RAM');
+        $locations[$location]['Type']['text'] = $location;
+
         $locations[$location]['Size']['text'] = $columns[1];
         $locations[$location]['Used']['text'] = $columns[2];
         $locations[$location]['Free']['text'] = $columns[3];
@@ -121,4 +186,36 @@ function memory_list()
   }
 
   return $locations;
+}
+
+
+/*----------------------------------------------------------------------------
+  Return the memory available to the CPU in bytes or FALSE
+----------------------------------------------------------------------------*/
+function memory_cpu()
+{
+  exec('sudo /usr/bin/vcgencmd get_mem arm', $output, $return_var);
+  if($return_var) return FALSE;
+
+  foreach($output as $line)
+    if(substr($line, 0, 4) == 'arm=' && substr($line, -1) == 'M')
+      return substr($line, 4, -1) * 1024 * 1024;
+
+  return FALSE;
+}
+
+
+/*----------------------------------------------------------------------------
+  Return the memory available to the GPU in bytes or FALSE
+----------------------------------------------------------------------------*/
+function memory_gpu()
+{
+  exec('sudo /usr/bin/vcgencmd get_mem gpu', $output, $return_var);
+  if($return_var) return FALSE;
+
+  foreach($output as $line)
+    if(substr($line, 0, 4) == 'gpu=' && substr($line, -1) == 'M')
+      return substr($line, 4, -1) * 1024 * 1024;
+
+  return FALSE;
 }

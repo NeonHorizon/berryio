@@ -19,9 +19,9 @@
         <? if(isset($information['Temporary']['bool']) && !$information['Temporary']['bool'] && isset($information['Used']['value']) && isset($information['Used']['min']) && isset($information['Used']['max'])):?>
           <tr>
             <th><?=h($partition)?></th>
-            <td class="right"><?=h($information['Size']['text'])?></td>
-            <td class="right"><?=h($information['Used']['text'])?></td>
-            <td class="right"><?=h($information['Free']['text'])?></td>
+            <td class="right"><?=h(isset($information['Size']['text']) ? $information['Size']['text'] : '')?></td>
+            <td class="right"><?=h(isset($information['Used']['text']) ? $information['Used']['text'] : '')?></td>
+            <td class="right"><?=h(isset($information['Free']['text']) ? $information['Free']['text'] : '')?></td>
             <td class="code"><?=graph_horizontal_bar($information['Used']['value'], $information['Used']['min'], $information['Used']['max'], isset($information['Used']['positive']) ? $information['Used']['positive'] : '')?></td>
           </tr>
         <? endif?>
@@ -46,9 +46,9 @@
         <? if(isset($information['Temporary']['bool']) && $information['Temporary']['bool'] && isset($information['Used']['value']) && isset($information['Used']['min']) && isset($information['Used']['max'])):?>
           <tr>
             <th><?=h($partition)?></th>
-            <td class="right"><?=h($information['Size']['text'])?></td>
-            <td class="right"><?=h($information['Used']['text'])?></td>
-            <td class="right"><?=h($information['Free']['text'])?></td>
+            <td class="right"><?=h(isset($information['Size']['text']) ? $information['Size']['text'] : '')?></td>
+            <td class="right"><?=h(isset($information['Used']['text']) ? $information['Used']['text'] : '')?></td>
+            <td class="right"><?=h(isset($information['Free']['text']) ? $information['Free']['text'] : '')?></td>
             <td class="code"><?=graph_horizontal_bar($information['Used']['value'], $information['Used']['min'], $information['Used']['max'], isset($information['Used']['positive']) ? $information['Used']['positive'] : '')?></td>
           </tr>
         <? endif?>

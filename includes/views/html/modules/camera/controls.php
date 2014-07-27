@@ -19,4 +19,4 @@
         <? endfor?>
       <? endif?>
     </table>
-  </div><br />
+  </div>

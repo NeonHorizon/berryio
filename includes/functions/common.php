@@ -168,6 +168,7 @@ function si_unit($value, &$power = '', $mode = 1000, $places = 2)
   return number_format($value/pow($mode, floor($power)), $places, '.', ',').$symbols[$power];
 }
 
+
 /*----------------------------------------------------------------------------
   Loads a settings file and produces and error if its no good
 ----------------------------------------------------------------------------*/

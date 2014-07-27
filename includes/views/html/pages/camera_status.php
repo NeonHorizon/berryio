@@ -4,7 +4,9 @@
   <h2>CAMERA SETTINGS</h2>
 
   <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Settings'))?>
+  <div class="divider"></div>
   <?=view('modules/camera/controls', array('type' => 'VIDEOS', 'control' => 'Video'))?>
+  <div class="divider"></div>
   <?=view('modules/camera/controls', array('type' => 'IMAGES', 'control' => 'Images'))?>
 
 </div>
@@ -26,7 +28,9 @@
   <h2>CAMERA PROCESSING</h2>
 
   <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Processing'))?>
+  <div class="divider"></div>
   <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Orientation'))?>
+  <div class="divider"></div>
   <?=view('modules/camera/controls', array('type' => 'COMMON', 'control' => 'Effects'))?>
 
 </div>

@@ -42,21 +42,21 @@
         <tr>
           <th>Temperature</th>
           <td><?=h($temperature)?><sup>o</sup>C</td>
-          <td class="code"><?=graph_horizontal_bar($temperature, 0, 85, FALSE)?></td>
+          <td class="code"><?=graph_horizontal_bar($temperature, CPU_TEMP_MIN, CPU_TEMP_MAX, FALSE)?></td>
         </tr>
       <? endif?>
       <? if($speed != ''):?>
         <tr>
           <th>Speed</th>
           <td><?=h(si_unit($speed, $na, 1000, 0))?>Hz</td>
-          <td class="code"><?=graph_horizontal_bar($speed, 200000000, 1200000000, FALSE)?></td>
+          <td class="code"><?=graph_horizontal_bar($speed, CPU_SPEED_MIN, CPU_SPEED_MAX, FALSE)?></td>
         </tr>
       <? endif?>
       <? if($voltage != ''):?>
         <tr>
           <th>Voltage</th>
           <td><?=h($voltage)?>V</td>
-          <td class="code"><?=graph_horizontal_bar($voltage, $voltage < 1 ? $voltage : 1, 1.4, FALSE)?></td>
+          <td class="code"><?=graph_horizontal_bar($voltage, $voltage < CPU_VOLT_MIN ? $voltage : CPU_VOLT_MIN, CPU_VOLT_MAX, FALSE)?></td>
         </tr>
       <? endif?>
     </table>

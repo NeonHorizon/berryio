@@ -24,8 +24,7 @@ body {
 }
 
 .panel,
-.container,
-.stacked_container {
+.container {
   border:           1px solid #666666;
 }
 
@@ -38,17 +37,11 @@ body {
   background:       #222222 url('/images/layout/backgrounds/pattern.png') repeat top left;
 }
 
-.container,
-.stacked_container {
+.container {
   display:          inline-block;
   vertical-align:   top;
   margin:           3px;
   background:       #000000 url('/images/layout/backgrounds/pattern.png') repeat center center;
-}
-
-.stacked_container {
-  display:          block;
-  margin:           12px auto 3px auto;
 }
 
 .group {
@@ -59,6 +52,11 @@ body {
 
 .not_too_wide {
   width:            600px;
+}
+
+.divider {
+  clear:            both;
+  height:           4px;
 }
 
 
@@ -232,14 +230,14 @@ select, .select {
 
 
 /*------------------------------------------------------------------------------
-  Graph
+  Bar Chart
 ------------------------------------------------------------------------------*/
 
 div.clickable_horizontal_bar,
 div.horizontal_bar {
   font-size:        0px;
   line-height:      0px;
-  whitespace:       nowrap;
+  white-space:      nowrap;
   text-align:       left;
 }
 
@@ -346,7 +344,7 @@ div.disk_partitions table {
 ------------------------------------------------------------------------------*/
 
 div.memory_locations {
-  min-height:       155px;
+  min-height:       195px;
   min-width:        450px;
 }
 
@@ -361,7 +359,7 @@ div.memory_locations table {
 
 div.board_information {
   min-height:       220px;
-  min-width:        450px;
+  width:            450px;
 }
 
 div.board_information table {
@@ -540,5 +538,14 @@ div.camera_controls th {
 
 #camera_trigger_img {
   cursor:           pointer;
-  padding:          13px 10px 6px 10px;
+  padding:          17px 10px 9px 10px;
+}
+
+
+/*------------------------------------------------------------------------------
+  USAGE
+------------------------------------------------------------------------------*/
+
+div.usage {
+  width:            592px;
 }

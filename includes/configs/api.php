@@ -4,7 +4,6 @@
 ------------------------------------------------------------------------------*/
 
 $GLOBALS['API_COMMANDS'] = array(
-  'version',
   'gpio_status',
   'gpio_set_mode',
   'gpio_set_value',
@@ -18,6 +17,10 @@ $GLOBALS['API_COMMANDS'] = array(
   'lcd_output',
   'lcd_position',
   'lcd_command',
+  'cpu_status',
+  'memory_status',
+  'disk_status',
   'reboot',
   'shutdown',
+  'version',
 );

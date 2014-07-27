@@ -23,7 +23,7 @@
   <p class="left">http://<?=$GLOBALS['EXEC']?>/&lt;command&gt;[/&lt;option&gt;][/&lt;option&gt;][....]</p>
 
   <? foreach($GLOBALS['USAGE_COMMANDS'] as $group => $commands):?>
-    <div class="stacked_container">
+    <div class="container usage">
 
       <h3 class="left">
         <?=h($group)?> Commands
@@ -37,6 +37,7 @@
       </p>
 
     </div>
+    <div class="divider"></div>
 
   <? endforeach?>
 

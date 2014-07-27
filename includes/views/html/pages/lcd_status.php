@@ -13,7 +13,7 @@
       </p>
     </div>
 
-    <br />
+    <div class="divider"></div>
 
     <div class="container">
       <p>

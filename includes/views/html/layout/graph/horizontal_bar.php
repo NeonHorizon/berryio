@@ -1,5 +1,8 @@
 
 <div class="<?=$set_function ? 'clickable_' : ''?>horizontal_bar">
+  <? if($show_percentage):?>
+    <div class="horizontal_bar_value" <?=$id != '' ? 'id="'.$id.'_value"' : ''?>><?=$percentage === '' ? '&nbsp;' : h($percentage.'%')?></div>
+  <? endif?>
   <div class="horizontal_bar_outline">
     <span class="horizontal_bar_fill" <?=$id != '' ? 'id="'.$id.'_bar"' : ''?> style="<?=$color?>width: <?=$percentage + 0?>%"></span>
     <? if($set_function):?>
@@ -16,7 +19,4 @@
         title="" />
     <? endif?>
   </div>
-  <? if($show_percentage):?>
-    <div class="horizontal_bar_value" <?=$id != '' ? 'id="'.$id.'_value"' : ''?>><?=$percentage == '' ? '&nbsp;' : h($percentage.'%')?></div>
-  <? endif?>
 </div>

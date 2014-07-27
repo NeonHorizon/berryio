@@ -8,7 +8,7 @@
     <h2>Physical</h2>
     <table>
       <tr>
-        <th>Mount</th>
+        <th>Type</th>
         <th class="right">Size</th>
         <th class="right">Used</th>
         <th class="right">Free</th>
@@ -35,7 +35,7 @@
     <h2>Virtual</h2>
     <table>
       <tr>
-        <th>Mount</th>
+        <th>Type</th>
         <th class="right">Size</th>
         <th class="right">Used</th>
         <th class="right">Free</th>

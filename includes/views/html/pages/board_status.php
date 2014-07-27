@@ -4,7 +4,7 @@
   <h2>MAIN BOARD</h2>
 
   <? $count = 0; foreach($information as $section => $section_details):?>
-    <? if($count++ > 1):?><br /><? endif?>
+    <? if($count++ == 2 || $count == 5):?><div class="divider"></div><? endif?>
     <div class="container board_information">
       <h2><?=h($section)?> Information</h2>
 
