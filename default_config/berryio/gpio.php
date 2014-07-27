@@ -38,7 +38,7 @@ $GLOBALS['GPIO_PINS'] = array(
 */
 
 
-// Settings for revision 2 board (including 512MB version bit not B+)
+// Settings for revision 2 board (including 512MB version but not B+)
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
   3  => 'I2C SCL1',
@@ -102,7 +102,7 @@ $GLOBALS['GPIO_PINS'] = array(
 */
 
 
-define('GPIO_PINS_PER_ROW', 5);  // Change to fit your browser window
+define('GPIO_PINS_PER_ROW', 6);  // Change to fit your browser window
 define('GPIO_UPDATE_INTERVAL', 400);  // Update interval in ms
 
 // Do not change below this line
