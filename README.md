@@ -34,8 +34,8 @@ For those interested in the technical details its mostly written in PHP which ru
 - Ability to take photos and adjust camera settings (video coming soon).
 - SPI DAC control and ADC values display.
 - Control of HDD44780 or KS0066U compatible LCD's (and VFD's).
-- CPU information display, including temperature.
-- Disk and memory usage information.
+- Realtime CPU information display, including temperature.
+- Realtime disk and memory usage information.
 - Network status view showing connectivity, signal strength, etc.
 - Command line interface which offers the same level of control as the web browser interface.
 - Email notification with a link to the BerryIO web browser interface.
