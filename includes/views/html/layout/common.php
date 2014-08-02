@@ -10,12 +10,12 @@
     <meta name="doc-type" content="Web Page" />
     <link rel="stylesheet" href="/css/main.css?10" type="text/css" />
 
-    <? foreach($GLOBALS['JAVASCRIPT_RUN'] as $javascript):?>
-      <?= view('javascript/'.$javascript)?>
+    <? foreach($GLOBALS['JAVASCRIPT_RUN'] as $type => $javascript):?>
+      <?= view('javascript/'.$javascript, isset($GLOBALS['JAVASCRIPT_DATA'][$type]) ? $GLOBALS['JAVASCRIPT_DATA'][$type] : '')?>
     <? endforeach?>
 
-    <? foreach($GLOBALS['JAVASCRIPT'] as $javascript):?>
-      <?= view('javascript/'.$javascript)?>
+    <? foreach($GLOBALS['JAVASCRIPT'] as $type => $javascript):?>
+      <?= view('javascript/'.$javascript, isset($GLOBALS['JAVASCRIPT_DATA'][$type]) ? $GLOBALS['JAVASCRIPT_DATA'][$type] : '')?>
     <? endforeach?>
 
   </head>

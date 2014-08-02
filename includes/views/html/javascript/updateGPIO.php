@@ -1,11 +1,11 @@
 
 <script type="text/javascript">
 
-  var changeInProgress = false;
+  var GPIOChangeInProgress = false;
 
   function updateGPIOPins() {
     // Wait until we are not busy
-    if(changeInProgress) {
+    if(GPIOChangeInProgress) {
       setTimeout(updateGPIOPins, <?=GPIO_UPDATE_INTERVAL?>);
       return;
     }
@@ -14,7 +14,7 @@
     updateHttp.onreadystatechange = function() {
       if(updateHttp.readyState == 4) {
         if(updateHttp.status == 200) {
-          var result = updateHttp.responseText.split('\n');
+          var result = updateHttp.responseText.replace('\r', '').split('\n');
           if(result[0] == 'OK:') {
             for(line in result) {
               if(line != 0 && result[line] != '') {
@@ -67,50 +67,50 @@
 
   function setGPIOMode(pin, mode) {
     // Wait until we are not busy
-    if(changeInProgress) {
+    if(GPIOChangeInProgress) {
       setTimeout(function(){setGPIOMode(pin, mode)}, 50);
       return;
     }
 
-    changeInProgress = true;
-    var changeHttp = new XMLHttpRequest();
-    changeHttp.onreadystatechange = function() {
-      if(changeHttp.readyState == 4) {
-        if(changeHttp.status == 200) {
-          var result = changeHttp.responseText.split('\n');
+    GPIOChangeInProgress = true;
+    var updateHttp = new XMLHttpRequest();
+    updateHttp.onreadystatechange = function() {
+      if(updateHttp.readyState == 4) {
+        if(updateHttp.status == 200) {
+          var result = updateHttp.responseText.replace('\r', '').split('\n');
           if(result[0] == 'OK:') {
             updateGPIOPin(pin, mode, 'not_exported');
           }
         }
-        changeInProgress = false;
+        GPIOChangeInProgress = false;
       }
     }
-    changeHttp.open('POST', '/api_command/gpio_set_mode/'+pin+'/'+mode, true);
-    changeHttp.send();
+    updateHttp.open('POST', '/api_command/gpio_set_mode/'+pin+'/'+mode, true);
+    updateHttp.send();
   }
 
   function setGPIOValue(pin, value) {
     // Wait until we are not busy
-    if(changeInProgress) {
+    if(GPIOChangeInProgress) {
       setTimeout(function(){setGPIOValue(pin, value)}, 50);
       return;
     }
 
-    changeInProgress = true;
-    var changeHttp = new XMLHttpRequest();
-    changeHttp.onreadystatechange = function() {
-      if(changeHttp.readyState == 4) {
-        if(changeHttp.status == 200) {
-          var result = changeHttp.responseText.split('\n');
+    GPIOChangeInProgress = true;
+    var updateHttp = new XMLHttpRequest();
+    updateHttp.onreadystatechange = function() {
+      if(updateHttp.readyState == 4) {
+        if(updateHttp.status == 200) {
+          var result = updateHttp.responseText.replace('\r', '').split('\n');
           if(result[0] == 'OK:') {
             updateGPIOPin(pin, 'out', value);
           }
         }
-        changeInProgress = false;
+        GPIOChangeInProgress = false;
       }
     }
-    changeHttp.open('POST', '/api_command/gpio_set_value/'+pin+'/'+value, true);
-    changeHttp.send();
+    updateHttp.open('POST', '/api_command/gpio_set_value/'+pin+'/'+value, true);
+    updateHttp.send();
   }
 
   updater = setTimeout(updateGPIOPins, <?=GPIO_UPDATE_INTERVAL?>);

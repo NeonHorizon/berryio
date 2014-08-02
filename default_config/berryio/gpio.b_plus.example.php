@@ -103,7 +103,15 @@ $GLOBALS['GPIO_PINS'] = array(
 
 
 define('GPIO_PINS_PER_ROW', 5);  // Change to fit your browser window
-define('GPIO_UPDATE_INTERVAL', 400);  // Update interval in ms
+
+// This value specifies the delay between updates of the GPIO information on the
+// GPIO Status web page. Making these intervals too small will create a high CPU
+// load when viewing. It should be noted the updates only take place when
+// someone is viewing the BerryIO GPIO Status Page, your performance will be
+// unaffected at other times.
+// Update interval is in ms (1000ms = 1 second)
+define('GPIO_UPDATE_INTERVAL', 400);
+
 
 // Do not change below this line
 define('GPIO_SETTINGS_VERSION', '3');

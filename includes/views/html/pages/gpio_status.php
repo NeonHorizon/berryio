@@ -35,24 +35,12 @@
   <h2>HINTS AND TIPS</h2>
 
   <p class="left">
-    If you are using SPI, I<sup>2</sup>C or the serial port (for example with a console cable), its best to make sure the relevant GPIO pins are set to "not in use".
+    You can name and add/remove GPIO pins on this page by editing the file <?=h(SETTINGS)?>gpio.php<br />
+    If you move your SD card between Pi models (for example from a B to a B+) you will need to edit this file to enable the extra GPIO pins.
   </p>
 
   <p class="left">
-    The pins are as follows...
-  </p>
-
-  <p class="left">
-    <b>SPI:</b> GPIO-7, GPIO-8, GPIO-9, GPIO-10 and GPIO-11
-  </p>
-
-  <p class="left">
-    <b>I<sup>2</sup>C:</b> GPIO-0, GPIO-1, GPIO-2 and GPIO-3<br />
-    <i>(Depending on which revision board you have, those GPIO pins may be on the P5 header)</i>
-  </p>
-
-  <p class="left">
-    <b>UART (serial):</b> GPIO-14 and GPIO-15
+    If you are using SPI, I<sup>2</sup>C or the UART serial port (for example with a console cable), its best to make sure the relevant GPIO pins are set to "not in use".
   </p>
 
 </div>

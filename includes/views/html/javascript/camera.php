@@ -41,7 +41,7 @@
       updateHttp.onreadystatechange = function() {
         if(updateHttp.readyState == 4) {
           if(updateHttp.status == 200) {
-            var result = updateHttp.responseText.split('\n');
+            var result = updateHttp.responseText.replace('\r', '').split('\n');
             if(result[0] == 'OK:') {
               var file = document.getElementById(type + '_' + id);
               file.parentNode.removeChild(file);
@@ -93,7 +93,7 @@
       updateHttp.onreadystatechange = function() {
         if(updateHttp.readyState == 4) {
           if(updateHttp.status == 200) {
-            var result = updateHttp.responseText.split('\n');
+            var result = updateHttp.responseText.replace('\r', '').split('\n');
             if(result[0] == 'OK:') {
               updateButtonMomentary('', button, 2, '');
               cameraViewfinderSet(result[1], button);

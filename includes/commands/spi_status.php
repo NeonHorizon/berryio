@@ -20,6 +20,6 @@ if($GLOBALS['EXEC_MODE'] == 'cli' && count($args) == 3)
   $page['spi_dac_values'][$args[0]][$args[1]] = $args[2];
 
 // Display status page
-$GLOBALS['JAVASCRIPT'][] = 'updateSPI';
+$GLOBALS['JAVASCRIPT']['updateSPI'] = 'updateSPI';
 require_once(FUNCTIONS.'graph.php');
 $content .= view('pages/spi_status', $page);

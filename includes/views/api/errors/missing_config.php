@@ -1,1 +1,1 @@
-ERROR: Configuration file <?=SETTINGS?><?=$file?>.php is missing!
+ERROR: Configuration file <?=SETTINGS?><?=$file?>.php is missing.

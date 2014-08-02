@@ -2,11 +2,11 @@
 SYSTEM LOAD AVERAGE:
 
   Time Period   Queued Processes
-     1 Minute   <?=str_pad($load_average[0], 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar(1 - pow(3, -$load_average[0]), 0, 1, FALSE, FALSE)?>
+     1 Minute   <?=str_pad($load_average[0], 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar(1 - pow(SYSTEM_LOAD_SENSITIVITY, -$load_average[0]), 0, 1, FALSE, FALSE)?>
 
-    5 Minutes   <?=str_pad($load_average[1], 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar(1 - pow(3, -$load_average[0]), 0, 1, FALSE, FALSE)?>
+    5 Minutes   <?=str_pad($load_average[1], 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar(1 - pow(SYSTEM_LOAD_SENSITIVITY, -$load_average[0]), 0, 1, FALSE, FALSE)?>
 
-   14 Minutes   <?=str_pad($load_average[2], 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar(1 - pow(3, -$load_average[0]), 0, 1, FALSE, FALSE)?>
+   14 Minutes   <?=str_pad($load_average[2], 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar(1 - pow(SYSTEM_LOAD_SENSITIVITY, -$load_average[0]), 0, 1, FALSE, FALSE)?>
 
 
 CPU READINGS:

@@ -3,7 +3,7 @@
 **********************************************************************<br />
 * ERROR: Action Needed!<br />
 * <br />
-* Your configuration file <?=h(SETTINGS)?><?=h($file)?>.php<br />
+* The configuration file <?=h(SETTINGS)?><?=h($file)?>.php<br />
 * needs updating to work with this version of <?=h(REAL_NAME)?><br />
 * <br />
 * Please replace it with the new default file:<br />

@@ -156,6 +156,7 @@ function get_columns($line)
   Format a value to an si unit
   (only does positive powers at the moment, may need to do neg at some point)
   Set mode to 1024 for disk capacities
+  NOTE: There is also a javascript version of this function
 ----------------------------------------------------------------------------*/
 function si_unit($value, &$power = '', $mode = 1000, $places = 2)
 {
@@ -165,7 +166,7 @@ function si_unit($value, &$power = '', $mode = 1000, $places = 2)
   if(!is_numeric($power)) $power = floor(log($value)/log($mode));
 
   // Return formatted value
-  return number_format($value/pow($mode, floor($power)), $places, '.', ',').$symbols[$power];
+  return number_format($value/pow($mode, floor($power)), $places, '.', '').$symbols[$power];
 }
 
 
@@ -187,4 +188,18 @@ function settings($file, $version = '')
     echo view('errors/incompatible_config', array('file' => $file));
     exit(1);
   }
+}
+
+
+/*----------------------------------------------------------------------------
+  Converts a string into text which can be used in part of a link, variable,
+  class or id
+  NOTE: There is also a javascript version of this function
+----------------------------------------------------------------------------*/
+function make_link($string)
+{
+  $string = strtr($string, array('&' => 'and'));
+  $string = strtr($string, array('~' => '_'));
+
+  return preg_replace('/%../', '_', rawurlencode(strtolower($string)));
 }

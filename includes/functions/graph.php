@@ -10,9 +10,14 @@
   $id is postfixed with _bar and _value for the bargraph width and
   percentage respectively
   $set_function, javascript to call with $id and $percentage, makes the graph interactive
+  NOTE: There is also a javascript version of this function
 ----------------------------------------------------------------------------*/
 function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percentage = TRUE, $id = '', $set_function = '')
 {
+  // Load the javascript for setting the graph values if in HTML mode
+  if($GLOBALS['EXEC_MODE'] == 'html')
+    $GLOBALS['JAVASCRIPT']['graph/updateGraphHorizontalBar'] = 'graph/updateGraphHorizontalBar';
+
   // Sanity checks
   if((!is_numeric($value) && $value != '') || !is_numeric($min) || !is_numeric($max))
     return $GLOBALS['EXEC_MODE'] == 'html' ? h($value) : $value;
@@ -20,7 +25,7 @@ function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percenta
   if($value != '' && ($value > $max || $value < $min || $min >= $max))
     return $GLOBALS['EXEC_MODE'] == 'html' ? h($value) : $value;
 
-  // Calculate the colour
+  // Calculate and set the colour
   $offset = round((($value - $min) / ($max - $min)) * 255);
   if($positive === TRUE)
     $data['color'] = 'background-color: rgb('.(255 - $offset).', '.$offset.', 0);';
@@ -34,7 +39,7 @@ function graph_horizontal_bar($value, $min, $max, $positive = '', $show_percenta
 
   // Load the javascript for interactive graphs if need be
   if($set_function)
-    $GLOBALS['JAVASCRIPT']['graph/graphHorizontalBar'] = 'graph/graphHorizontalBar';
+    $GLOBALS['JAVASCRIPT']['graph/setGraphHorizontalBar'] = 'graph/setGraphHorizontalBar';
 
   $data['percentage'] = $value != '' ? round((($value - $min) / ($max - $min)) * 100) : '';
   $data['show_percentage'] = $show_percentage;

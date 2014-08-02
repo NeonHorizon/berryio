@@ -9,5 +9,5 @@ $title = 'LCD Control';
 require_once(FUNCTIONS.'lcd.php');
 
 // Display status page
-$GLOBALS['JAVASCRIPT'][] = 'getScrollY';
+$GLOBALS['JAVASCRIPT']['getScrollY'] = 'getScrollY';
 $content .= view('pages/lcd_status');

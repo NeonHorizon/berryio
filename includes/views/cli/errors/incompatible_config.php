@@ -2,7 +2,7 @@
 **********************************************************************
 * ERROR: Action Needed!
 *
-* Your configuration file <?=SETTINGS?><?=$file?>.php
+* The configuration file <?=SETTINGS?><?=$file?>.php
 * needs updating to work with this version of <?=REAL_NAME?>
 
 *

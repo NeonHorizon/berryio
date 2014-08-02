@@ -7,10 +7,10 @@
     <span class="horizontal_bar_fill" <?=$id != '' ? 'id="'.$id.'_bar"' : ''?> style="<?=$color?>width: <?=$percentage + 0?>%"></span>
     <? if($set_function):?>
       <img
-        onmousemove="updateGraphHorizontalBar(event, '<?=$id?>', '', '')"
-        onmouseup="  updateGraphHorizontalBar(event, '<?=$id?>', false, '<?=$set_function !== TRUE ? $set_function : ''?>')"
-        onmouseout=" updateGraphHorizontalBar(event, '<?=$id?>', false, '<?=$set_function !== TRUE ? $set_function : ''?>')"
-        onmousedown="updateGraphHorizontalBar(event, '<?=$id?>', true,  '<?=$set_function !== TRUE ? $set_function : ''?>')"
+        onmousemove="setGraphHorizontalBar(event, '<?=$id?>', '', '')"
+        onmouseup="  setGraphHorizontalBar(event, '<?=$id?>', false, '<?=$set_function !== TRUE ? $set_function : ''?>')"
+        onmouseout=" setGraphHorizontalBar(event, '<?=$id?>', false, '<?=$set_function !== TRUE ? $set_function : ''?>')"
+        onmousedown="setGraphHorizontalBar(event, '<?=$id?>', true,  '<?=$set_function !== TRUE ? $set_function : ''?>')"
         class="horizontal_bar_slider"
         id="<?=$id?>_slider"
         style="left: <?=$percentage -25?>px"

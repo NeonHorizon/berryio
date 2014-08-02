@@ -17,5 +17,6 @@ $GLOBALS['MENU'] = array(
   'about'          => 'About',
 );
 
+
 // Do not change below this line
 define('MENU_SETTINGS_VERSION', '2');

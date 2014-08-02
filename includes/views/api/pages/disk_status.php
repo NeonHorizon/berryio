@@ -1,3 +1,4 @@
+OK:
 <? foreach($disk_partitions as $location => $information):?>
 <? if(isset($information['Temporary']['bool']) && !$information['Temporary']['bool']):?>
 <?=$location?>

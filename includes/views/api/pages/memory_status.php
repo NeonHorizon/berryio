@@ -1,3 +1,4 @@
+OK:
 <? foreach($memory_locations as $location => $information):?>
 <? if(isset($information['Virtual']['bool']) && !$information['Virtual']['bool']):?>
 <?=$location?>
