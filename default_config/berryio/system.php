@@ -3,7 +3,7 @@
   BerryIO System Status Settings
 ------------------------------------------------------------------------------*/
 
-// This value specifies the delay between updates of the CPU, Memory and disk
+// These values specify the delay between updates of the CPU, Memory and disk
 // information on the System Status web page. Making these intervals too small
 // will create a high CPU load when viewing. It should be noted the updates
 // only take place when someone is viewing the BerryIO System Status Page, your
