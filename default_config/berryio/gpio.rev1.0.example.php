@@ -36,7 +36,7 @@ $GLOBALS['GPIO_PINS'] = array(
 );
 
 
-// Settings for revision 2 board (including 512MB version bit not B+)
+// Settings for revision 2 board (including 512MB version but not B+)
 /*
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
