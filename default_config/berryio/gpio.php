@@ -38,7 +38,8 @@ $GLOBALS['GPIO_PINS'] = array(
 */
 
 
-// Settings for revision 2 board (including 512MB version but not B+)
+// Settings for revision 2 board (including 512MB version but not A+ or B+)
+/*
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
   3  => 'I2C SCL1',
@@ -58,6 +59,7 @@ $GLOBALS['GPIO_PINS'] = array(
   25 => 'GPIO_GEN6',
   27 => 'GPIO_GEN2',
 );
+*/
 
 // Extra GPIO Pins on the optional P5 header on the revision 2 board
 /*
@@ -70,8 +72,7 @@ $GLOBALS['GPIO_PINS'] += array(
 */
 
 
-// Settings for model B+ board
-/*
+// Settings for model A+ and B+ board
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
   3  => 'I2C SCL1',
@@ -99,10 +100,9 @@ $GLOBALS['GPIO_PINS'] = array(
   26 => '',
   27 => 'GPIO_GEN2',
 );
-*/
 
 
-define('GPIO_PINS_PER_ROW', 6);  // Change to fit your browser window
+define('GPIO_PINS_PER_ROW', 5);  // Change to fit your browser window
 
 // This value specifies the delay between updates of the GPIO information on the
 // GPIO Status web page. Making these intervals too small will create a high CPU

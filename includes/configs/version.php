@@ -45,6 +45,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.10.1', '2014-07-24', array('Fixed problem with B+ autodetection during install')),
   array('1.11.0', '2014-07-27', array('Improved Memory Status', 'Improved Board Status', 'Fixed Firefox CSS Issue', 'Added CPU, Disk, and Memory Status to the API', 'Fixed missing 0%', 'Multiple minor fixes')),
   array('1.12.0', '2014-08-02', array('Realtime CPU, Memory and Disk monitoring on the System Status page', 'Improved comments in config files and Hints and Tips', 'Fixes for Disk and Memory API\'s')),
+  array('1.12.1', '2015-01-23', array('Added support for A+ and Compute Module and updated board information')),
 );
 
 // Version Numbering
