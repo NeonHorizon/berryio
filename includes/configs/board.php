@@ -24,6 +24,6 @@ $GLOBALS['BOARD_PI_REVISIONS'] = array(
   '000e' => array('Model' => 'B',  'Revision' => '2.1', 'Memory' => '512MB', 'Manufacturer' => 'Sony',      ),
   '000f' => array('Model' => 'B',  'Revision' => '2.0', 'Memory' => '512MB', 'Manufacturer' => 'Qisda'      ),
   '0010' => array('Model' => 'B+', 'Revision' => '1.0', 'Memory' => '512MB', 'Manufacturer' => 'Sony',      ),
-  '0011' => array('Model' => 'CM', 'Revision' => '1.0', 'Memory' => '512MB', 'Manufacturer' => 'Sony,       ),
+  '0011' => array('Model' => 'CM', 'Revision' => '1.0', 'Memory' => '512MB', 'Manufacturer' => 'Sony',       ),
   '0012' => array('Model' => 'A+', 'Revision' => '1.0', 'Memory' => '512MB', 'Manufacturer' => 'Sony',      ),
 );
