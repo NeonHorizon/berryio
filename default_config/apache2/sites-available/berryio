@@ -14,7 +14,7 @@
     Order allow,deny
     allow from all
 
-    php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/"
+    php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/:/sys/devices/"
     php_admin_value include_path "/usr/share/berryio/includes"
     
     AuthType Basic

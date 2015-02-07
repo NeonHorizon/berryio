@@ -46,6 +46,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.11.0', '2014-07-27', array('Improved Memory Status', 'Improved Board Status', 'Fixed Firefox CSS Issue', 'Added CPU, Disk, and Memory Status to the API', 'Fixed missing 0%', 'Multiple minor fixes')),
   array('1.12.0', '2014-08-02', array('Realtime CPU, Memory and Disk monitoring on the System Status page', 'Improved comments in config files and Hints and Tips', 'Fixes for Disk and Memory API\'s')),
   array('1.12.1', '2015-01-23', array('Added support for A+ and Compute Module and updated board information')),
+  array('1.12.2', '2015-02-07', array('Changes for Raspbian 2015-01-31 compatibility (requires update to be run twice)')),
 );
 
 // Version Numbering
