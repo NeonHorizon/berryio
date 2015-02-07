@@ -1,3 +1,5 @@
+*NOTE: Those having issues with the latest version of Raspbian, please run berryio upgrade twice and this should resolve it*
+
 BerryIO
 =======
 
