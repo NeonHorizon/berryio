@@ -62,7 +62,7 @@ function version_upgrade()
   else
     echo 'Your current version appears to be different to the latest version.'.PHP_EOL.'Starting the upgrade process....'.PHP_EOL.PHP_EOL;
 
-  Sync with github
+  // Sync with github
   echo 'Syncing the application files....'.PHP_EOL;
   exec('cd '.BASE.'; git pull origin master 2>&1', $output, $return_var);
   if($return_var != 0)
