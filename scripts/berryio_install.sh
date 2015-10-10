@@ -55,7 +55,8 @@ a2enmod rewrite authnz_external || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nEnabling the BerryIO site configuration...."
 a2dissite default
-a2dissite default-ssl.conf
+a2dissite default-ssl
+a2dissite 000-default
 a2ensite berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nRestarting Apache...."
