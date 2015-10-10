@@ -81,6 +81,14 @@ function version_upgrade()
     exec('a2ensite berryio.conf');
   }
 
+  // Copy in PHP configuration if its not there
+  if(!file_exists('/etc/php5/conf.d/berryio.ini'))
+    if(!copy('/usr/share/berryio/default_config/php5/conf.d/berryio.ini', '/etc/php5/conf.d/berryio.ini'))
+    {
+      echo 'WARNING:'.PHP_EOL.'The PHP BerryIO config file could not be added, you will need to perform any updates manually.'.PHP_EOL;
+      echo 'An example can be found in default_config/php5/conf.d/berryio.ini'.PHP_EOL.PHP_EOL;
+    }
+
   // Patch the apache site config file for the new GPIO location and new options line
   $patch_file = '/etc/apache2/sites-available/berryio.conf';
   $patch_example = '/usr/share/berryio/default_config/apache2/sites-available/';
