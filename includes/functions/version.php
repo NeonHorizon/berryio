@@ -78,7 +78,7 @@ function version_upgrade()
   {
     rename('/etc/apache2/sites-available/berryio', '/etc/apache2/sites-available/berryio.conf');
     exec('a2dissite berryio');
-    exec('a2ensite berryio');
+    exec('a2ensite berryio.conf');
   }
 
   // Patch the apache site config file for the new GPIO location and new options line
