@@ -96,6 +96,8 @@ cat /proc/cpuinfo | grep 'Revision' | grep '0002\|0003' >> /dev/null && GPIOConf
 cat /proc/cpuinfo | grep 'Revision' | grep '0012' >> /dev/null && GPIOConfig='a_plus';
 cat /proc/cpuinfo | grep 'Revision' | grep '0010' >> /dev/null && GPIOConfig='b_plus';
 cat /proc/cpuinfo | grep 'Revision' | grep '0011' >> /dev/null && GPIOConfig='compute_module';
+cat /proc/cpuinfo | grep 'Revision' | grep 'a01041' >> /dev/null && GPIOConfig='b2';
+cat /proc/cpuinfo | grep 'Revision' | grep 'a21041' >> /dev/null && GPIOConfig='b2';
 echo -e "\nYour Pi has been detected as a $GPIOConfig"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
@@ -108,7 +110,7 @@ until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
   if [[ "$gpioConfigured" =~ ^[nN]$ ]]; then
     GPIOConfig='';
     until [[ "$GPIOConfig" = 'rev1.0' ]] || [[ "$GPIOConfig" = 'rev2.0' ]] || [[ "$GPIOConfig" = 'a_plus' ]] || [[ "$GPIOConfig" = 'b_plus' ]] || [[ "$GPIOConfig" = 'compute_module' ]]; do
-      read -p "Please enter your Pi variant [rev1.0|rev2.0|a_plus|b_plus|compute_module]: " GPIOConfig
+      read -p "Please enter your Pi variant [rev1.0|rev2.0|a_plus|b_plus|b2|compute_module]: " GPIOConfig
     done
     echo
   fi
