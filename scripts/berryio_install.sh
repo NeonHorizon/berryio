@@ -29,6 +29,10 @@ chmod 440 /etc/sudoers.d/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 if [ ! -f /etc/msmtprc ]; then
   cp /usr/share/berryio/default_config/msmtprc /etc/msmtprc || { echo -e "Install failed!" 1>&2; exit 1; }
 fi
+if [ -f /etc/apache2/sites-available/berryio ]; then
+  a2dissite berryio
+  rm /etc/apache2/sites-available/berryio
+fi
 
 echo -e "\nCreating the log file directories...."
 if [ ! -d /var/log/berryio ]; then
