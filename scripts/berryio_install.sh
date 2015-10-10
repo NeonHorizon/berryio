@@ -50,7 +50,8 @@ echo -e "\nEnabling the required Apache modules...."
 a2enmod rewrite authnz_external || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nEnabling the BerryIO site configuration...."
-a2dissite default || { echo -e "Install failed!" 1>&2; exit 1; }
+a2dissite default
+a2dissite default-ssl.conf
 a2ensite berryio || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nRestarting Apache...."
