@@ -109,7 +109,7 @@ until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
   done
   if [[ "$gpioConfigured" =~ ^[nN]$ ]]; then
     GPIOConfig='';
-    until [[ "$GPIOConfig" = 'rev1.0' ]] || [[ "$GPIOConfig" = 'rev2.0' ]] || [[ "$GPIOConfig" = 'a_plus' ]] || [[ "$GPIOConfig" = 'b_plus' ]] || [[ "$GPIOConfig" = 'compute_module' ]]; do
+    until [[ "$GPIOConfig" = 'rev1.0' ]] || [[ "$GPIOConfig" = 'rev2.0' ]] || [[ "$GPIOConfig" = 'a_plus' ]] || [[ "$GPIOConfig" = 'b_plus' ]] || [[ "$GPIOConfig" = 'compute_module' ]] || [[ "$GPIOConfig" = 'b2' ]]; do
       read -p "Please enter your Pi variant [rev1.0|rev2.0|a_plus|b_plus|b2|compute_module]: " GPIOConfig
     done
     echo
