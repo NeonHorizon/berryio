@@ -73,6 +73,9 @@ function version_upgrade()
     return FALSE;
   }
 
+  // Check the system
+  echo 'Checking the system....'.PHP_EOL;
+
   // Rename the apache config file if required
   if(file_exists('/etc/apache2/sites-available/berryio'))
   {
@@ -81,12 +84,18 @@ function version_upgrade()
     exec('a2ensite berryio.conf');
   }
 
-  // Copy in PHP configuration if its not there
-  if(!file_exists('/etc/php5/conf.d/berryio.ini'))
-    if(!copy('/usr/share/berryio/default_config/php5/conf.d/berryio.ini', '/etc/php5/conf.d/berryio.ini'))
+  // Copy in any new files
+  $check_files = array(
+    'php5/apache2/conf.d/berryio.ini',
+    'php5/apache2/conf.d/msmtp.ini',
+    'php5/cli/conf.d/berryio.ini',
+    'php5/cli/conf.d/msmtp.ini',
+  );
+  foreach($check_files as $check_file)
+    if(!file_exists('/etc/'.$check_file) && !copy('/usr/share/berryio/default_config/'.$check_file, '/etc/php5/'.$check_file))
     {
       echo 'WARNING:'.PHP_EOL.'The PHP BerryIO config file could not be added, you will need to perform any updates manually.'.PHP_EOL;
-      echo 'An example can be found in default_config/php5/conf.d/berryio.ini'.PHP_EOL.PHP_EOL;
+      echo 'An example can be found in /usr/share/berryio/default_config/'.$check_file.PHP_EOL.PHP_EOL;
     }
 
   // Patch the apache site config file for the new GPIO location and new options line
