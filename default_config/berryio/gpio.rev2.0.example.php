@@ -70,7 +70,7 @@ $GLOBALS['GPIO_PINS'] += array(
 */
 
 
-// Settings for model A+, B+ or B2 boards
+// Settings for model A+, B+ and Pi 2 model B boards
 /*
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
