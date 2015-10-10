@@ -145,8 +145,8 @@ function camera_setup()
   // Modify apache site file
   echo 'Modifying the Apache site configuration....'.PHP_EOL;
   $success = FALSE;
-  if(is_file('/etc/apache2/sites-available/berryio'))
-    if(($lines = @file('/etc/apache2/sites-available/berryio')) !== FALSE)
+  if(is_file('/etc/apache2/sites-available/berryio.conf'))
+    if(($lines = @file('/etc/apache2/sites-available/berryio.conf')) !== FALSE)
       foreach($lines as $line_number => $line)
         if(substr(trim($line), 0, 107) == 'php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/')
         {
@@ -160,11 +160,11 @@ function camera_setup()
           $success = $success == FALSE ? TRUE : FALSE;
         }
   if($success)
-    $success = file_put_contents('/etc/apache2/sites-available/berryio', $lines);
+    $success = file_put_contents('/etc/apache2/sites-available/berryio.conf', $lines);
   if(!$success)
   {
     echo PHP_EOL;
-    echo 'An error occured when trying to modify /etc/apache2/site-available/berryio.'.PHP_EOL;
+    echo 'An error occured when trying to modify /etc/apache2/sites-available/berryio.conf.'.PHP_EOL;
     echo 'Please add the paths to your image and video folders into the'.PHP_EOL;
     echo 'php_admin_value open_basedir line manually and restart apache'.PHP_EOL;
     return FALSE;
