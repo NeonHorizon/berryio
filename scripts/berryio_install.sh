@@ -101,6 +101,7 @@ cat /proc/cpuinfo | grep 'Revision' | grep '0010' >> /dev/null && GPIOConfig='b_
 cat /proc/cpuinfo | grep 'Revision' | grep '0011' >> /dev/null && GPIOConfig='compute_module';
 cat /proc/cpuinfo | grep 'Revision' | grep 'a01041' >> /dev/null && GPIOConfig='2b';
 cat /proc/cpuinfo | grep 'Revision' | grep 'a21041' >> /dev/null && GPIOConfig='2b';
+cat /proc/cpuinfo | grep 'Revision' | grep '900092' >> /dev/null && GPIOConfig='zero';
 echo -e "\nYour Pi has been detected as a $GPIOConfig"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
