@@ -49,6 +49,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.12.2', '2015-02-07', array('Changes for Raspbian 2015-01-31 compatibility (requires update to be run twice)')),
   array('1.12.3', '2015-10-10', array('Changes for Pi 2 Model B', 'Changes for new Apache version (requires update to be run twice)')),
   array('1.12.4', '2015-10-10', array('Changes for new PHP version (requires update to be run twice)')),
+  array('1.12.5', '2015-11-27', array('Added support for Pi Zero')),
 );
 
 // Version Numbering
