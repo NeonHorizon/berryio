@@ -22,7 +22,8 @@ git clone https://github.com/NeonHorizon/berryio.git /usr/share/berryio/
 echo -e "\nCopying in the default config...."
 cp -R /usr/share/berryio/default_config/berryio /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/apache2 /etc || { echo -e "Install failed!" 1>&2; exit 1; }
-cp -R /usr/share/berryio/default_config/php5 /etc || { echo -e "Install failed!" 1>&2; exit 1; }
+cp /usr/share/berryio/default_config/php5/apache2/conf.d/* /etc/php5/apache2/conf.d || { echo -e "Install failed!" 1>&2; exit 1; }
+cp /usr/share/berryio/default_config/php5/cli/conf.d/* /etc/php5/cli/conf.d || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/network /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/sudoers.d /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 chmod 440 /etc/sudoers.d/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
