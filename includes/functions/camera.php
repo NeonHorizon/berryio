@@ -150,7 +150,7 @@ function camera_setup()
       foreach($lines as $line_number => $line)
         if(substr(trim($line), 0, 107) == 'php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/')
         {
-          $lines[$line_number] = '    php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/';
+          $lines[$line_number] = '    php_admin_value open_basedir "/usr/share/berryio/:/etc/berryio/:/sys/class/gpio/:/sys/devices/virtual/gpio/:/sys/devices/';
           $lines[$line_number] .= ':'.$GLOBALS['CAMERA_STORE']['IMAGES']['FILES'].'/';
           $lines[$line_number] .= ':'.$GLOBALS['CAMERA_STORE']['IMAGES']['THUMBNAILS'].'/';
           $lines[$line_number] .= ':'.$GLOBALS['CAMERA_STORE']['VIDEOS']['FILES'].'/';
