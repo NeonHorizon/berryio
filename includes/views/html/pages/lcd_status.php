@@ -94,8 +94,9 @@
 
   <p class="left">
     Refer to the config file <?=h(SETTINGS)?>lcd.php for instructions
-    on wiring a HDD44780 or KS0066U compatible LCD display. This includes options
-    for changing which GPIO pins you wish to connect the display to.
+    on wiring a HDD44780 or KS0066U compatible LCD display. This file also
+    includes options for changing the number of characters on the display and
+    which GPIO ports you wish to connect the display to.
   </p>
 
 </div>
