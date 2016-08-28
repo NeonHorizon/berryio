@@ -12,9 +12,6 @@ $GLOBALS['LCD_COMMANDS'] = array(
   // Return home
   'home'                 => 0b00000010,  // Send the cursor home
 
-  // Other
-  'new_line'             => 0b11000000,  // Send a new line
-
   // Entry mode set
   'text_reverse'         => 0b00000100,  // Type right to left
   'text_reverse_scroll'  => 0b00000101,  // Type right to left and scroll

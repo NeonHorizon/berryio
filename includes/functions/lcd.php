@@ -48,10 +48,11 @@ function lcd_output($string = '')
   if(!_lcd_set_mode(TRUE)) return FALSE;
 
   // Send string
+  $line = 1;
   for($i = 0; $i < strlen($string); $i++)
     if($string[$i] == "\n")
     {
-      if(!lcd_command('new_line')) return FALSE;
+      if(!lcd_position(0, $line++)) return FALSE;
       if(!_lcd_set_mode(TRUE)) return FALSE; // Go back into character mode
     }
     elseif($string[$i] != "\r")
@@ -67,10 +68,15 @@ function lcd_output($string = '')
 function lcd_position($x = 0, $y = 0)
 {
   // Check for nonsense
-  if(!is_numeric($x) || !is_numeric($y) || $x < 0 || $x > 0b00111111) return FALSE;
+  if(!is_numeric($x) || !is_numeric($y) || $x < 0 || $y < 0 || $x >= LCD_COLS || $y >= LCD_ROWS) return FALSE;
 
-  // Calculate position
-  $x += $y * 0b01000000;
+  // Calculate Y
+  if($y == 1)
+    $x += 64;
+  elseif($y == 2)
+    $x += 20;
+  elseif($y == 3)
+    $x += 84;
 
   // Check its within range
   if($x < 0 || $x > 0b01111111) return FALSE;

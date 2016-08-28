@@ -25,7 +25,7 @@
     <div class="container">
       <form action="/lcd_output" method="post">
         <p>
-          <textarea id="lcd_output" name="output" cols="<?=LCD_COLS?>" rows="<?=LCD_ROWS?>" wrap="hard" style="width: <?=8 * LCD_COLS + 7?>px; height: <?=16 * LCD_ROWS?>px;"></textarea><br />
+          <textarea id="lcd_output" name="output" cols="<?=LCD_COLS?>" rows="<?=LCD_ROWS?>" wrap="hard"></textarea><br />
           <input type="submit" name="clear" value="Send" />
           <input type="submit" name="append" value="Append" />
         </p>

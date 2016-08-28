@@ -51,6 +51,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.12.4', '2015-10-10', array('Changes for new PHP version (requires update to be run twice)')),
   array('1.12.5', '2015-11-27', array('Added support for Pi Zero')),
   array('1.12.6', '2016-07-12', array('Added fix for camera_setup breaking GPIO web page')),
+  array('1.13.0', '2016-08-28', array('Multiple Improvements in LCD handling')),
 );
 
 // Version Numbering
