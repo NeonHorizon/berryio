@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
   Load the LCD settings and config and functions we need
 ------------------------------------------------------------------------------*/
-settings('lcd', '1');
+settings('lcd', '2');
 require_once(CONFIGS.'lcd.php');
 require_once(FUNCTIONS.'gpio.php');
 
@@ -25,11 +25,20 @@ function lcd_initialise()
       !gpio_set_mode(LCD_D7_GPIO, 'out') )
     return FALSE;
 
-  // Send Initialise Codes
-  if( !_lcd_set_mode(FALSE) || // Go into command mode
-      !_lcd_send(0b00110011) ||
-      !_lcd_send(0b00110010) )
-    return FALSE;
+  // If we are in 8 bit mode set those also
+  if(LCD_BITS == 8)
+    if( !gpio_set_mode(LCD_D0_GPIO, 'out') ||
+        !gpio_set_mode(LCD_D1_GPIO, 'out') ||
+        ! gpio_set_mode(LCD_D2_GPIO, 'out') ||
+        !gpio_set_mode(LCD_D3_GPIO, 'out') )
+      return FALSE;
+
+  // Switch into 4 bit mode if applicable
+  if(LCD_BITS == 4)
+    if( !_lcd_set_mode(FALSE) || // Go into command mode
+        !_lcd_send(0b00110011) ||
+        !_lcd_send(0b00110010) )
+      return FALSE;
 
   // Reset LCD
   if(!lcd_command('2_line_5x8', 'on_no_cursor', 'clear', 'text_forwards'))
@@ -136,20 +145,23 @@ function _lcd_send($value)
       !gpio_set_value(LCD_D7_GPIO, ($value & 0b10000000) > 0 ? 1 : 0) )
     return FALSE;
 
-  // Send High block
-  if( !gpio_set_value(LCD_ES_GPIO, 1)) return FALSE;
-  time_nanosleep(0, LCD_TIMING_TW);
-  if( !gpio_set_value(LCD_ES_GPIO, 0)) return FALSE;
-  time_nanosleep(0, LCD_TIMING_TH2);
+  if(LCD_BITS == 4)
+  {
+    // Send block
+    if( !gpio_set_value(LCD_ES_GPIO, 1)) return FALSE;
+    time_nanosleep(0, LCD_TIMING_TW);
+    if( !gpio_set_value(LCD_ES_GPIO, 0)) return FALSE;
+    time_nanosleep(0, LCD_TIMING_TH2);
+  }
 
   // Set Low Block
-  if( !gpio_set_value(LCD_D4_GPIO, ($value & 0b00000001) > 0 ? 1 : 0) ||
-      !gpio_set_value(LCD_D5_GPIO, ($value & 0b00000010) > 0 ? 1 : 0) ||
-      !gpio_set_value(LCD_D6_GPIO, ($value & 0b00000100) > 0 ? 1 : 0) ||
-      !gpio_set_value(LCD_D7_GPIO, ($value & 0b00001000) > 0 ? 1 : 0) )
+  if( !gpio_set_value(LCD_BITS == 4 ? LCD_D4_GPIO : LCD_D0_GPIO, ($value & 0b00000001) > 0 ? 1 : 0) ||
+      !gpio_set_value(LCD_BITS == 4 ? LCD_D5_GPIO : LCD_D1_GPIO, ($value & 0b00000010) > 0 ? 1 : 0) ||
+      !gpio_set_value(LCD_BITS == 4 ? LCD_D6_GPIO : LCD_D2_GPIO, ($value & 0b00000100) > 0 ? 1 : 0) ||
+      !gpio_set_value(LCD_BITS == 4 ? LCD_D7_GPIO : LCD_D3_GPIO, ($value & 0b00001000) > 0 ? 1 : 0) )
     return FALSE;
 
-  // Send Low block
+  // Send block
   if( !gpio_set_value(LCD_ES_GPIO, 1)) return FALSE;
   time_nanosleep(0, LCD_TIMING_TW);
   if( !gpio_set_value(LCD_ES_GPIO, 0)) return FALSE;
