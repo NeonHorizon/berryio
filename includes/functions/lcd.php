@@ -29,7 +29,7 @@ function lcd_initialise()
   if(LCD_BITS == 8)
     if( !gpio_set_mode(LCD_D0_GPIO, 'out') ||
         !gpio_set_mode(LCD_D1_GPIO, 'out') ||
-        ! gpio_set_mode(LCD_D2_GPIO, 'out') ||
+        !gpio_set_mode(LCD_D2_GPIO, 'out') ||
         !gpio_set_mode(LCD_D3_GPIO, 'out') )
       return FALSE;
 
