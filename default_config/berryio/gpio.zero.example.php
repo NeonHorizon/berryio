@@ -33,6 +33,8 @@ $GLOBALS['GPIO_PINS'] = array(
   25 => 'GPIO_GEN6',
 );
 */
+
+
 // Settings for revision 2 board (including 512MB version but not A+ or B+)
 /*
 $GLOBALS['GPIO_PINS'] = array(
@@ -55,6 +57,7 @@ $GLOBALS['GPIO_PINS'] = array(
   27 => 'GPIO_GEN2',
 );
 */
+
 // Extra GPIO Pins on the optional P5 header on the revision 2 board
 /*
 $GLOBALS['GPIO_PINS'] += array(
@@ -64,7 +67,9 @@ $GLOBALS['GPIO_PINS'] += array(
   31 => '',
 );
 */
-// Settings for model A+, B+, Pi 2 model B and Zero boards
+
+
+// Settings for A+, B+, 2B, 3B and Zero boards
 $GLOBALS['GPIO_PINS'] = array(
   2  => 'I2C SDA1',
   3  => 'I2C SCL1',
@@ -92,7 +97,10 @@ $GLOBALS['GPIO_PINS'] = array(
   26 => '',
   27 => 'GPIO_GEN2',
 );
+
+
 define('GPIO_PINS_PER_ROW', 5);  // Change to fit your browser window
+
 // This value specifies the delay between updates of the GPIO information on the
 // GPIO Status web page. Making these intervals too small will create a high CPU
 // load when viewing. It should be noted the updates only take place when
@@ -100,5 +108,7 @@ define('GPIO_PINS_PER_ROW', 5);  // Change to fit your browser window
 // unaffected at other times.
 // Update interval is in ms (1000ms = 1 second)
 define('GPIO_UPDATE_INTERVAL', 400);
+
+
 // Do not change below this line
 define('GPIO_SETTINGS_VERSION', '3');
