@@ -53,6 +53,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('1.12.6', '2016-07-12', array('Added fix for camera_setup breaking GPIO web page')),
   array('1.13.0', '2016-08-28', array('Multiple Improvements in LCD handling')),
   array('1.14.0', '2016-09-03', array('Added support for 8 bit LCD\'s')),
+  array('1.15.0', '2016-11-17', array('Updated/Corrected Raspberry Pi identification')),
 );
 
 // Version Numbering
