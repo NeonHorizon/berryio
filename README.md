@@ -9,17 +9,17 @@ BerryIO
 - **Platform:** Tested on Raspbian Wheezy (2012-09-18 and newer) may work on others
 - **Requirements:** A Raspberry Pi running Raspbian and a web browser (Internet Explorer versions before 8 are not supported)
 
-==
+---
+
 ![overview](http://frozenmist.co.uk/downloads/berryio/IMAGES/berryio.png)
 
-###Getting Started
-[Installation Instructions](https://github.com/NeonHorizon/berryio/blob/master/INSTALL.README.txt)
+### Getting Started
 
-[ScreenShots] (https://plus.google.com/u/0/photos/109352235257103413028/albums/5786226385146681521)
+* [Installation Instructions](https://github.com/NeonHorizon/berryio/blob/master/INSTALL.README.txt)
+* [Screenshots](https://plus.google.com/u/0/photos/109352235257103413028/albums/5786226385146681521)
+* [Contributing Code](https://github.com/NeonHorizon/berryio/blob/master/CONTRIBUTING_CODE.README.txt)
 
-[Contributing Code](https://github.com/NeonHorizon/berryio/blob/master/CONTRIBUTING_CODE.README.txt)
-
-###Project Details
+### Project Details
 
 The long term aim of BerryIO is to enable developers to control the Raspberry Pi and its GPIO ports remotely from any device with a browser, without ever needing to connect a screen or keyboard to the Pi itself. The new API mode extends this further enabling mobile apps, etc to be produced and control BerryIO.
 
@@ -29,8 +29,7 @@ There is also a command line interface, so you can issue commands directly to it
 
 For those interested in the technical details its mostly written in PHP which runs the back end for both the command line and the web browser interface (which is served with Apache). SPI control is written in C, the emailing is done with msmtp and the network can be managed by Raspians wpagui (although I hope to include functions in BerryIO to configure the network at some point).
 
-
-###Features
+### Features
 - Full GPIO control including input/output mode switching and on off toggling.
 - Support for Raspberry Pi Model A, Model B revision 1 and 2 (including both 256MB and 512MB versions) and Model B+.
 - Ability to take photos and adjust camera settings (video coming soon).
@@ -44,8 +43,7 @@ For those interested in the technical details its mostly written in PHP which ru
 - Integrated upgrade system.
 - API system for developing mobile apps.
 
-
-###License Information
+### License Information
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -53,8 +51,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
 
-###Credits
+### Credits
 
 SPI module based on code from the Gertboard test suite:
 Copyright (C) Gert Jan van Loo & Myra VanInwegen 2012
-
