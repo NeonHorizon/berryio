@@ -86,10 +86,10 @@ function version_upgrade()
 
   // Copy in any new files
   $check_files = array(
-    'php7/apache2/conf.d/berryio.ini',
-    'php7/apache2/conf.d/msmtp.ini',
-    'php7/cli/conf.d/berryio.ini',
-    'php7/cli/conf.d/msmtp.ini',
+    'php/7.0/apache2/conf.d/berryio.ini',
+    'php/7.0/apache2/conf.d/msmtp.ini',
+    'php/7.0/cli/conf.d/berryio.ini',
+    'php/7.0/cli/conf.d/msmtp.ini',
   );
   foreach($check_files as $check_file)
     if(!file_exists('/etc/'.$check_file) && !copy('/usr/share/berryio/default_config/'.$check_file, '/etc/'.$check_file))

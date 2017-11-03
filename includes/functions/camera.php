@@ -109,11 +109,11 @@ function camera_setup()
   if(!function_exists('imagetypes'))
   {
     echo 'Installing PHP GD Libraries.... (this may take a while)'.PHP_EOL;
-    exec('apt -y install php7-gd 2>&1', $output, $return_var);
+    exec('apt -y install php-gd 2>&1', $output, $return_var);
     if($return_var != 0)
     {
       echo PHP_EOL;
-      echo 'An error occured when trying to install the package php7-gd.'.PHP_EOL;
+      echo 'An error occured when trying to install the package php-gd.'.PHP_EOL;
       echo PHP_EOL;
       echo 'The error returned was as follows:'.PHP_EOL;
       echo implode(PHP_EOL, $output);

@@ -31,7 +31,7 @@ msmtp is a simple mail transfer agent used by BerryIO to send emails. You
 can use your own MTA such as sendmail if you wish you just need to remove
 msmtp from the list of installed prerequisite packages by editing the
 install.sh file. Once you have done this and installed the BerryIO you
-must then delete the PHP configuration file /etc/php7/conf.d/msmtp.ini
+must then delete the PHP configuration file /etc/php/7.0/conf.d/msmtp.ini
 so PHP no longer uses msmtp by default.
 
 Apache2:
