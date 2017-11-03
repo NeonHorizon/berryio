@@ -11,7 +11,7 @@ fi
 echo -e "\nBerryIO Installer\n-----------------"
 
 echo -e "\nInstalling the prerequisites...."
-apt-get -y install ethtool wireless-tools msmtp apache2 php5 libapache2-mod-php5 pwauth git || { echo -e "Install failed!" 1>&2; exit 1; }
+apt -y install ethtool wireless-tools msmtp apache2 php libapache2-mod-php pwauth git || { echo -e "Install failed!" 1>&2; exit 1; }
 
 echo -e "\nRemoving any old copies of BerryIO...."
 rm -fr /usr/share/berryio || { echo -e "Install failed!" 1>&2; exit 1; }
@@ -22,8 +22,7 @@ git clone https://github.com/NeonHorizon/berryio.git /usr/share/berryio/
 echo -e "\nCopying in the default config...."
 cp -R /usr/share/berryio/default_config/berryio /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/apache2 /etc || { echo -e "Install failed!" 1>&2; exit 1; }
-cp /usr/share/berryio/default_config/php5/apache2/conf.d/* /etc/php5/apache2/conf.d || { echo -e "Install failed!" 1>&2; exit 1; }
-cp /usr/share/berryio/default_config/php5/cli/conf.d/* /etc/php5/cli/conf.d || { echo -e "Install failed!" 1>&2; exit 1; }
+cp -R /usr/share/berryio/default_config/php     /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/network /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 cp -R /usr/share/berryio/default_config/sudoers.d /etc || { echo -e "Install failed!" 1>&2; exit 1; }
 chmod 440 /etc/sudoers.d/berryio || { echo -e "Install failed!" 1>&2; exit 1; }

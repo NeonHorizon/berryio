@@ -34,13 +34,13 @@ function camera_setup()
     echo 'This is most likely because your Raspbian install is out of date.'.PHP_EOL;
     echo PHP_EOL;
     echo 'Please run:'.PHP_EOL;
-    echo 'sudo apt-get update'.PHP_EOL;
-    echo 'sudo apt-get upgrade'.PHP_EOL;
+    echo 'sudo apt update'.PHP_EOL;
+    echo 'sudo apt upgrade'.PHP_EOL;
     echo PHP_EOL;
     echo '...and try again.'.PHP_EOL;
     echo PHP_EOL;
     echo 'If that doesn\'t work try:'.PHP_EOL;
-    echo 'sudo apt-get dist-upgrade'.PHP_EOL;
+    echo 'sudo apt dist-upgrade'.PHP_EOL;
     return FALSE;
   }
   echo 'Success!'.PHP_EOL;
@@ -109,11 +109,11 @@ function camera_setup()
   if(!function_exists('imagetypes'))
   {
     echo 'Installing PHP GD Libraries.... (this may take a while)'.PHP_EOL;
-    exec('apt-get -y install php5-gd 2>&1', $output, $return_var);
+    exec('apt -y install php7-gd 2>&1', $output, $return_var);
     if($return_var != 0)
     {
       echo PHP_EOL;
-      echo 'An error occured when trying to install the package php5-gd.'.PHP_EOL;
+      echo 'An error occured when trying to install the package php7-gd.'.PHP_EOL;
       echo PHP_EOL;
       echo 'The error returned was as follows:'.PHP_EOL;
       echo implode(PHP_EOL, $output);

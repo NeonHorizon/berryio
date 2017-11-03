@@ -36,7 +36,7 @@ function memory_list()
   // Fetch location information from free command
   // Should probably rewrite this to cat /proc/meminfo
   $output = array();
-  exec('/usr/bin/free --bytes --old', $output, $return_var);
+  exec('/usr/bin/free --bytes', $output, $return_var);
   if($return_var) return FALSE;
 
   foreach($output as $line)
@@ -45,7 +45,7 @@ function memory_list()
 
     // Only process 4 or more column rows
     // Ignore row with column titles
-    if(count($columns) >= 4 && $columns[0] != 'total')
+    if(count($columns) >= 4 && $columns[0] != 'total' && $columns[0] != '-/+')
     {
       $location = rtrim($columns[0], ':');
 
@@ -125,9 +125,9 @@ function memory_list()
         }
 
         // If we know the buffers and the cache we can calculate the app
-        if(isset($columns[5]) && is_numeric($columns[5]) && is_numeric($columns[6]) && is_numeric($columns[6]))
+        if(isset($columns[5]) && is_numeric($columns[5]))
         {
-          $apps = $columns[1] - $columns[3] - $columns[5] - $columns[6];
+          $apps = $columns[1] - $columns[3] - $columns[5];
           $locations[$location.' (Apps)']['Virtual']['bool'] = !($location == 'RAM');
           $locations[$location.' (Apps)']['Type']['text'] = $location.' (Apps)';
 
@@ -142,34 +142,18 @@ function memory_list()
         // Buffer calulations
         if(isset($columns[5]) && is_numeric($columns[5]))
         {
-          $locations[$location.' (Buffers)']['Virtual']['bool'] = !($location == 'RAM');
-          $locations[$location.' (Buffers)']['Type']['text'] = $location.' (Buffers)';
+          $locations[$location.' (Buff/Cache)']['Virtual']['bool'] = !($location == 'RAM');
+          $locations[$location.' (Buff/Cache)']['Type']['text'] = $location.' (Buffers)';
 
-          $locations[$location.' (Buffers)']['Used']['value'] = $columns[5];
-          $locations[$location.' (Buffers)']['Used']['text'] = si_unit($columns[5], $power, 1024, 1).'B';
-          $locations[$location.' (Buffers)']['Used']['min'] = 0;
-          $locations[$location.' (Buffers)']['Used']['max'] = $columns[3] + $columns[5];
-          $locations[$location.' (Buffers)']['Used']['positive'] = FALSE;
-          $locations[$location.' (Buffers)']['Used']['absolute'] = FALSE;
+          $locations[$location.' (Buff/Cache)']['Used']['value'] = $columns[5];
+          $locations[$location.' (Buff/Cache)']['Used']['text'] = si_unit($columns[5], $power, 1024, 1).'B';
+          $locations[$location.' (Buff/Cache)']['Used']['min'] = 0;
+          $locations[$location.' (Buff/Cache)']['Used']['max'] = $columns[3] + $columns[5];
+          $locations[$location.' (Buff/Cache)']['Used']['positive'] = FALSE;
+          $locations[$location.' (Buff/Cache)']['Used']['absolute'] = FALSE;
         }
         elseif(isset($columns[5]))
-          $locations[$location.' (Cache)']['Used']['text'] = $columns[5];
-
-        // Cache calulations
-        if(isset($columns[6]) && is_numeric($columns[6]))
-        {
-          $locations[$location.' (Cache)']['Virtual']['bool'] = !($location == 'RAM');
-          $locations[$location.' (Cache)']['Type']['text'] = $location.' (Cache)';
-
-          $locations[$location.' (Cache)']['Used']['value'] = $columns[6];
-          $locations[$location.' (Cache)']['Used']['text'] = si_unit($columns[6], $power, 1024, 1).'B';
-          $locations[$location.' (Cache)']['Used']['min'] = 0;
-          $locations[$location.' (Cache)']['Used']['max'] = $columns[3] + $columns[6];
-          $locations[$location.' (Cache)']['Used']['positive'] = FALSE;
-          $locations[$location.' (Cache)']['Used']['absolute'] = FALSE;
-        }
-        elseif(isset($columns[6]))
-          $locations[$location.' (Cache)']['Used']['text'] = $columns[6];
+          $locations[$location.' (Buff/Cache)']['Used']['text'] = $columns[5];
       }
       else
       {
