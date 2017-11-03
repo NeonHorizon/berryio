@@ -1,4 +1,4 @@
-*NOTE: Those having issues with the latest version of Raspbian, please run berryio upgrade twice and this should resolve it*
+*NOTE: Do not upgrade to version 2.0 unless you have Raspbian Stretch or newer!*
 
 BerryIO
 =======
