@@ -1,6 +1,6 @@
 // ------------------------- PROJECT INFORMATION -------------------------
 
-Further details about BerryIO are available on the project website here: 
+Further details about BerryIO are available on the project website here:
 https://github.com/NeonHorizon/berryio
 
 
@@ -19,13 +19,7 @@ http://httpd.apache.org/docs/
 // -------------------- PRE-INSTALLATION INFORMATION ---------------------
 
 Although we recommend you install BerryIO on a fresh Raspbian install
-you can also add it to an existing setup. If your existing setup is
-prior to the 2012-09-18-wheezy-raspbian release and you wish to have your
-Pi automatically connect and email when networks become available then
-you will either need to install a network manager or follow these
-instructions to install wpagui which is now shipped as standard with
-Raspbian.
-http://www.raspberrypi.org/phpBB3/viewtopic.php?f=66&t=17788&p=176847
+you can also add it to an existing setup.
 
 As with any changes we recommend you backup your SD card before
 installing BerryIO just in case there are any conflicts.
@@ -37,7 +31,7 @@ msmtp is a simple mail transfer agent used by BerryIO to send emails. You
 can use your own MTA such as sendmail if you wish you just need to remove
 msmtp from the list of installed prerequisite packages by editing the
 install.sh file. Once you have done this and installed the BerryIO you
-must then delete the PHP configuration file /etc/php5/conf.d/msmtp.ini
+must then delete the PHP configuration file /etc/php/7.0/conf.d/msmtp.ini
 so PHP no longer uses msmtp by default.
 
 Apache2:
@@ -88,16 +82,16 @@ the normal way.
 
 // -------------------- INSTALLATION INSTRUCTIONS ------------------------
 
-BerryIO is now on the project hosting and collaboration service GitHub.
+BerryIO is hosted on GitHub.
 You do not need to download anything prior to following these instructions.
 Simply make sure you have an Internet connection on your Raspberry Pi and
 enter the commands below.
 
-// Make sure your Raspbian install is up to date with apt-get (as below)
+// Make sure your Raspbian install is up to date with apt (as below)
 // (Please do not use rpi-update as this will migrate your Pi to the dev
 // firmware which we do not support)
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt update
+sudo apt upgrade
 
 // Download and run the latest setup script
 wget https://github.com/NeonHorizon/berryio/raw/master/scripts/berryio_install.sh

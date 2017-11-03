@@ -86,13 +86,13 @@ function version_upgrade()
 
   // Copy in any new files
   $check_files = array(
-    'php5/apache2/conf.d/berryio.ini',
-    'php5/apache2/conf.d/msmtp.ini',
-    'php5/cli/conf.d/berryio.ini',
-    'php5/cli/conf.d/msmtp.ini',
+    'php/7.0/apache2/conf.d/berryio.ini',
+    'php/7.0/apache2/conf.d/msmtp.ini',
+    'php/7.0/cli/conf.d/berryio.ini',
+    'php/7.0/cli/conf.d/msmtp.ini',
   );
   foreach($check_files as $check_file)
-    if(!file_exists('/etc/'.$check_file) && !copy('/usr/share/berryio/default_config/'.$check_file, '/etc/php5/'.$check_file))
+    if(!file_exists('/etc/'.$check_file) && !copy('/usr/share/berryio/default_config/'.$check_file, '/etc/'.$check_file))
     {
       echo 'WARNING:'.PHP_EOL.'The PHP BerryIO config file could not be added, you will need to perform any updates manually.'.PHP_EOL;
       echo 'An example can be found in /usr/share/berryio/default_config/'.$check_file.PHP_EOL.PHP_EOL;
