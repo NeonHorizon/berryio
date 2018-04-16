@@ -27,7 +27,7 @@ The way BerryIO works is once the Raspberry Pi has booted up (or if the connecti
 
 There is also a command line interface, so you can issue commands directly to it over SSH or in scripting should you wish to.
 
-For those interested in the technical details its mostly written in PHP which runs the back end for both the command line and the web browser interface (which is served with Apache). SPI control is written in C, the emailing is done with msmtp and the network can be managed by Raspians wpagui (although I hope to include functions in BerryIO to configure the network at some point).
+For those interested in the technical details it's mostly written in PHP which runs the back end for both the command line and the web browser interface (which is served with Apache). SPI control is written in C, the emailing is done with msmtp and the network can be managed by Raspians wpagui (although I hope to include functions in BerryIO to configure the network at some point).
 
 ### Features
 - Full GPIO control including input/output mode switching and on off toggling.
