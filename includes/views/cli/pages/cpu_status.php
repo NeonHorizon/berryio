@@ -16,7 +16,7 @@ CPU READINGS:
 
 <? endif?>
 <? if($speed != ''):?>
-  Speed         <?=str_pad(si_unit($speed, $na, 1000, 0).'Hz', 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar($speed, CPU_SPEED_MIN, CPU_SPEED_MAX, FALSE)?>
+  Speed         <?=str_pad(si_unit($speed, $na, 1000, $speed > 1000000000 ? 1 : 0).'Hz', 7, ' ', STR_PAD_RIGHT)?> <?=graph_horizontal_bar($speed, CPU_SPEED_MIN, CPU_SPEED_MAX, FALSE)?>
 
 <? endif?>
 <? if($voltage != ''):?>
