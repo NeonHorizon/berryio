@@ -44,7 +44,12 @@
                     break;
 
                   case 'speed':
-                    document.getElementById('cpu_speed_num').innerHTML = siUnit(cpuInfo[1], '', 1000, 0) + 'Hz';
+                    if(cpuInfo[1] > 1000000000) {
+                      document.getElementById('cpu_speed_num').innerHTML = siUnit(cpuInfo[1], '', 1000, 1) + 'Hz';
+                    }
+                    else {
+                      document.getElementById('cpu_speed_num').innerHTML = siUnit(cpuInfo[1], '', 1000, 0) + 'Hz';
+                    }
                     updateGraphHorizontalBar('cpu_speed', cpuInfo[1], <?=CPU_SPEED_MIN?>, <?=CPU_SPEED_MAX?>, true, false);
                     break;
 
