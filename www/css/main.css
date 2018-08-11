@@ -358,12 +358,16 @@ div.memory_locations table {
 ------------------------------------------------------------------------------*/
 
 div.board_information {
-  min-height:       220px;
+  min-height:       250px;
   width:            450px;
 }
 
 div.board_information table {
   margin:           6px auto 10px auto;
+}
+
+div.board_information th {
+  white-space:      nowrap;
 }
 
 
@@ -493,7 +497,7 @@ div.gpio_toggle div.off {
 
 
 /*------------------------------------------------------------------------------
-  CAMERA
+  Camera
 ------------------------------------------------------------------------------*/
 
 div.camera_viewfinder {
@@ -543,7 +547,7 @@ div.camera_controls th {
 
 
 /*------------------------------------------------------------------------------
-  USAGE
+  Usage
 ------------------------------------------------------------------------------*/
 
 div.usage {
