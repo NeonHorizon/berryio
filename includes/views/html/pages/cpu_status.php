@@ -48,7 +48,7 @@
       <? if($speed != ''):?>
         <tr>
           <th>Speed</th>
-          <td id="cpu_speed_num"><?=h(si_unit($speed, $na, 1000, 0))?>Hz</td>
+          <td id="cpu_speed_num"><?=h(si_unit($speed, $na, 1000, $speed > 1000000000 ? 1 : 0))?>Hz</td>
           <td class="code"><?=graph_horizontal_bar($speed, CPU_SPEED_MIN, CPU_SPEED_MAX, FALSE, TRUE, 'cpu_speed')?></td>
         </tr>
       <? endif?>
