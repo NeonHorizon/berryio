@@ -95,13 +95,17 @@ echo -e "<?\n/*-----------------------------------------------------------------
 
 echo -e "\n\nConfiguring GPIO settings\n-------------------------"
 GPIOConfig="rev2.0";
+
+cat /proc/cpuinfo | grep 'Revision' | grep '900092\|920092\|900093\|920093\|9000c1' >> /dev/null && GPIOConfig='zero';
 cat /proc/cpuinfo | grep 'Revision' | grep '0002\|0003' >> /dev/null && GPIOConfig='rev1.0';
-cat /proc/cpuinfo | grep 'Revision' | grep '0010\|0013' >> /dev/null && GPIOConfig='b_plus';
-cat /proc/cpuinfo | grep 'Revision' | grep '0011\|0014' >> /dev/null && GPIOConfig='compute_module';
-cat /proc/cpuinfo | grep 'Revision' | grep '0012\|0015' >> /dev/null && GPIOConfig='a_plus';
+cat /proc/cpuinfo | grep 'Revision' | grep '0004\|0005\|0006\|000d\|000e\|000f' >> /dev/null && GPIOConfig='rev2.0';
+cat /proc/cpuinfo | grep 'Revision' | grep '0007\|0008\|0009' >> /dev/null && GPIOConfig='rev2.0';
+cat /proc/cpuinfo | grep 'Revision' | grep '0012\|0015\|900021' >> /dev/null && GPIOConfig='a_plus';
+cat /proc/cpuinfo | grep 'Revision' | grep '0010\|0013\|900032' >> /dev/null && GPIOConfig='b_plus';
 cat /proc/cpuinfo | grep 'Revision' | grep 'a01040\|a01041\|a21041\|a22042' >> /dev/null && GPIOConfig='2b';
-cat /proc/cpuinfo | grep 'Revision' | grep '900092\|900093\|920093' >> /dev/null && GPIOConfig='zero';
-cat /proc/cpuinfo | grep 'Revision' | grep 'a02082\|a22082' >> /dev/null && GPIOConfig='3b';
+cat /proc/cpuinfo | grep 'Revision' | grep 'a02082\|a22082\|a32082\|a52082\|a020d3' >> /dev/null && GPIOConfig='3b';
+cat /proc/cpuinfo | grep 'Revision' | grep '0011\|0014\|a020a0' >> /dev/null && GPIOConfig='compute_module';
+
 echo -e "\nYour Pi has been detected as a $GPIOConfig"
 gpioConfigured="N";
 until [[ "$gpioConfigured" =~ ^[yY]$ || -z "$gpioConfigured" ]]; do
