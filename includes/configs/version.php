@@ -57,6 +57,7 @@ $GLOBALS['VERSION_HISTORY'] = array(
   array('2.0.0',  '2017-11-03', array('Compatiblity changes for Stretch including migration to PHP7 (REQUIRES RASPBIAN STRETCH OR NEWER!)')),
   array('2.1.0',  '2018-08-11', array('Added installation detection and support for new Pi hardware revisions')),
   array('2.1.1',  '2018-08-11', array('Fixed cosmetic issues with CPUs > 1GHz')),
+  array('2.1.2',  '2019-08-01', array('Added support for PHP7.3 as used on Raspbian 2019-06-20 onwards')),
 );
 
 // Version Numbering
